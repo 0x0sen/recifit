@@ -1,0 +1,52 @@
+-- 유저 테이블 생성
+CREATE TABLE rf_user (
+    user_nick   VARCHAR2(20)   PRIMARY KEY,   --로그인시 사용할 아이디
+    user_pw    VARCHAR2(100)    NOT NULL,       --비밀번호
+    user_name    VARCHAR2(20)    NOT NULL,      --가입자 이름
+    user_phone   VARCHAR2(20)   NOT NULL,      --가입자 전화번호
+    user_email    VARCHAR2(50)    NOT NULL,      --가입자 이메일
+    user_id       VARCHAR2(20)     NOT NULL UNIQUE,--닉네임ex)요리왕
+    user_img   VARCHAR2(255)   NOT NULL,        --가입자 사진
+    user_pr     VARCHAR2(255),                 --가입자 소개
+    user_role   VARCHAR2(20)   DEFAULT 'ROLE_USER'   --일반유저,관리자 구분 관리자는 ‘ROLE_ADMIN’
+    );
+    
+-- 레시피 테이블 생성
+CREATE TABLE rf_recipe (
+    recipe_num    NUMBER          PRIMARY KEY,    --시퀀스 번호
+    recipe_name   VARCHAR2(20)    NOT NULL,       --레시피 이름
+    recipe_img   VARCHAR2(255)     NOT NULL,       --레시피 사진
+    recipe_need VARCHAR2(255)   NOT NULL,       --레시피 재료
+    recipe_howto VARCHAR2(255)   NOT NULL,       --레시피 설명
+    recipe_type VARCHAR2(50)    NOT NULL,       --레시피 분류
+    recipe_date   DATE          DEFAULT SYSDATE,--올린 일자
+    recipe_icon   VARCHAR2(20),                  --ex)('이유식,'매운맛,'다이어트식’)
+    recipe_hit  NUMBER NOT NULL,                --레시피 조회수
+    recipe_zzimSum  NUMBER   NOT NULL,           --레시피 찜수
+    recipe_nick VARCHAR2(20)    NOT NULL   REFERENCES rf_user(user_nick) --user테이블의 user_nick 컬럼을 참조한다.
+    );
+    
+--레시피 테이블 일련번호 시퀀스
+create sequence rf_recipe_seq;
+
+-- 댓글 테이블 생성
+CREATE TABLE rf_comment (
+    comment_num     NUMBER    PRIMARY KEY, --시퀀스 사용
+    recipe_num      NUMBER    REFERENCES rf_recipe(recipe_num),-- 레시피 번호
+    comment_nick  VARCHAR2(20)    REFERENCES rf_user(user_nick),-- 댓글 작성자
+    comment_text  VARCHAR2(255) NOT NULL,-- 댓글 내용
+    comment_date  DATE   DEFAULT SYSDATE,-- 댓글 작성 시간
+    comment_sum   NUMBER NOT NULL   --댓글의 총 개수  
+);
+--댓글 테이블 일련번호 시퀀스
+create sequence rf_comment_seq;
+
+-- 찜 테이블 생성
+CREATE TABLE rf_zzim (
+    zzim_num   NUMBER   PRIMARY KEY,-- 시퀀스 사용
+    recipe_num  NOT NULL  REFERENCES rf_recipe(recipe_num),-- 찜한 레시피 번호,
+    zzim_nick   NOT NULL  REFERENCES rf_user(user_nick),--찜한 사람의 아이디
+    zzim_date    DATE   DEFAULT SYSDATE --찜한 날짜
+);
+--찜 테이블 일련번호 시퀀스
+create sequence rf_zzim_seq;
