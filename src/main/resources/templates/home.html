@@ -6,15 +6,20 @@
 <title>spring5</title>
 </head>
 <body>
-<h1>[ 레시핏 공사중 ]</h1>
+<h1>[ 레시핏 ]</h1>
 
-<!-- 필요하신 링크 수정해서 들어가는걸로 해주세요 -->
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}" >회원가입</a></p>
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >로그아웃</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/selectAll}">전체회원목록</a></p>
+<!-- 로그인 되어있을 때만 나타남 -->
+<p sec:authorize="isAuthenticated()">로그인 중</p>
+
+<!--http://localhost8884/spring5/member/join-->
+
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/Login/loginForm}" >로그인페이지로 가기</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/Login/logout}" >로그아웃</a></p>
+<p><a th:href="@{/board/list}">게시판</a></p>
+
+<p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
+
+
 
 </body>
 </html>
