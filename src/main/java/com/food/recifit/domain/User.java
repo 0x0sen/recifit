@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Login implements UserDetails{
+public class User implements UserDetails{
 	
 	    String user_nick;      	//로그인시 사용할 아이디
 	    String user_pw;			//비밀번호

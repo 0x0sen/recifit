@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
-import com.food.recifit.domain.Login;
+import com.food.recifit.domain.User;
 
 
 /**
@@ -15,7 +15,7 @@ import com.food.recifit.domain.Login;
  *
  */
 @Mapper
-public interface LoginDAO {
+public interface UserDAO {
 	  //회원정보 저장
-    public int insertMember(Login member);
+    public int insertMember(User member);
 }
