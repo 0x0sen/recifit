@@ -1,15 +1,12 @@
 package com.food.recifit.domain;
 
 import java.util.Collection;
-<<<<<<< HEAD
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-=======
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
->>>>>>> 5902d4d128454a7aa325d71ec367cadf659f653b
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +14,6 @@ import lombok.NoArgsConstructor;
 /**
  * 게시글 정보
  */
-<<<<<<< HEAD
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -75,11 +71,3 @@ public class User implements UserDetails{
 
 		
 }
-=======
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//public class Login implements UserDetails{
-//	
-//}
->>>>>>> 5902d4d128454a7aa325d71ec367cadf659f653b

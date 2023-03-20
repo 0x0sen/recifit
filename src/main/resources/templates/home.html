@@ -8,21 +8,8 @@
 <body>
 <h1>[ 레시핏 ]</h1>
 
-<!-- 로그인 되어있을 때만 나타남 -->
-<p sec:authorize="isAuthenticated()">로그인 중</p>
-
-<!--http://localhost8884/spring5/member/join-->
-
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/Login/loginForm}" >로그인페이지로 가기</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/Login/logout}" >로그아웃</a></p>
-<p><a th:href="@{/board/list}">게시판</a></p>
-
-<p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
 
 
-<<<<<<< HEAD
-=======
-<!-- 필요하신 링크 수정해서 들어가는걸로 해주세요 -->
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}" >회원가입</a></p>
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
 <p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >로그아웃</a></p>
@@ -32,7 +19,15 @@
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/write}">나만의 레시피</a></p>
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/list}">전체 레시피</a></p>
 
->>>>>>> 5902d4d128454a7aa325d71ec367cadf659f653b
 
+
+<!-- 여기는 정세원이 수정한 것
+
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/Login/loginForm}" >로그인페이지로 가기</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/Login/logout}" >로그아웃</a></p>
+<p><a th:href="@{/board/list}">게시판</a></p>
+
+<p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
+ -->
 </body>
 </html>
