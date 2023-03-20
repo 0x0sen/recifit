@@ -6,7 +6,8 @@ CREATE TABLE rf_user (
     user_phone   VARCHAR2(20)   NOT NULL,      --가입자 전화번호
     user_email    VARCHAR2(50)    NOT NULL,      --가입자 이메일
     user_id       VARCHAR2(20)     NOT NULL UNIQUE,--닉네임ex)요리왕
-    user_img   VARCHAR2(255)   NOT NULL,        --가입자 사진
+    user_originalfile   VARCHAR2(255)   NOT NULL,    --가입자 사진(originalfile)
+    user_savedfile	VARCHAR(100),				--가입자 사진 저장(savedfile)
     user_pr     VARCHAR2(255),                 --가입자 소개
     user_role   VARCHAR2(20)   DEFAULT 'ROLE_USER'   --일반유저,관리자 구분 관리자는 ‘ROLE_ADMIN’
     );
@@ -15,7 +16,8 @@ CREATE TABLE rf_user (
 CREATE TABLE rf_recipe (
     recipe_num    NUMBER          PRIMARY KEY,    --시퀀스 번호
     recipe_name   VARCHAR2(20)    NOT NULL,       --레시피 이름
-    recipe_img   VARCHAR2(255)     NOT NULL,       --레시피 사진
+    recipe_originalfile   VARCHAR2(255)    NOT NULL,  --레시피 사진(originalfile)
+    recipe_savedfile	VARCHAR(100),				--레시피 사진 저장(savedfile)
     recipe_need VARCHAR2(255)   NOT NULL,       --레시피 재료
     recipe_howto VARCHAR2(255)   NOT NULL,       --레시피 설명
     recipe_type VARCHAR2(50)    NOT NULL,       --레시피 분류

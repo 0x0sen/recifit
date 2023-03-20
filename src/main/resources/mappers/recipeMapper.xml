@@ -10,8 +10,8 @@
     insert into rf_recipe (
     	recipe_num
 		, recipe_name
-		, originalfile
-		, savedfile
+		, recipe_originalfile
+		, recipe_savedfile
 		, recipe_need
 		, recipe_howto
 		, recipe_type
@@ -26,8 +26,8 @@
 		, #{recipe_name}
 		, #{recipe_howto}
 		, #{recipe_need}
-		, #{originalfile}
-		, #{savedfile}
+		, #{recipe_originalfile}
+		, #{recipe_savedfile}
 
 	)
 </insert>
