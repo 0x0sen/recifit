@@ -12,7 +12,7 @@ import org.apache.ibatis.session.RowBounds;
  *
  */
 @Mapper
-public interface LoginDAO {
+public interface CommentDAO {
 	//글 저장
 	
 }

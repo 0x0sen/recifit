@@ -8,17 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 전체 레시피 보기에 관한 컨트롤러 입니다.
+ * 로그인에 관한 컨트롤러 입니다. 
+ * 회원가입 회원 탈퇴 등등
  */
 @Slf4j
-@RequestMapping("AllRecipeController")
+@RequestMapping("Zzim")
 @Controller
-public class AllRecipeController {
 
-	@GetMapping({"/", ""})
-	public String home() {
+public class ZzimController {
+
+	
+	@GetMapping()
+	public String Zzim() {
+	//틀입니다. 다시 작성해주세요
 		return "home";
 	}
 	
 
 }
+
+	

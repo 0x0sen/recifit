@@ -12,14 +12,14 @@ import lombok.extern.slf4j.Slf4j;
  * 회원가입 회원 탈퇴 등등
  */
 @Slf4j
-@RequestMapping("LoginController")
+@RequestMapping("Comment")
 @Controller
 
-public class LoginController {
+public class CommentController {
 
 	
-	@GetMapping({"/", ""})
-	public String home() {
+	@GetMapping("")
+	public String comment() {
 	//틀입니다. 다시 작성해주세요
 		return "home";
 	}

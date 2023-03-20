@@ -7,11 +7,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 /**
- *  모든 글 보기
+ * 로그인에 관한 DAO
  * @author user
  *
  */
 @Mapper
-public interface AllRecipeDAO {
+public interface ZzimDAO {
+	//글 저장
 	
 }

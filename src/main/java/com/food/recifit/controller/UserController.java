@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 글쓰기에 관한 dao 입니다.
+ * 로그인에 관한 컨트롤러 입니다. 
+ * 회원가입 회원 탈퇴 등등
  */
 @Slf4j
-@RequestMapping("board")
+@RequestMapping("LoginController")
 @Controller
-public class BoardController {
+
+public class UserController {
 
 	
 	@GetMapping({"/", ""})
