@@ -35,7 +35,7 @@ td {
 		</tr>
 		</table>
 		</form>
-		<p sec:authorize="not isAuthenticated()"><a th:href="@{/Login/join}" >회원가입 </a></p>
+		<p sec:authorize="not isAuthenticated()"><a th:href="@{/User/join}" >회원가입 </a></p>
 		<p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
 		<p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
 	</section>

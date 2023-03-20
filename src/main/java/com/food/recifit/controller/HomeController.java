@@ -17,8 +17,32 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
+	/**
+	 * 로그인 폼으로 이동
+	 * @return
+	 */
+	@GetMapping("/User/loginForm")
+	public String loginForm() {
+		return "UserView/loginForm";
+	}
+	/**
+	 * 회원 가입 폼으로 이동
+	 * @return 회원가입 양식 HTMl
+	 */
 	
+	@GetMapping("/User/join")
+	public String join() {
+		return "UserView/joinForm";
+	}
 	
-	
+	@GetMapping("/Recipe/list")
+	public String list() {
+		return "RecipeView/list";
+	}
+    
+    @GetMapping("/Recipe/read")
+	public String read() {
+		return "RecipeView/read";
+	}
 
 }
