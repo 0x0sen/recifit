@@ -4,14 +4,14 @@
 
 <mapper namespace="com.food.recifit.dao.RecipeDAO">
 
-<!-- 글 저장 -->
-<!-- 전달된 파일명이 있을때만 originalfile, originalfile
-	 컬럼에 값을 저장 -->
+<!-- 레시피 저장 -->
+<!-- 전달된 파일명이 있을때만 originalfile, originalfile 컬럼에 값을 저장 -->
 <insert id="insert" parameterType="Recipe">
     insert into rf_recipe (
     	recipe_num
 		, recipe_name
-		, recipe_img
+		, originalfile
+		, savedfile
 		, recipe_need
 		, recipe_howto
 		, recipe_type
@@ -20,20 +20,15 @@
 		, recipe_hit
 		, recipe_zzimSum
 		, recipe_nick
-		<if test="originalfile != null and savedfile != null">
-		, originalfile
-		, savedfile
-		</if>
 	)
     values (
     	recipe_num_seq.nextval
 		, #{recipe_name}
 		, #{recipe_howto}
 		, #{recipe_need}
-		<if test="originalfile != null and savedfile != null">
 		, #{originalfile}
 		, #{savedfile}
-		</if>
+
 	)
 </insert>
 

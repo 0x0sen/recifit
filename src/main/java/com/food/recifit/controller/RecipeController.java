@@ -46,8 +46,8 @@ public class RecipeController {
 			//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 board객체에 추가
 					if ( upload != null && !upload.isEmpty()) {
 						String filename = FileService.saveFile(upload, uploadPath);
-						recipe.setRecipe_img(upload.getOriginalFilename());
-						recipe.setRecipe_img(filename);
+						recipe.setOriginalfile(upload.getOriginalFilename());
+						recipe.setSavedfile(filename);
 					}
 					
 					//로그인한 아이디 읽어서 board객체에 추가 

@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 로그인에 관한 컨트롤러 입니다. 
- * 회원가입 회원 탈퇴 등등
+ * 코멘트에 관한 컨트롤러 입니다. 
  */
 @Slf4j
-@RequestMapping("Comment")
+@RequestMapping("recipe")
 @Controller
 
 public class CommentController {
 
 	
-	@GetMapping("")
+	@GetMapping("comment")
 	public String comment() {
 	//틀입니다. 다시 작성해주세요
-		return "home";
+		return "recipe/comment";
 	}
 	
 

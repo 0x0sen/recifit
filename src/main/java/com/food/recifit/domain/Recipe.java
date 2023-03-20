@@ -18,7 +18,8 @@ import lombok.NoArgsConstructor;
 public class Recipe implements UserDetails{
     int recipe_num;         //시퀀스 번호
     String recipe_name;     //레시피 이름
-    String recipe_img;      //레시피 사진
+    String originalfile;      //레시피 사진(첨부파일 원래이름)
+    String savedfile;		//레시피 사진(첨부파일 서버에 저장)
     String recipe_need;    //레시피 재료
     String recipe_howto;    //레시피 설명
     String recipe_type;      //레시피 분류
