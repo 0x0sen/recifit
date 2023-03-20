@@ -15,6 +15,9 @@
 <p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
 <p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
 <p sec:authorize="isAuthenticated()"><a th:href="@{/member/selectAll}">전체회원목록</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/write}">나만의 레시피</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/list}">전체 레시피</a></p>
+
 
 </body>
 </html>
