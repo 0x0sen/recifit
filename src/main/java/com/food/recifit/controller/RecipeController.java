@@ -1,10 +1,13 @@
 package com.food.recifit.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,7 @@ import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.spring5.domain.Board;
 
 /**
  * 전체 레시피 보기에 관한 컨트롤러 입니다.
@@ -62,7 +66,16 @@ public class RecipeController {
 		}
 		
 		@GetMapping("list")
-		public String list() {
+		public String list(
+				Model model		 
+				
+				
+				) {
+			
+			ArrayList<Recipe> recipeList = service.list();
+			
+			model.addAttribute("recipeList", recipeList);
+			
 			
 			return "RecipeView/list";
 		}
