@@ -20,6 +20,19 @@
 <p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
 
 
+<<<<<<< HEAD
+=======
+<!-- 필요하신 링크 수정해서 들어가는걸로 해주세요 -->
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}" >회원가입</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >로그아웃</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/member/selectAll}">전체회원목록</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/write}">나만의 레시피</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/list}">전체 레시피</a></p>
+
+>>>>>>> 5902d4d128454a7aa325d71ec367cadf659f653b
 
 </body>
 </html>
