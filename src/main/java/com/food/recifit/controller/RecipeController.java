@@ -71,7 +71,6 @@ public class RecipeController {
 			
 			return "RecipeView/list";
 		}
-		
 		//글 클릭해서 읽기, 조회수 증가
 		@GetMapping("/read")
 		//int num만 쓰기는 위험하다. 
