@@ -1,6 +1,7 @@
 package com.food.recifit.service;
 
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,6 +14,7 @@ import com.food.recifit.domain.Recipe;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -20,14 +22,15 @@ public class RecipeServiceImpl implements RecipeService {
 	@Autowired
 	RecipeDAO recipeDAO;
 
+	//마이레시피 저장
 	@Override
 	public int write(Recipe recipe) {
 		int result= recipeDAO.insertRecipe(recipe);
 		return result;
 	}
 
+	//레시피 전체 목록 or 검색
 	@Override
-
 	public ArrayList<Recipe> list(String type, String searchWord) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("type", type);
@@ -40,35 +43,42 @@ public class RecipeServiceImpl implements RecipeService {
 
 	}
 
-	
-
-//	@Override
-//	public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String type,
-//			String searchWord) {
-//		 
-//			//검색 대상과 검색어
-//			HashMap<String, String> map = new HashMap<>();
-//			map.put("type", type);
-//			map.put("searchWord", searchWord);
-//			//검색 결과 개수
-//			int t = RecipeDAO.total(map);
-//			//페이지 이동 링크수, 페이지당 글수, 현재페이지, 전체 글수를 전달하여 객체 생성
-//			PageNavigator navi = new PageNavigator(pagePerGroup, countPerPage, page, t);
-//			
-//			return navi;
-//	}
-	public Recipe selectrecipe(int num) {
+	@Override
+	public Recipe selectRecipe(int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Comment> listcomment(int num) {
+	public ArrayList<Comment> commentList(int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public int delete(Recipe recipe) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Recipe recipe) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int writeComment(Comment comment) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteComment(Comment comment) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	
-	
+
 }

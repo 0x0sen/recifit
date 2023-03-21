@@ -13,5 +13,5 @@ public class Zzim {
     String zzim_nick;     //찜한 사람의 아이디
     String zzim_date;     //찜한 날짜
     String user_nick;     //찜 닉네임
-    String user_id;  	  //찜 아이디  
+    String user_id;       //찜 아이디  
 }

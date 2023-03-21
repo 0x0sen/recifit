@@ -49,11 +49,7 @@ public class CommentRestController {
 			return list;
 		}
 		
-		//코멘트 삭제
-		@GetMapping ("deleteComment")
-		public int delete(int num) {
-			log.info("전달된 번호 : {}", num);
-			int res = service.deleteComment(num);
-			return res;
-		}	
+
+		
+		
 }

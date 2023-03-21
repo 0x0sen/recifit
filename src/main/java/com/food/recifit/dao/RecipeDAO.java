@@ -29,4 +29,4 @@ public interface RecipeDAO {
 	//전체 레시피 개수 
 	public int total(HashMap<String, String> map);
 	
-}
+	}

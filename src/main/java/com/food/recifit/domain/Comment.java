@@ -16,4 +16,6 @@ public class Comment {
    int comment_sum;         //코멘트 총 개수  
    String user_nick;        //코멘트 닉네임
    String user_id;  	    //코멘트 아이디    
+
+
 }

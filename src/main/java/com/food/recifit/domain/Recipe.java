@@ -29,6 +29,7 @@ public class Recipe implements UserDetails{
     int recipe_zzimSum;     //레시피 찜수
     String user_nick;       //레시피 닉네임
     String user_id;  	    //레시피 아이디
+
     
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
