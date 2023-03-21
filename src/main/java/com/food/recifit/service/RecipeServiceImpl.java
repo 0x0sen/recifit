@@ -4,7 +4,6 @@ package com.food.recifit.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,11 +68,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Recipe> list(String type, String searchWord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	
 }
