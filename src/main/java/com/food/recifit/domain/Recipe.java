@@ -16,18 +16,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe implements UserDetails{
-    int recipe_num;         //시퀀스 번호
+    int recipe_num;         //레시피 번호(시퀀스)
     String recipe_name;     //레시피 이름
-    String originalfile;      //레시피 사진(첨부파일 원래이름)
-    String savedfile;		//레시피 사진(첨부파일 서버에 저장)
-    String recipe_need;    //레시피 재료
+    String recipe_originalfile;      //레시피 사진(첨부파일 원래이름)
+    String recipe_savedfile;      //레시피 사진(첨부파일 서버에 저장)
+    String recipe_need;     //레시피 재료
     String recipe_howto;    //레시피 설명
-    String recipe_type;      //레시피 분류
-    String recipe_date;      //올린 일자
-    String recipe_icon;      //ex)('이유식,'매운맛,'다이어트식’)
+    String recipe_type;     //레시피 분류
+    String recipe_date;     //올린 일자
+    String recipe_icon;     //ex)('이유식,'매운맛,'다이어트식’)
     int recipe_hit;         //레시피 조회수
     int recipe_zzimSum;     //레시피 찜수
-    String recipe_nick;    //레시피 닉네임
+    String user_nick;       //레시피 닉네임
+    String user_id;         //레시피 아이디
     
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,6 +66,5 @@ public class Recipe implements UserDetails{
       return false;
    }
    
-    
-   
+     
 }

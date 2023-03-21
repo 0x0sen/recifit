@@ -21,7 +21,7 @@ public interface RecipeService {
 		//마이레시피 저장
 		public int write(Recipe recipe);
 
-
+		//레시피 전체 목록 or 검색
 		public ArrayList<Recipe> list(String type, String searchWord);
 		
 
@@ -30,8 +30,24 @@ public interface RecipeService {
 //		public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String type,
 //				String searchWord);
 
-		public Recipe selectrecipe(int num);
+		
+		//레시피 하나 보기
+		public Recipe selectRecipe(int num);
+		
 		//리플 보기 
-		public ArrayList<Comment> listcomment(int num);
+		public ArrayList<Comment> commentList(int num);
+
+
+		//레시피 삭제
+		public int delete(Recipe recipe);
+
+		//레시피 수정
+		public int update(Recipe recipe);
+
+		//리플 달기
+		public int writeComment(Comment comment);
+
+		//리플 삭제
+		public int deleteComment(Comment comment);
 		
 }

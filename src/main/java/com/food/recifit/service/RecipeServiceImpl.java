@@ -1,6 +1,7 @@
 package com.food.recifit.service;
 
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,6 +14,7 @@ import com.food.recifit.domain.Recipe;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -20,14 +22,15 @@ public class RecipeServiceImpl implements RecipeService {
 	@Autowired
 	RecipeDAO recipeDAO;
 
+	//마이레시피 저장
 	@Override
 	public int write(Recipe recipe) {
-		int result= recipeDAO.insert(recipe);
+		int result= recipeDAO.insertRecipe(recipe);
 		return result;
 	}
 
+	//레시피 전체 목록 or 검색
 	@Override
-
 	public ArrayList<Recipe> list(String type, String searchWord) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("type", type);
@@ -57,15 +60,43 @@ public class RecipeServiceImpl implements RecipeService {
 //			
 //			return navi;
 //	}
-	public Recipe selectrecipe(int num) {
-		// TODO Auto-generated method stub
-		return null;
+	public Recipe selectRecipe(int num) {
+		//조회수 1증가
+		recipeDAO.add(num);
+				
+		//글 정보 읽기
+		Recipe recipe = recipeDAO.selectRecipe(num);
+		return recipe;
 	}
 
 	@Override
-	public ArrayList<Comment> listcomment(int num) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Comment> commentList(int recipe_num) {
+		ArrayList<Comment> commentList = recipeDAO.readComment(recipe_num);
+		return commentList;
+	}
+
+	@Override
+	public int delete(Recipe recipe) {
+		int result = recipeDAO.deleteRecipe(recipe);
+		return result;
+	}
+
+	@Override
+	public int update(Recipe recipe) {
+		int result = recipeDAO.updateRecipe(recipe);
+		return result;
+	}
+
+	@Override
+	public int writeComment(Comment comment) {
+		int n = recipeDAO.insertComment(comment);
+		return n;
+	}
+
+	@Override
+	public int deleteComment(Comment comment) {
+		int result = recipeDAO.deleteComment(comment);
+		return result;
 	}
 
 
