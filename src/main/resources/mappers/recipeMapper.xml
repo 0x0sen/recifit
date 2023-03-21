@@ -5,7 +5,6 @@
 <mapper namespace="com.food.recifit.dao.RecipeDAO">
 
 <!-- 레시피 저장 -->
-<!-- 전달된 파일명이 있을때만 originalfile, originalfile 컬럼에 값을 저장 -->
 <insert id="insert" parameterType="Recipe">
     insert into rf_recipe (
     	recipe_num
@@ -28,10 +27,9 @@
 		, #{recipe_need}
 		, #{recipe_originalfile}
 		, #{recipe_savedfile}
-
 	)
 </insert>
-
+<!-- 글목록 -->
 
 
 </mapper> 

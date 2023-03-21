@@ -26,11 +26,9 @@ public class WebSecurityConfig {
         .authorizeRequests()
         .antMatchers("/",
         		"/thymeleaf",
-        		"/Login/join",
-        		"/Login/idcheck",
-                "/board/list",
-                "/board/read",
-                "/board/download",
+        		"/user/join",
+                "/recipe/list",
+                "/recipe/write",
                 "/image/**",
                 "/css/**",
                 "/js/**").permitAll()		//설정한 리소스의 접근을 인증절차 없이 허용

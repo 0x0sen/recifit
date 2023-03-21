@@ -3,23 +3,19 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>spring5</title>
+<title>레시핏</title>
 </head>
 <body>
-<h1>[ 레시핏 ]</h1>
+<h1>[ 레시핏(테스트) ]</h1>
 
 
 
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}" >회원가입</a></p>
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >로그아웃</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/selectAll}">전체회원목록</a></p>
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/write}">나만의 레시피</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/user/join}" >회원가입</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/user/loginForm}">로그인</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}" >로그아웃</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/user/mypage}">마이페이지</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/recipe/Zzimlist}">찜 레시피</a></p>
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/list}">전체 레시피</a></p>
-
-
 
 <!-- 여기는 정세원이 수정한 것
 
@@ -29,5 +25,8 @@
 
 <p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
  -->
+
+
+
 </body>
 </html>

@@ -13,16 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("recipe")
 @Controller
-
 public class CommentController {
 
 	
 	@GetMapping("comment")
 	public String comment() {
-	//틀입니다. 다시 작성해주세요
 		return "recipe/comment";
 	}
-	
 
 }
 

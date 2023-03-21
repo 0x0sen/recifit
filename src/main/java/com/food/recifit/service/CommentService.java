@@ -3,11 +3,13 @@ package com.food.recifit.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.food.recifit.dao.CommentDAO;
 import com.food.recifit.domain.Comment;
+import com.food.recifit.domain.Zzim;
 
-
+@Service
 public class CommentService {
 	
 	@Autowired
@@ -16,8 +18,7 @@ public class CommentService {
 	//코멘트 저장
 	public int insertComment(Comment comment) {
 		int cnt = dao.insertComment(comment);
-		return cnt;
-		
+		return cnt;		
 	}
 
 	//코멘트 리스트 불러오기

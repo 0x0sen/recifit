@@ -12,19 +12,14 @@ import lombok.extern.slf4j.Slf4j;
  * 회원가입 회원 탈퇴 등등
  */
 @Slf4j
-@RequestMapping("Zzim")
+@RequestMapping("recipe")
 @Controller
-
 public class ZzimController {
-
 	
-	@GetMapping()
+	@GetMapping("zzim")
 	public String Zzim() {
-	//틀입니다. 다시 작성해주세요
-		return "home";
+		return "recipe/zzim";
 	}
-	
-
 }
 
 	
