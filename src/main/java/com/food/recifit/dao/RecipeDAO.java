@@ -18,6 +18,8 @@ public interface RecipeDAO {
 
 	int insert(Recipe recipe);
 
-	ArrayList<Recipe> list();
+	ArrayList<Recipe> list(HashMap<String, String> map, RowBounds rb);
+
+	public int total(HashMap<String, String> map); 
 	
 }
