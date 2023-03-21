@@ -35,14 +35,14 @@ public class CommentRestController {
 		
 		//코멘트 저장
 		@PostMapping("insertComment")
-		public void insert(Comment c) {
+		public void insert(Comment comment) {
 			//서비스로 전달해서 DB에 저장
-			log.info("전달된 객체 : {}", c);
-			service.insertComment(c);
+			log.info("전달된 객체 : {}", comment);
+			service.insertComment(comment);
 		}
 		
 		//코멘트 리스트 불러오기
-		@GetMapping("list")
+		@GetMapping("listComment")
 		public ArrayList<Comment> list(){
 			ArrayList<Comment> list = service.listComment();
 			log.debug("결과:{}", list);

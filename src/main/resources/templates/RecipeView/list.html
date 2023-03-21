@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<title>list</title>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 여러게 보기</title>
+    <link rel="stylesheet" th:href="@{/css/foodstyle.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-	<h1>[ list ]</h1>
+	
+    <section id="Home">
+        <nav>
+            <div class="logo">
+<!-- 로고수정해야할 img 입니다. -->    
+                <a th:href="@{/}"> <img th:src="@{/image/food/logo.png}"></a>
+<!-- 로고수정해야할 img 입니다. -->                    
+            </div>
+            
+            
+            
+<!-- 위에 메뉴입니다 -->
+            <ul>
+                <li><a href="#Home">레시피 추천</a></li>
+                <li><a th:href="@{/Recipe/list}">모든 레시피보기</a></li>
+                <li><a href="#Menu">레시피 공유하기</a></li>
+                <li><a href="#Gallary">내찜 레시피북</a></li>
+				<li sec:authorize="not isAuthenticated()"><a th:href="@{/User/loginForm}">로그인/회원가입</a></li>
+                <li sec:authorize="isAuthenticated()" ><a href="#Review">마이페이지</a></li>
+                <li sec:authorize="isAuthenticated()" ><a href="#Order">로그아웃</a></li>
+            </ul>
+<!-- 위에 메뉴입니다 -->
+
+        </nav>
+        
+        
+       <div class="menu" id="Menu">
+        <h1>공유된<span>모든 레시피</span></h1>
+
+        <div class="menu_box">
+        <!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
+            <div class="menu_card">
+
+                <div class="menu_image">
+                <!-- DB에서 가져올 이미지 텍스트 -->
+                    <a th:href="@{/Recipe/read}"><img th:src="@{/image/food/buger.jpg}"></a>
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+				
+                <div class="menu_info">
+                    <h2>음식이름 들어감 버거 클릭하면 자세한 페이지로 감</h2>
+                    <!-- 쓸지 모르는 정보라 지우지 않음 -->
+                    <h3>$20.00</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="menu_btn">Order Now</a>
+                </div>
+
+            </div> 
+
+        </div>
+
+    </div>
+        
+        
+    </section>
+
+
+
+   
+
+    
+
+    
+    <!--Footer-->
+
+    
+
+
+    
+=======
+<meta charset="UTF-8">
+<title>레시피 리스트 (테스트용)</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+
+<!-- 페이지 이동 스크립트 -->
+<script>
+
+</script>
+
+
+</head>
+<body>
+<header>
+	<h1><a th:href="@{/recipe/list}">[ 레시피 리스트 (테스트용) ]</a></h1>
+</header>
+
+<section>
+	<!-- 글목록 출력 영역 -->
+	<p>글목록 전체 리스트 보기</p>
+	<p><a th:href="@{/recipe/write}">글쓰기</p>
+	
+	<table>
+	
+	</table>
+	
+	
+
+</div>
+
+
+</section>
+>>>>>>> 4f37080762975ecc271f75f37e0c933877c7954d
 </body>
 </html>
