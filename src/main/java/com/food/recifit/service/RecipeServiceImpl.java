@@ -4,9 +4,7 @@ package com.food.recifit.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.food.recifit.dao.RecipeDAO;
@@ -29,6 +27,36 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
+
+	public ArrayList<Recipe> list(String type, String searchWord) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("type", type);
+		map.put("searchWord", searchWord);
+		//조회 결과 중 위치, 개수 지정
+		//RowBounds rb = new RowBounds(start, count);
+		
+		ArrayList<Recipe> recipelist = recipeDAO.list(map);
+		return recipelist;
+
+	}
+
+	
+
+//	@Override
+//	public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String type,
+//			String searchWord) {
+//		 
+//			//검색 대상과 검색어
+//			HashMap<String, String> map = new HashMap<>();
+//			map.put("type", type);
+//			map.put("searchWord", searchWord);
+//			//검색 결과 개수
+//			int t = RecipeDAO.total(map);
+//			//페이지 이동 링크수, 페이지당 글수, 현재페이지, 전체 글수를 전달하여 객체 생성
+//			PageNavigator navi = new PageNavigator(pagePerGroup, countPerPage, page, t);
+//			
+//			return navi;
+//	}
 	public Recipe selectrecipe(int num) {
 		// TODO Auto-generated method stub
 		return null;
@@ -39,6 +67,8 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 	
 }

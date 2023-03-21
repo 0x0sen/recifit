@@ -17,5 +17,9 @@ import com.food.recifit.domain.Recipe;
 public interface RecipeDAO {
 
 	int insert(Recipe recipe);
+
+	ArrayList<Recipe> list(HashMap<String, String> map);
+
+	public int total(HashMap<String, String> map); 
 	
 }
