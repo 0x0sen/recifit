@@ -15,10 +15,15 @@ import com.food.recifit.domain.Comment;
  */
 @Mapper
 public interface CommentDAO {
+
 	//코멘트 저장
-	int insertComment(Comment comment);
-	//코멘트 리스트 불러오기
-	ArrayList<Comment> listComment();
-	//코멘트 삭제
-	int deleteComment(int num);	
+	public int insertComment(Comment comment);
+	//코멘트 전체 보기
+	public ArrayList<Comment> listComment();
+	//리플 한개 조회 
+	public Comment selectComment(int comment_num);
+	//코멘트 삭제 
+	public int deleteComment(int comment_num);
+	//조회 수 1증가
+	public int add(int recipe_num);
 }

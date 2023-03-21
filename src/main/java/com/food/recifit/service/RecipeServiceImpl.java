@@ -22,7 +22,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public int write(Recipe recipe) {
-		int result= recipeDAO.insert(recipe);
+		int result= recipeDAO.insertRecipe(recipe);
 		return result;
 	}
 

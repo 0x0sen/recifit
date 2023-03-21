@@ -5,7 +5,7 @@
 <mapper namespace="com.food.recifit.dao.RecipeDAO">
 
 <!-- 레시피 저장 -->
-<insert id="insert" parameterType="Recipe">
+<insert id="insertrecipe" parameterType="Recipe">
     insert into rf_recipe (
     	recipe_num
 		, recipe_name
@@ -14,23 +14,114 @@
 		, recipe_need
 		, recipe_howto
 		, recipe_type
-		, recipe_date
 		, recipe_icon
-		, recipe_hit
-		, recipe_zzimSum
 		, recipe_nick
 	)
     values (
     	recipe_num_seq.nextval
 		, #{recipe_name}
-		, #{recipe_howto}
-		, #{recipe_need}
 		, #{recipe_originalfile}
 		, #{recipe_savedfile}
+		, #{recipe_need}
+		, #{recipe_howto}
+		, #{recipe_type}
+		, #{recipe_icon}
+		, #{recipe_nick}
 	)
 </insert>
-<!-- 글목록 -->
 
+<!-- 레시피 제목으로 한개 조회 -->
+<select id="selectRecipe" parameterType="int" resultType="Recipe">
+	select 
+		recipe_num
+		, recipe_name
+		, recipe_originalfile
+		, recipe_savedfile
+		, recipe_need
+		, recipe_howto
+		, recipe_type
+		, to_char(recipe_date, 'yy/mm/dd') recipe_date
+		, recipe_icon
+		, recipe_hit
+		, recipe_zzimSum
+		, recipe_nick
+	 from rf_recipe 
+	 where recipe_num = #{recipe_num}
+</select>
 
+<!-- 레시피 수정 -->
+<update id="updateRecipe" parameterType="Recipe">
+	update 
+		rf_recipe
+	set
+		recipe_name = #{recipe_name}
+		, recipe_need = #{recipe_need}
+		, recipe_howto = #{recipe_howto}
+		, recipe_type = #{recipe_type}
+		<if test="recipe_originalfile != null and recipe_originalfile != ''">
+		, recipe_originalfile = #{recipe_originalfile}
+		</if>
+		<if test="recipe_savedfile != null and recipe_savedfile != ''">
+		, recipe_savedfile = #{recipe_savedfile}
+		</if>
+	where 
+		recipe_num = #{recipe_num}
+</update>
+
+<!-- 레시피 삭제 -->
+<delete id="deleteRecipe"  parameterType="Recipe">
+	delete from rf_recipe
+	where recipe_num = #{recipe_num} 
+	and recipe_nick = #{recipe_nick}
+</delete>
+
+<!-- 레시피 전체 글 보기 -->
+<select id="list" parameterType="map" resultType="Recipe">
+	select 
+		, recipe_name
+		, recipe_originalfile
+		, recipe_savedfile
+		, recipe_type
+		, recipe_icon
+		, hits
+	 from 
+	 	rf_recipe 
+	 <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+	 <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+	 <if test="type != null and searchWord != null">
+	 <!-- 조건이 없을 땐 where를 없애라 where -->
+	  <where>	
+		   	 	recipe_name '%' || #{searchWord} || '%'
+		   	 or
+		   	 	recipe_nick '%' || #{searchWord} || '%'
+		   	 or
+		   	 	recipe_need '%' || #{searchWord} || '%'
+		   	 or
+		   	 	recipe_howto '%' || #{searchWord} || '%'
+	 </where>
+	 </if>
+	 order by 
+	 	recipe_num desc
+</select>
+
+<!-- 전체 레시피 개수 (이 함수 외우기)-->
+<select id="total" parameterType="map" resultType="int">
+	select 
+		count(*) 
+	from 
+		rf_recipe 
+	 <if test="type != null and searchWord != null">
+	 <!-- 조건이 없을 땐 where를 없애라 where -->
+	  <where>
+		   	 	upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+		   	 or
+		   	 	upper(recipe_nick) like '%' || upper(#{searchWord}) || '%'
+		   	 or
+		   	 	upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+		   	 or
+		   	 	upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+	 </where>
+	 </if>
+</select>
 </mapper> 
  

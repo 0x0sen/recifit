@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.recifit.dao.RecipeDAO">
+
+
+<!-- 전달된 번호의 레시피 조회 수 1증가-->
+<update id= "add" parameterType="int" >
+	update 
+		rf_recipe
+	set
+		recipe_hit = recipe_hit + 1
+	where
+		recipe_num = #{recipe_num}
+</update>
+
+
+
+</mapper> 
+ 
