@@ -52,8 +52,11 @@ public class RecipeController {
 		public String write() {		
 			return "RecipeView/writeRecipe";
 		}
+<<<<<<< HEAD
 		
 		
+=======
+>>>>>>> master
 		//글저장
 		@PostMapping("write")
 		public String write(Recipe recipe
@@ -76,8 +79,11 @@ public class RecipeController {
 					return "redirect:/recipe/list";
 						
 		}
+<<<<<<< HEAD
 
 		
+=======
+>>>>>>> master
 		//글 목록 + 검색기능추가 
 		@GetMapping("list")
 		public String list(
@@ -101,6 +107,7 @@ public class RecipeController {
 		}
 		
 		//글 클릭해서 읽기, 조회수 증가
+<<<<<<< HEAD
 		//@GetMapping("/read")
 		//int num만 쓰기는 위험하다. 
 		//요청 파라미터를 넣어서 넣어달라.
@@ -128,6 +135,35 @@ public class RecipeController {
 //			return "boardView/readForm";
 //
 //		}
+=======
+		@GetMapping("/read")
+		//int num만 쓰기는 위험하다. 
+		//요청 파라미터를 넣어서 넣어달라.
+		public String read(
+				@RequestParam(name = "num", defaultValue="0") int num
+				, Model model) {
+			//본문글 정보
+			log.debug("read: ",num);
+			if(num == 0) {
+				return "redirect:list";
+			}
+			//num이라는 이름의 글번호를 전달받음
+			//전달받은 글번호를 서비스로 전달
+			Recipe recipe = service.selectrecipe(num);
+			//서비스가 리턴한 Board객체를 Model에 저장
+			model.addAttribute("Recipe", recipe);
+			log.debug("이거되남3");
+			
+			//해당 글에 달린 리플 목록 
+			ArrayList<Comment> replylist = service.listcomment(num);
+			model.addAttribute("replylist", replylist);
+			log.debug("{}글의 리플들 : {}", num, replylist);
+			
+			//HTML파일로 포워딩하여 출력
+			return "boardView/readForm";
+
+		}
+>>>>>>> master
 	
 
 }
