@@ -6,16 +6,18 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
-import com.food.recifit.domain.Recipe;
+import com.food.recifit.domain.User;
+
 
 /**
- *  모든 글 보기
+ * 로그인에 관한 DAO
  * @author user
  *
  */
 @Mapper
-public interface RecipeDAO {
-
-	int insert(Recipe recipe);
+public interface UserDAO {
+	  //회원정보 저장
+    public int insertMember(User member);
+	//글 저장
 	
 }
