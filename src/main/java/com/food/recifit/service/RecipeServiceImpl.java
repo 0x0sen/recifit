@@ -39,6 +39,12 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<Recipe> list(String type, String searchWord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
