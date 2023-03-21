@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,10 +89,29 @@
 
 
     <!--Menu-->
+=======
+<meta charset="UTF-8">
+<title>레시핏</title>
+</head>
+<body>
+<h1>[ 레시핏(테스트) ]</h1>
+
+
+
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/user/join}" >회원가입</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/user/loginForm}">로그인</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}" >로그아웃</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/user/mypage}">마이페이지</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/recipe/Zzimlist}">찜 레시피</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/recipe/list}">전체 레시피</a></p>
+
+<!-- 여기는 정세원이 수정한 것
+>>>>>>> 4f37080762975ecc271f75f37e0c933877c7954d
 
     <div class="menu" id="Menu">
         <h1>Our<span>Menu</span></h1>
 
+<<<<<<< HEAD
         <div class="menu_box">
             <div class="menu_card">
 
@@ -857,5 +877,12 @@
 
 
     
+=======
+<p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
+ -->
+
+
+
+>>>>>>> 4f37080762975ecc271f75f37e0c933877c7954d
 </body>
 </html>
