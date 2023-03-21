@@ -18,8 +18,10 @@ import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;
+import com.food.recifit.util.PageNavigator;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.spring5.domain.Board;
 
 
 /**
@@ -37,6 +39,14 @@ public class RecipeController {
 	//설정파일에 정의된 업로드할 경로를 읽어서 아래 변수에 대입
 			@Value("${spring.servlet.multipart.location}")
 			String uploadPath;
+			
+			//페이지당 글 수
+			@Value("${user.board.page}")
+			int countPerPage;
+			
+			//페이지 이동 링크 수
+			@Value("${user.board.group}")
+			int pagePerGroup;
 
 		//글쓰기 폼
 		@GetMapping("/write")
@@ -67,7 +77,22 @@ public class RecipeController {
 		}
 		//글 목록 + 검색기능추가 
 		@GetMapping("list")
-		public String list() {
+		public String list(
+				@RequestParam(name="page", defaultValue = "1") int page
+				, String type
+				, String searchWord
+				, Model model) {
+			
+			PageNavigator navi = 
+					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+			
+			ArrayList<Recipe> boardlist = service.list(
+					navi.getStartRecord(), countPerPage, type, searchWord);
+				
+				model.addAttribute("boardlist", boardlist);
+				model.addAttribute("navi", navi);
+				model.addAttribute("type", type);
+				model.addAttribute("searchWord", searchWord);
 			
 			return "RecipeView/list";
 		}

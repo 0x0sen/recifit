@@ -1,3 +1,11 @@
+DROP sequence rf_zzim_seq;    --찜 시퀀스 삭제
+DROP TABLE rf_zzim;       --찜 테이블 삭제
+DROP sequence rf_comment_seq; --댓글 시퀀스 삭제
+DROP TABLE rf_comment;      --댓글 테이블 삭제
+DROP sequence rf_recipe_seq;   --레시피 시퀀스 삭제
+DROP TABLE rf_recipe;      --레시피 테이블 삭제
+DROP TABLE rf_user;      --유저 테이블 삭제
+
 -- 유저 테이블 생성
 CREATE TABLE rf_user (
     user_nick   VARCHAR2(20)   PRIMARY KEY,   --로그인시 사용할 아이디
@@ -7,17 +15,25 @@ CREATE TABLE rf_user (
     user_email    VARCHAR2(50)    NOT NULL,      --가입자 이메일
     user_id       VARCHAR2(20)     NOT NULL UNIQUE,--닉네임ex)요리왕
     user_originalfile   VARCHAR2(255)   NOT NULL,    --가입자 사진(originalfile)
+<<<<<<< HEAD
+    user_savedfile   VARCHAR(100),            --가입자 사진 저장(savedfile)
+=======
     user_savedfile	VARCHAR(100),				--가입자 사진 저장(savedfile)
+>>>>>>> 1458adf4b5b9166c9be92523645bdd8c890fbf05
     user_pr     VARCHAR2(255),                 --가입자 소개
     user_role   VARCHAR2(20)   DEFAULT 'ROLE_USER'   --일반유저,관리자 구분 관리자는 ‘ROLE_ADMIN’
     );
-    
+
 -- 레시피 테이블 생성
 CREATE TABLE rf_recipe (
     recipe_num    NUMBER          PRIMARY KEY,    --시퀀스 번호
     recipe_name   VARCHAR2(20)    NOT NULL,       --레시피 이름
     recipe_originalfile   VARCHAR2(255)    NOT NULL,  --레시피 사진(originalfile)
+<<<<<<< HEAD
+    recipe_savedfile   VARCHAR(100),            --레시피 사진 저장(savedfile)
+=======
     recipe_savedfile	VARCHAR(100),				--레시피 사진 저장(savedfile)
+>>>>>>> 1458adf4b5b9166c9be92523645bdd8c890fbf05
     recipe_need VARCHAR2(255)   NOT NULL,       --레시피 재료
     recipe_howto VARCHAR2(255)   NOT NULL,       --레시피 설명
     recipe_type VARCHAR2(50)    NOT NULL,       --레시피 분류
@@ -27,7 +43,7 @@ CREATE TABLE rf_recipe (
     recipe_zzimSum  NUMBER   NOT NULL,           --레시피 찜수
     recipe_nick VARCHAR2(20)    NOT NULL   REFERENCES rf_user(user_nick) --user테이블의 user_nick 컬럼을 참조한다.
     );
-    
+
 --레시피 테이블 일련번호 시퀀스
 create sequence rf_recipe_seq;
 
