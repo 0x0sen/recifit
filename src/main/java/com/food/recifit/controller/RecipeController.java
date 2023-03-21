@@ -52,11 +52,7 @@ public class RecipeController {
 		public String write() {		
 			return "RecipeView/writeRecipe";
 		}
-<<<<<<< HEAD
-		
-		
-=======
->>>>>>> master
+
 		//글저장
 		@PostMapping("write")
 		public String write(Recipe recipe
@@ -79,11 +75,7 @@ public class RecipeController {
 					return "redirect:/recipe/list";
 						
 		}
-<<<<<<< HEAD
 
-		
-=======
->>>>>>> master
 		//글 목록 + 검색기능추가 
 		@GetMapping("list")
 		public String list(
@@ -107,7 +99,7 @@ public class RecipeController {
 		}
 		
 		//글 클릭해서 읽기, 조회수 증가
-<<<<<<< HEAD
+
 		//@GetMapping("/read")
 		//int num만 쓰기는 위험하다. 
 		//요청 파라미터를 넣어서 넣어달라.
@@ -135,7 +127,7 @@ public class RecipeController {
 //			return "boardView/readForm";
 //
 //		}
-=======
+
 		@GetMapping("/read")
 		//int num만 쓰기는 위험하다. 
 		//요청 파라미터를 넣어서 넣어달라.
@@ -163,7 +155,7 @@ public class RecipeController {
 			return "boardView/readForm";
 
 		}
->>>>>>> master
+
 	
 
 }

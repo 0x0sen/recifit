@@ -28,7 +28,6 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-<<<<<<< HEAD
 
 	public ArrayList<Recipe> list(String type, String searchWord) {
 		HashMap<String, String> map = new HashMap<>();
@@ -59,7 +58,6 @@ public class RecipeServiceImpl implements RecipeService {
 //			
 //			return navi;
 //	}
-=======
 	public Recipe selectrecipe(int num) {
 		// TODO Auto-generated method stub
 		return null;
@@ -70,7 +68,6 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return null;
 	}
->>>>>>> master
 	
 	
 }
