@@ -1,5 +1,7 @@
 package com.food.recifit.controller;
 
+
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,6 @@ import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;
-import com.food.recifit.util.PageNavigator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -78,21 +79,17 @@ public class RecipeController {
 
 		//글 목록 + 검색기능추가 
 		@GetMapping("list")
-		public String list(
-				
-				String type
-				, String searchWord
+		public String list(String searchWord
 				, Model model) {
 			
 //			PageNavigator navi = 
 //					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 			
-			ArrayList<Recipe> recipeList = service.list(
-					type, searchWord);
+			ArrayList<Recipe> recipeList = service.list(searchWord);
 				
 				model.addAttribute("recipeList", recipeList);
 				//model.addAttribute("navi", navi);
-				model.addAttribute("type", type);
+				
 				model.addAttribute("searchWord", searchWord);
 			
 			return "RecipeView/list";

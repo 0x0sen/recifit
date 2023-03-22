@@ -29,9 +29,9 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 
-	public ArrayList<Recipe> list(String type, String searchWord) {
+	public ArrayList<Recipe> list(String searchWord) {
 		HashMap<String, String> map = new HashMap<>();
-		map.put("type", type);
+		
 		map.put("searchWord", searchWord);
 		//조회 결과 중 위치, 개수 지정
 		//RowBounds rb = new RowBounds(start, count);
@@ -69,11 +69,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Recipe> list(String type, String searchWord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 }
