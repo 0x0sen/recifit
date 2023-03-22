@@ -14,7 +14,6 @@ import com.food.recifit.domain.Recipe;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -22,63 +21,46 @@ public class RecipeServiceImpl implements RecipeService {
 	@Autowired
 	RecipeDAO recipeDAO;
 
-	//마이레시피 저장
+	//레시피 저장
 	@Override
-	public int write(Recipe recipe) {
-		int result= recipeDAO.insertRecipe(recipe);
+	public int insertrecipe(Recipe recipe) {
+		int result= recipeDAO.insertrecipe(recipe);
 		return result;
 	}
-
-	//레시피 전체 목록 or 검색
-	@Override
-	public ArrayList<Recipe> list(String type, String searchWord) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("type", type);
-		map.put("searchWord", searchWord);
-		//조회 결과 중 위치, 개수 지정
-		//RowBounds rb = new RowBounds(start, count);
-		
-		ArrayList<Recipe> recipelist = recipeDAO.list(map);
-		return recipelist;
-
-	}
-
-	@Override
-	public Recipe selectRecipe(int num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Comment> commentList(int num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int delete(Recipe recipe) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int update(Recipe recipe) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int writeComment(Comment comment) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteComment(Comment comment) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	
+	//레시피 제목으로 한개 조회
+	@Override
+	public Recipe selectrecipe(int recipe_num) {
+		// TODO Auto-generated method stub
+		//조회수 1증가 (이게 있어서 조회수 증가가 가능함)
+		//recipeDAO.add(recipe_num);
+		//레시피 읽기
+		Recipe recipe = recipeDAO.selectrecipe(recipe_num);
+		return recipe;
+	}
+	
+	//전체 레시피 전체목록 + 검색 
+	@Override
+	public ArrayList<Recipe> list(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.list(searchWord);
+		return recipelist;
+	}
+
+	//레시피 수정
+	@Override
+	public int updaterecipe(Recipe recipe) {
+		int n = recipeDAO.updaterecipe(recipe);
+		return n;
+	}
+	
+	//레시피 삭제
+	@Override
+	public int deleterecipe(Recipe recipe) {
+		int n = recipeDAO.deleterecipe(recipe);
+		return n;
+	}
+	
+	//조회 결과 중 위치, 개수 지정
+	//RowBounds rb = new RowBounds(start, count);
 
 }

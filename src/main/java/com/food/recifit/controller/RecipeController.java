@@ -57,11 +57,7 @@ public class RecipeController {
 			@Value("${user.board.group}")
 			int pagePerGroup;
 
-		//글쓰기 폼
-		@GetMapping("/write")
-		public String write() {		
-			return "RecipeView/writeRecipe";
-		}
+
 
 		//글저장
 		@PostMapping("/write")
@@ -81,7 +77,7 @@ public class RecipeController {
 					log.debug("저장할 글 정보 : ", recipe);
 					
 					//DB에 저장
-					service.write(recipe);
+					service.insertrecipe(recipe);
 					return "redirect:/recipe/list";
 						
 		}
@@ -95,7 +91,7 @@ public class RecipeController {
 //			로그인한 사용자의 아이디를 읽음
 			String id = user.getUsername();
 //			글번호로 DB에서 글 내용을 읽음
-			Recipe recipe = service.selectRecipe(num);
+			Recipe recipe = service.selectrecipe(num);
 //			해당번호의 글이 있는지 확인. 없으면 글목록으로
 			if (recipe == null) return "redirect:list";
 //			로그인한 본인의 글이 맞는지 확인. 아니면 글목록으로
@@ -105,7 +101,7 @@ public class RecipeController {
 				FileService.deleteFile(uploadPath + "/" + recipe.getRecipe_savedfile());
 			}
 //			실제 글 DB에서 삭제
-			service.delete(recipe);
+			service.deleterecipe(recipe);
 //			글 목록으로 리다이렉트
 			return "redirect:list";
 		}
@@ -114,7 +110,7 @@ public class RecipeController {
 		@GetMapping("/update")
 		public String update(int recipe_num, Model model, @AuthenticationPrincipal UserDetails user) {
 			//전달된 번호의 글정보 읽기
-			Recipe recipe = service.selectRecipe(recipe_num);
+			Recipe recipe = service.selectrecipe(recipe_num);
 			//본인글인지 확인. 아니면 글목록으로 이동.
 			if (!recipe.getUser_id().equals(user.getUsername())) {
 				return "redirect:list";
@@ -140,7 +136,7 @@ public class RecipeController {
 			
 			//첨부파일이 있는 경우 기존파일 삭제 후 새 파일 저장
 			if (upload != null && !upload.isEmpty()) {
-				oldRecipe = service.selectRecipe(recipe.getRecipe_num());
+				oldRecipe = service.selectrecipe(recipe.getRecipe_num());
 				oldRecipe_savedfile = oldRecipe == null ? null : oldRecipe.getRecipe_savedfile();
 				
 				savedfile = FileService.saveFile(upload, uploadPath);
@@ -149,7 +145,7 @@ public class RecipeController {
 				log.debug("새파일:{}, 구파일:{}", savedfile, oldRecipe_savedfile);
 			}
 			
-			int result = service.update(recipe);
+			int result = service.updaterecipe(recipe);
 			
 			//글 수정 성공 and 첨부된 파일이 있는 경우 파일도 삭제
 			if (result == 1 && savedfile != null) {
@@ -161,25 +157,20 @@ public class RecipeController {
 		//글 목록 + 검색기능추가 
 		@GetMapping("/list")
 		public String list(
-				
-				String type
-				, String searchWord
+				 String searchWord
 				, Model model) {
 			
 //			PageNavigator navi = 
 //					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 			
-			ArrayList<Recipe> recipeList = service.list(
-					type, searchWord);
+			ArrayList<Recipe> recipeList = service.list(searchWord);
 				
 				model.addAttribute("recipeList", recipeList);
 				//model.addAttribute("navi", navi);
-				model.addAttribute("type", type);
 				model.addAttribute("searchWord", searchWord);
 			
 			return "RecipeView/list";
 		}
-		
 		
 		
 		//글 클릭해서 읽기, 조회수 증가
@@ -197,20 +188,16 @@ public class RecipeController {
 			}
 			//num이라는 이름의 글번호를 전달받음
 			//전달받은 글번호를 서비스로 전달
-			Recipe recipe = service.selectRecipe(num);
+			Recipe recipe = service.selectrecipe(num);
 			//서비스가 리턴한 Board객체를 Model에 저장
 			model.addAttribute("Recipe", recipe);
-			log.debug("이거되남3");
 			
 			//해당 글에 달린 리플 목록 
-			ArrayList<Comment> replylist = service.commentList(num);
-			model.addAttribute("replylist", replylist);
-			log.debug("{}글의 리플들 : {}", num, replylist);
 			
 			//HTML파일로 포워딩하여 출력
 			return "boardView/readForm";
-
 		}
+
 
 
 

@@ -34,15 +34,10 @@ public class HomeController {
 	public String join() {
 		return "UserView/joinForm";
 	}
-	
-	@GetMapping("/recipe/list")
-	public String list() {
-		return "RecipeView/list";
-	}
-    
-    @GetMapping("/recipe/read")
-	public String read() {
-		return "RecipeView/read";
-	}
 
+	//글쓰기 폼
+	@GetMapping("/recipe/write")
+	public String write() {		
+		return "RecipeView/writeRecipe";
+	}
 }

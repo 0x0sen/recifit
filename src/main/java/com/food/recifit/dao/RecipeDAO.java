@@ -17,16 +17,17 @@ import com.food.recifit.domain.Recipe;
 public interface RecipeDAO {
 	
 	//레시피 저장
-	public int insertRecipe(Recipe recipe);
+	public int insertrecipe(Recipe recipe);
 	//레시피 제목으로 한개 조회
-	public Recipe selectRecipe(int recipe_num);
+	public Recipe selectrecipe(int recipe_num);
 	//레시피 수정
-	public int updateRecipe(Recipe recipe);
+	public int updaterecipe(Recipe recipe);
 	//레시피 삭제
-	public int deleteRecipe(Recipe recipe);
+	public int deleterecipe(Recipe recipe);
 	//레시피 전체 글 보기
-	public ArrayList<Recipe> list(HashMap<String, String> map);
+	public ArrayList<Recipe> list(String searchWord);
 	//전체 레시피 개수 
 	public int total(HashMap<String, String> map);
+
 	
 	}
