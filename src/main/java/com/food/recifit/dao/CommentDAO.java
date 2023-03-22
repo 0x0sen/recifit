@@ -23,7 +23,7 @@ public interface CommentDAO {
 	//리플 한개 조회 
 	public Comment selectComment(int comment_num);
 	//코멘트 삭제 
-	public int deleteComment(int comment_num);
+	public int deleteComment(Comment comment);
 	//조회 수 1증가
 	public int add(int recipe_num);
 }

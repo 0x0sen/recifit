@@ -211,30 +211,7 @@ public class RecipeController {
 			return "boardView/readForm";
 
 		}
-		
-		//리플 저장
-		@PostMapping("writeComment")
-		public String writeComment(Comment comment, @AuthenticationPrincipal UserDetails user) {
-			//폼에서 전달된 본문글번호, 리플내용에 작성자 아이디 추가 저장
-			comment.setUser_id(user.getUsername());
-			//DB에 저장
-			service.writeComment(comment);
-			//읽던 글로 되돌아감	
-			return "redirect:read?num=" + comment.getComment_num();
-		}
-		
-		//리플 삭제
-		@GetMapping("deleteComment")
-		public String deleteComment(
-				Comment comment
-			, @AuthenticationPrincipal UserDetails user) {
-			
-			comment.setUser_id(user.getUsername());
-			int result = service.deleteComment(comment);
-			
-			return "redirect:/board/read?num=" + comment.getComment_num();
-		}
-		
+
 
 
 	

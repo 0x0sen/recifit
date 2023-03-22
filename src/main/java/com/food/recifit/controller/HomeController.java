@@ -21,7 +21,7 @@ public class HomeController {
 	 * 로그인 폼으로 이동
 	 * @return
 	 */
-	@GetMapping("/User/loginForm")
+	@GetMapping("/user/loginForm")
 	public String loginForm() {
 		return "UserView/loginForm";
 	}
@@ -30,17 +30,17 @@ public class HomeController {
 	 * @return 회원가입 양식 HTMl
 	 */
 	
-	@GetMapping("/User/join")
+	@GetMapping("/user/join")
 	public String join() {
 		return "UserView/joinForm";
 	}
 	
-	@GetMapping("/Recipe/list")
+	@GetMapping("/recipe/list")
 	public String list() {
 		return "RecipeView/list";
 	}
     
-    @GetMapping("/Recipe/read")
+    @GetMapping("/recipe/read")
 	public String read() {
 		return "RecipeView/read";
 	}
