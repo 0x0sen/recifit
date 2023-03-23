@@ -67,7 +67,7 @@
 <!-- 레시피 전체 글 보기 -->
 <select id="list" parameterType="String" resultType="Recipe">
    select 
-   	  recipe_num
+        recipe_num
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
@@ -81,17 +81,19 @@
     <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
 
     <!-- 조건이 없을 땐 where를 없애라 where -->
-    <!--     <if test="searchWord != null">
-     <where>   
-                recipe_name like '%' || #{searchWord} || '%'
-             or
-                recipe_nick like '%' || #{searchWord} || '%'
-             or
-                recipe_need like '%' || #{searchWord} || '%'
-             or
-                recipe_howto like '%' || #{searchWord} || '%'
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
     </where>
-    </if> --> 
+
     order by 
        recipe_num desc
 </select>
