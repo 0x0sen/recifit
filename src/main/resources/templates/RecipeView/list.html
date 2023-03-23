@@ -72,6 +72,7 @@ function pagingFormSubmit(currentPage){
 					<div class="menu_card">
 						<div class="menu_image">
 							<!-- DB에서 가져올 이미지 텍스트 -->
+							<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
 							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
 						</div>
 

@@ -33,9 +33,12 @@
 
 			<table>
 				<tr>
-					<th>사진</th>
-					<td th:text="${Recipe.recipe_savedfile}"> 보임</td>
-				</tr>
+
+					<!-- 화면에 바로뜸.  -->
+					<img th:src="@{/recipe/download(num=${Recipe.recipe_num})}">
+					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
+					</td></tr>
+
 				<tr>
 					<th>레시피 제목</th>
 					<td th:text="${Recipe.recipe_name}"></td>
