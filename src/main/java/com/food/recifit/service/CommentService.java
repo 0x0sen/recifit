@@ -28,8 +28,8 @@ public class CommentService {
 	}
 
 	//코멘트 삭제
-	public int deleteComment(int num) {
-		int cnt = dao.deleteComment(num);
+	public int deleteComment(Comment comment) {
+		int cnt = dao.deleteComment(comment);
 		return cnt;
 	}
 

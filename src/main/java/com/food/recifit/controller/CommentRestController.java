@@ -3,6 +3,8 @@ package com.food.recifit.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,10 +37,14 @@ public class CommentRestController {
 		
 		//코멘트 저장
 		@PostMapping("insertComment")
-		public void insert(Comment comment) {
+		public String insert(Comment comment, @AuthenticationPrincipal UserDetails user) {
+			//폼에서 전달된 본문글번호, 리플내용에 작성자 아이디 추가 저장
+			comment.setUser_id(user.getUsername());
 			//서비스로 전달해서 DB에 저장
 			log.info("전달된 객체 : {}", comment);
 			service.insertComment(comment);
+			//읽던 글로 되돌아감	
+			return "redirect:read?num=" + comment.getComment_num();
 		}
 		
 		//코멘트 리스트 불러오기
@@ -50,10 +56,16 @@ public class CommentRestController {
 		}
 		
 		//코멘트 삭제
-		@GetMapping ("deleteComment")
-		public int delete(int num) {
-			log.info("전달된 번호 : {}", num);
-			int res = service.deleteComment(num);
-			return res;
-		}	
+		@GetMapping("deleteComment")
+		public String deleteComment(
+				Comment comment
+			, @AuthenticationPrincipal UserDetails user) {
+			
+			comment.setUser_id(user.getUsername());
+			int result = service.deleteComment(comment);
+			
+			return "redirect:/board/read?num=" + comment.getComment_num();
+		}
+		
+		
 }
