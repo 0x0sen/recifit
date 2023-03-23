@@ -31,20 +31,9 @@
 </insert>
 
 <!-- 레시피 제목으로 한개 조회 -->
-<select id="selectRecipe" parameterType="int" resultType="Recipe">
+<select id="selectrecipe" parameterType="int" resultType="Recipe">
    select 
-      recipe_num
-      , recipe_name
-      , recipe_originalfile
-      , recipe_savedfile
-      , recipe_need
-      , recipe_howto
-      , recipe_type
-      , to_char(recipe_date, 'yy/mm/dd') recipe_date
-      , recipe_icon
-      , recipe_hit
-      , recipe_zzimSum
-      , recipe_nick
+	*
     from rf_recipe 
     where recipe_num = #{recipe_num}
 </select>

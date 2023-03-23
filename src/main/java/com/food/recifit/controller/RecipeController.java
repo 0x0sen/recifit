@@ -191,7 +191,7 @@ public class RecipeController {
 			//num이라는 이름의 글번호를 전달받음
 			//전달받은 글번호를 서비스로 전달
 			Recipe recipe = service.selectrecipe(num);
-			//서비스가 리턴한 Board객체를 Model에 저장
+			//서비스가 리턴한 Recipe객체를 Model에 저장
 			model.addAttribute("Recipe", recipe);
 			
 			//해당 글에 달린 리플 목록 
