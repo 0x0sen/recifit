@@ -76,14 +76,14 @@
 </delete>
 
 <!-- 레시피 전체 글 보기 -->
-<select id="list" parameterType="map" resultType="Recipe">
+<select id="list" parameterType="String" resultType="Recipe">
    select 
-      , recipe_name
+      recipe_name
       , recipe_originalfile
       , recipe_savedfile
       , recipe_type
       , recipe_icon
-      , hits
+      , recipe_hit
     from 
        rf_recipe 
     <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->

@@ -8,6 +8,17 @@
     <title>레시피 보기</title>
     <link rel="stylesheet" th:href="@{/css/foodstyle.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- 페이지 이동 스크립트 -->
+<script>
+function pagingFormSubmit(currentPage){
+	//화면에 있는 폼을 이벤트 발생해서 
+	var form = document.getElementById('pagingForm');
+	var page = document.getElementById('page');
+	page.value = currentPage;
+	form.submit();
+}
+
+</script>
 </head>
 <body>
 	
@@ -37,6 +48,17 @@
         
        <div class="menu" id="Menu">
         <h1>공유된<span>모든 레시피</span></h1>
+        
+        	<!-- 검색 폼 -->
+<form id="pagingForm" th:action="@{/recipe/list}" method="get">
+	<input type="hidden" name="page" id="page" />
+	<!-- id 는 자바 스크립트 보낼때 -->
+	<!-- name은 홈페이지에서 보낼때 -->
+	<!-- class는 css에서 사용할 때 -->
+	<input type="text" name="searchWord" th:value="${searchWord}">
+	<input type="button" value="검색" onclick="pagingFormSubmit(1)">
+	<!-- 보고 싶은 페이지 번호 1 -->
+</form>
 
         <div class="menu_box">
         <!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
@@ -54,7 +76,7 @@
                 <div class="menu_info">
                     <h2>음식이름 들어감 버거 클릭하면 자세한 페이지로 감</h2>
                     <!-- 쓸지 모르는 정보라 지우지 않음 -->
-                    <h3>$20.00</h3>
+                    <h3>닉네임</h3>
                     <div class="menu_icon">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -62,11 +84,11 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
-                    <a href="#" class="menu_btn">Order Now</a>
+                    <a href="#" class="menu_btn">Order-이건없애도?</a>
                 </div>
 
             </div>       
-                      <div class="menu_card">
+                <div class="menu_card">
 
                 <div class="menu_image">
                 <!-- DB에서 가져올 이미지 텍스트 -->
