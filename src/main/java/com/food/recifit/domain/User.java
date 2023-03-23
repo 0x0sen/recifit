@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User implements UserDetails{
    
-       String user_nick;         //로그인시 사용할 아이디
        String user_pw;         //비밀번호
        String user_name;       //가입자 이름
        String user_phone;      //가입자 전화번호

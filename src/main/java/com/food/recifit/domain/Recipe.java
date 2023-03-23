@@ -27,7 +27,6 @@ public class Recipe implements UserDetails{
     String recipe_icon;     //ex)('이유식,'매운맛,'다이어트식’)
     int recipe_hit;         //레시피 조회수
     int recipe_zzimSum;     //레시피 찜수
-    String user_nick;       //레시피 닉네임
     String user_id;  	    //레시피 아이디
 
     

@@ -78,28 +78,31 @@
 <!-- 레시피 전체 글 보기 -->
 <select id="list" parameterType="String" resultType="Recipe">
    select 
-      recipe_name
+   	  recipe_num
+      , recipe_name
       , recipe_originalfile
       , recipe_savedfile
-      , recipe_type
       , recipe_icon
       , recipe_hit
+      , recipe_zzimSum
+      , user_id
     from 
        rf_recipe 
     <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
     <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
-    <if test="type != null and searchWord != null">
+
     <!-- 조건이 없을 땐 where를 없애라 where -->
+    <!--     <if test="searchWord != null">
      <where>   
-                recipe_name '%' || #{searchWord} || '%'
+                recipe_name like '%' || #{searchWord} || '%'
              or
-                recipe_nick '%' || #{searchWord} || '%'
+                recipe_nick like '%' || #{searchWord} || '%'
              or
-                recipe_need '%' || #{searchWord} || '%'
+                recipe_need like '%' || #{searchWord} || '%'
              or
-                recipe_howto '%' || #{searchWord} || '%'
+                recipe_howto like '%' || #{searchWord} || '%'
     </where>
-    </if>
+    </if> --> 
     order by 
        recipe_num desc
 </select>

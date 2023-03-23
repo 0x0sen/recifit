@@ -165,6 +165,8 @@ public class RecipeController {
 			
 			ArrayList<Recipe> recipeList = service.list(searchWord);
 				
+			log.debug("넘어간 값 : {}", searchWord);
+			
 				model.addAttribute("recipeList", recipeList);
 				//model.addAttribute("navi", navi);
 				model.addAttribute("searchWord", searchWord);
@@ -195,7 +197,7 @@ public class RecipeController {
 			//해당 글에 달린 리플 목록 
 			
 			//HTML파일로 포워딩하여 출력
-			return "boardView/readForm";
+			return "RecipeView/readRecipe";
 		}
 
 

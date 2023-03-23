@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 public class Zzim {
     int zzim_num;         //시퀀스 사용
     int recipe_num;       //찜한 레시피 번호,
-    String zzim_nick;     //찜한 사람의 아이디
     String zzim_date;     //찜한 날짜
-    String user_nick;     //찜 닉네임
     String user_id;       //찜 아이디  
 }
