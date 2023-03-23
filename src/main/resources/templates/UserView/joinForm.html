@@ -1,82 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" 
-     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<script th:src="@{/js/jquery-3.6.0.js}"></script>
-<style>
-th {
-	text-align: left;
-}
-td {
-	text-align: center;
-}
-</style>
-<script>
-//가입폼 확인
-function validation() {
-	let memberid = $('#memberid').val();
-	let memberpw = $('#memberpw').val();
-	let membername = $('#membername').val();
-	let phone = $('#phone').val();
-	
-	if (memberid.length < 3 || memberid.length > 10) {
-		alert("ID는 3~10자로 입력하세요.");
-		return false;
-	}
-	if (memberpw.length < 3 || memberpw.length > 10) {
-		alert("비밀번호는 3~10자로 입력하세요.");
-		return false;
-	}
-	if (membername == '') {
-		alert("이름을 입력하세요.");
-		return false;
-	}
-	if (phone == '') {
-		alert("전화번호를 입력하세요.");
-		return false;
-	}
-	return true;
-}
-</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" th:href="@{/css/singup.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="short icon" href="image/short_icon.png">
 </head>
 <body>
-	<header>
-	<h1>[ 회원가입 ]</h1>
-	</header>
-	
-	<section>
-	<form id="joinform" th:action="@{/member/join}"  method="post" onsubmit="return validation();">
-	<table>
-		<tr>
-			<th>ID</th>
-			<td>
-				<input type="text" name="memberid" id="memberid">
-			</td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="password" name="memberpw" id="memberpw"></td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td><input type="text" name="membername" id="membername"></td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td><input type="text" name="phone" id="phone"></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="가입" />
-				<input type="reset" value="다시 쓰기" />
-			</td>
-		</tr>
-	</table>
-	
-	</form>	
-	</section>
-	
+    
+    <div class="hero">
+
+        <div class="login_form">
+
+            <h1>Register</h1>
+
+            <form class="input_box">
+
+                <input type="text" class="field" placeholder="Name">
+                <input type="password" class="field" placeholder="Password" maxlength="10">
+                <input type="email" class="field" placeholder="Email">
+                <input type="checkbox" class="check_box"><p>Remember Password</p>
+                <button type="submit" class="submit_btn">Register</button>
+
+                <div class="social_icon">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-google"></i>
+                </div>
+
+                <div class="tag">
+                    <span>New User?</span>
+                    <a href="login.html">Log in</a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
