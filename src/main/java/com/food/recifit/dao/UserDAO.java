@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.food.recifit.domain.User;
 
 
+
 /**
  * 로그인에 관한 DAO
  * @author user
@@ -16,8 +17,14 @@ import com.food.recifit.domain.User;
  */
 @Mapper
 public interface UserDAO {
-	  //회원정보 저장
-    public int insertMember(User member);
-	//글 저장
-	
+	//회원정보 저장
+	int insert(User member);
+	//회원정보 조회
+	User select(String memberid);
+	//회원정보 수정
+	int updateMember(User member);
+	//회원 탈퇴
+	int delete(String id);
+	//회원 멤버 보기
+	ArrayList<User> selectAll();
 }

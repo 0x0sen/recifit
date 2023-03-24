@@ -9,6 +9,19 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="short icon" href="image/short_icon.png">
+    <script>
+	//로그인폼 확인
+	function validation() {
+		let id = document.getElementById('user_id');
+		let password = document.getElementById('user_pw');
+		
+		if (id.value == '' || password.value == '') {
+			alert('ID와 비밀번호를 입력하세요.');
+			return false;
+		}
+		return true;
+	}
+	</script>
 </head>
 <body>
 
@@ -16,14 +29,17 @@
 
         <div class="login_form">
 
-            <h1>Login</h1>
+            <h1>로그인</h1>
 
-            <form class="input_box">
+            <form id="loginForm" th:action="@{/user/loginForm}" method="post" onSubmit="return validation();" class="input_box" >
 
-                <input type="text" class="field" placeholder="User Name">
-                <input type="password" class="field" maxlength="10" placeholder="Password">
-                <input type="checkbox" class="check_box"><p>Remember Password</p>
-                <button type="submit" class="submit_btn">Login</button>
+                <input type="text" name="user_id" id="user_id"  class="field" placeholder="아이디 ">
+                <input type="password" name="user_pw" id="user_pw"  class="field" placeholder="비밀번호">
+                
+                <input type="checkbox" class="check_box"><p>비밀번호 기억하기</p>
+                <input type="submit" value="Login"  class="submit_btn"/>
+                /
+                <button type="submit" class="submit_btn">로그인</button>
 
                 <div class="social_icon">
                     <i class="fa-brands fa-facebook-f"></i>
@@ -32,7 +48,8 @@
                 </div>
 
                 <div class="tag">
-                    <span>New User?</span>
+                    <a th:href="@{/}"  >홈으로</a>
+                    <span>/</span>
                     <a th:href="@{/user/join}">회원가입</a>
                 </div>
 
