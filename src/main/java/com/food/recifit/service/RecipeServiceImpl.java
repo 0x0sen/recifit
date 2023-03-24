@@ -14,6 +14,7 @@ import com.food.recifit.domain.Recipe;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -59,6 +60,8 @@ public class RecipeServiceImpl implements RecipeService {
 		int n = recipeDAO.deleterecipe(recipe);
 		return n;
 	}
+
+	
 	
 	//조회 결과 중 위치, 개수 지정
 	//RowBounds rb = new RowBounds(start, count);

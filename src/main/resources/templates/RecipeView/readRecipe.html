@@ -22,6 +22,16 @@
 
 <title>myRecipe</title>
 
+<script type="text/javascript">
+//리플 삭제
+function deleteComment(comment_num, recipe_num) {
+	if (confirm('삭제하시겠습니까?')) {
+		location.href = 'deleteComment?comment_num=' + comment_num + '&recipe_num=' + recipe_num;
+	}
+}
+
+</script>
+
 </head>
 <body>
 	<header>
@@ -78,6 +88,15 @@
 			</table>
 		</form>
 		
+		<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/recipe/writeComment}" method="post" onsubmit="return validation()">
+				<input type="hidden" name="recipe_num" th:value="${recipe.recipe_num}">
+				<input type="text" name="comment_text" id="comment_text" style="width:500px;">
+				<input type="submit" value="확인">
+			</form>
+		</div>
+		
 		<!-- 현재 글의 댓글들 출력 -->
 		<table>
 			<tr th:each="comment : ${commentlist}">
@@ -86,9 +105,10 @@
 				<td th:text="${comment.comment_date}"></td>
 				
 				<!-- 자기 댓글 삭제 -->
+				
 				<td>
 					<span th:if="${#authentication.name} == ${comment.user_id}">
-						<a th:href="|javascript:deleteReply(${reply.replynum}, ${reply.boardnum})|">
+						<a th:href="|javascript:deleteComment(${comment.comment_num}, ${comment.recipe_num})|">
 							<img th:src="@{/image/icon_delete_24.png}">
 						</a>
 					</span>

@@ -2,19 +2,48 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.food.recifit.dao.RecipeDAO">
+<mapper namespace="com.food.recifit.dao.CommentDAO">
 
 
-<!-- 전달된 번호의 레시피 조회 수 1증가-->
-<update id= "add" parameterType="int" >
-	update 
-		rf_recipe
-	set
-		recipe_hit = recipe_hit + 1
-	where
-		recipe_num = #{recipe_num}
-</update>
+<!-- 한개의 글에 달린, 댓글 목록 읽기 -->
+<select id="commentlist" parameterType="int" resultType="Comment">
+	select
+		comment_num
+		, recipe_num
+		, user_id
+		, comment_text
+		, to_char(comment_date, 'yy.mm.dd') comment_date 
+	from 
+		rf_comment
+	where 
+		recipe_num=#{recipe_num} order by comment_num
+</select>
 
+<!-- 댓글 삭제 -->
+<delete id="deleteComment" parameterType="Comment">
+	delete from 
+		rf_comment 
+	where 
+		recipe_num = #{recipe_num} 
+		and user_id = #{user_id}
+</delete>
+
+<!-- 댓글 저장 -->
+<insert id="writeComment" parameterType="Comment">
+	insert into 
+		rf_comment (
+			comment_num
+			, recipe_num
+			, user_id
+			, comment_text
+		)
+	values (
+			spring5_reply_seq.nextval
+			, #{recipe_num}
+			, #{user_id}
+			, #{comment_text}
+	)
+</insert>
 
 
 </mapper> 
