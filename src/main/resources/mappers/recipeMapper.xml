@@ -8,6 +8,7 @@
 <insert id="insertrecipe" parameterType="Recipe">
     insert into rf_recipe (
        recipe_num
+      , user_id
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
@@ -15,10 +16,10 @@
       , recipe_howto
       , recipe_type
       , recipe_icon
-      , recipe_nick
    )
     values (
        recipe_num_seq.nextval
+      , #{user_id}
       , #{recipe_name}
       , #{recipe_originalfile}
       , #{recipe_savedfile}
@@ -26,7 +27,6 @@
       , #{recipe_howto}
       , #{recipe_type}
       , #{recipe_icon}
-      , #{recipe_nick}
    )
 </insert>
 
@@ -61,7 +61,6 @@
 <delete id="deleteRecipe"  parameterType="Recipe">
    delete from rf_recipe
    where recipe_num = #{recipe_num} 
-   and recipe_nick = #{recipe_nick}
 </delete>
 
 <!-- 레시피 전체 글 보기 -->
@@ -108,8 +107,6 @@
     <!-- 조건이 없을 땐 where를 없애라 where -->
      <where>
                 upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
-             or
-                upper(recipe_nick) like '%' || upper(#{searchWord}) || '%'
              or
                 upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
              or

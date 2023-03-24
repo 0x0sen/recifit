@@ -1,0 +1,109 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.recifit.dao.RecipeDAO">
+
+	<!-- 레시피 저장 -->
+	<insert id="insertzzim" parameterType="Zzim">
+		insert into rf_zzim (
+		zzim_num
+		, recipe_num
+		, zzim_id
+		, zzim_name
+		, zzim_originalfile
+		, zzim_savedfile
+		, zzim_need
+		, zzim_howto
+		, zzim_type
+		, zzim_icon
+		)
+		values (
+		zzim_num_seq.nextval
+		, #{recipe_num}
+		, #{zzim_id}
+		, #{zzim_name}
+		, #{zzim_originalfile}
+		, #{zzim_savedfile}
+		, #{zzim_need}
+		, #{zzim_howto}
+		, #{zzim_type}
+		, #{zzim_icon}
+		)
+	</insert>
+
+	<!-- 찜 한개 조회 -->
+	<select id="selectzzim" parameterType="int" resultType="Zzim">
+		select
+		*
+		from rf_zzim
+		where zzim_num = #{zzim_num}
+	</select>
+
+	<!-- 찜 글 수정 -->
+	<update id="updatezzim" parameterType="Zzim">
+		update
+		rf_zzim
+		set
+		zzim_name = #{zzim_name}
+		, zzim_need = #{zzim_need}
+		, zzim_howto = #{zzim_howto}
+		, zzim_type = #{zzim_type}
+		, zzim_icon = #{zzim_icon}
+		<if test="zzim_originalfile != null and zzim_originalfile != ''">
+			, zzim_originalfile = #{zzim_originalfile}
+		</if>
+		<if test="zzim_savedfile != null and zzim_savedfile != ''">
+			, zzim_savedfile = #{zzim_savedfile}
+		</if>
+		where
+		zzim_num = #{zzim_num}
+	</update>
+
+	<!-- 찜 삭제 -->
+	<delete id="deletezzim" parameterType="Zzim">
+		delete from rf_zzim
+		where zzim_num = #{zzim_num}
+		and zzim_id = #{zzim_id}
+	</delete>
+
+	<!-- 찜 전체 글 보기 -->
+	<select id="listzzim" parameterType="String" resultType="Zzim">
+		select
+		zzim_num
+		, zzim_date
+		, zzim_name
+		, zzim_originalfile
+		, zzim_savedfile
+		, zzim_type
+		, zzim_icon
+		from
+		rf_zzim
+		<!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+
+		<!-- 조건이 없을 땐 where를 없애라 where -->
+		<where>
+			<if test="searchWord != null">
+
+				upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
+				or
+				upper(zzim_need) like '%' || upper(#{searchWord}) || '%'
+				or
+				upper(zzim_howto) like '%' || upper(#{searchWord}) || '%'
+				or
+				upper(zzim_id) like '%' || upper(#{searchWord}) || '%'
+			</if>
+		</where>
+		order by
+		zzim_num desc
+	</select>
+
+	<!-- 찜 레시피 개수 (이 함수 외우기) -->
+	<select id="totalzzim" parameterType="map" resultType="int">
+		select
+		count(*)
+		from
+		rf_zzim
+	</select>
+</mapper> 
+ 

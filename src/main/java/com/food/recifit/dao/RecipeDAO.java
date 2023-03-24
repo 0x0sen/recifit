@@ -10,7 +10,7 @@ import com.food.recifit.domain.Recipe;
 
 
 /**
- *  모든 글 보기
+ *  레시피에 대한 DAO
  * @author user
  *
  */

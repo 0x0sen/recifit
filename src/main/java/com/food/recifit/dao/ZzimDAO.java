@@ -9,16 +9,23 @@ import org.apache.ibatis.session.RowBounds;
 import com.food.recifit.domain.Zzim;
 
 /**
- * 로그인에 관한 DAO
+ * 찜에 대한 zzDAO
  * @author user
  *
  */
 @Mapper
 public interface ZzimDAO {
 	//찜 저장
-	int insertZzim(Zzim zzim);
+	public int insertzzim(Zzim zzim);
 	//찜 리스트 불러오기
-	ArrayList<Zzim> listZzim();
+	public ArrayList<Zzim> listzzim(String searchWord);
 	//찜 삭제
-	int deleteZzim(int num);
+	public int deletezzim(Zzim zzim);
+	//찜 한개 글 읽기
+	public Zzim selectzzim(int num);
+	//찜 수정
+	public int updatezzim(Zzim zzim); 
+	//전체 찜 개수 
+	public int totalzzim(HashMap<String, String> map);
+
 }

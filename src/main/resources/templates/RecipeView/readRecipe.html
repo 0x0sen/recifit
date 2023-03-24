@@ -70,6 +70,10 @@ function deleteComment(comment_num, recipe_num) {
 					<td th:text="${Recipe.recipe_zzimSum}"></td>
 				</tr>
 				<tr>
+					<th>레시피 찜버튼</th>
+					<td><a th:href="@{/recipe/zzim(num=${Recipe.recipe_num})}">찜</a></td>
+				</tr>
+				<tr>
 					<th>아이디</th>
 					<td th:text="${Recipe.user_id}"></td>
 				</tr>

@@ -68,7 +68,7 @@ public class RecipeController {
 			, @AuthenticationPrincipal UserDetails user
 			, MultipartFile upload) {
 
-		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 board객체에 추가
+		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 recipe객체에 추가
 		if ( upload != null && !upload.isEmpty()) {
 			String filename = FileService.saveFile(upload, uploadPath);
 			recipe.setRecipe_originalfile(upload.getOriginalFilename());
