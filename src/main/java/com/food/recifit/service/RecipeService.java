@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 
 /**
@@ -23,6 +24,8 @@ public interface RecipeService {
 	//레시피 삭제
 	public int deleterecipe(Recipe recipe);
 	//페이지 정보 객체 생성
-	//public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String searchWord);	
+	//public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String searchWord);
+	
+	
 		
 }

@@ -1,7 +1,7 @@
 package com.food.recifit.controller;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -24,11 +24,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 import com.food.recifit.domain.User;
-
+import com.food.recifit.service.CommentService;
 import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;
 
 import lombok.extern.slf4j.Slf4j;
+
+
 
 
 
@@ -44,6 +46,9 @@ public class RecipeController {
 	
 	@Autowired
 	RecipeService service;
+	
+	@Autowired
+	CommentService service2;
 
 	//설정파일에 정의된 업로드할 경로를 읽어서 아래 변수에 대입
 			@Value("${spring.servlet.multipart.location}")
@@ -195,10 +200,15 @@ public class RecipeController {
 			model.addAttribute("Recipe", recipe);
 			
 			//해당 글에 달린 리플 목록 
+			ArrayList<Comment> commentlist = service2.commentlist(num);
+			model.addAttribute("commentlist", commentlist);
+			log.debug("{}글의 리플들 : {}", num, commentlist);
 			
 			//HTML파일로 포워딩하여 출력
 			return "RecipeView/readRecipe";
 		}
+		
+		
 
 
 
