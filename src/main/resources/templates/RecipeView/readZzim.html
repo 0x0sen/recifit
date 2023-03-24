@@ -25,59 +25,48 @@
 </head>
 <body>
 	<header>
-		<h1>[레시핏 보기]</h1>
+		<h1>[찜한 레시핏 보기]</h1>
 	</header>
 
 	<section>
-		<form id="readRecipe" th:action="@{/recipe/read}" method="post">
+		<form id="readZzim" th:action="@{/recipe/zzim}" method="post">
 
 			<table>
 				<tr>
 
 					<!-- 화면에 바로뜸.  -->
-					<img th:src="@{/recipe/download(num=${Recipe.recipe_num})}">
+					<img th:src="@{/recipe/download(num=${Zzim.zzim_num})}">
 					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
 					</td></tr>
 
 				<tr>
 					<th>레시피 제목</th>
-					<td th:text="${Recipe.recipe_name}"></td>
+					<td th:text="${Zzim.zzim_name}"></td>
 				</tr>
 				<tr>
 					<th>레시피 분류</th>
-					<td th:text="${Recipe.recipe_type}"></td>
+					<td th:text="${Zzim.zzim_type}"></td>
 				</tr>
 				<tr>
 					<th>레시피 아이콘</th>
-					<td th:text="${Recipe.recipe_icon}"></td>
+					<td th:text="${Zzim.zzim_icon}"></td>
 				</tr>
-				<tr>
-					<th>레시피 조회수</th>
-					<td th:text="${Recipe.recipe_hit}"></td>
-				</tr>
-				<tr>
-					<th>레시피 찜수</th>
-					<td th:text="${Recipe.recipe_zzimSum}"></td>
-				</tr>
+
 				<tr>
 					<th>레시피 찜버튼</th>
-					<td><a th:href="@{/recipe/zzim(num=${Recipe.recipe_num})}">찜</a></td>
+					<td><a th:href="@{/recipe/zzim(num=${Recipe.recipe_num})}">찜(찜버튼을 다시 누르면 경고창나오고 찜 해제)</a></td>
 				</tr>
 				<tr>
-					<th>아이디</th>
-					<td th:text="${Recipe.user_id}"></td>
-				</tr>
-				<tr>
-					<th>글 작성 날짜</th>
-					<td th:text="${Recipe.recipe_date}"></td>
+					<th>찜한 날짜</th>
+					<td th:text="${Zzim.zzim_date}"></td>
 				</tr>
 				<tr>
 					<th>재료</th>
-					<td th:text="${Recipe.recipe_need}"></td>
+					<td th:text="${Zzim.zzim_need}"></td>
 				</tr>
 				<tr>
 					<th>요리 소개</th>
-					<td th:text="${Recipe.recipe_howto}"></td>
+					<td th:text="${Zzim.zzim_howto}"></td>
 				</tr>
 			</table>
 		</form>

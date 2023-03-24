@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.food.recifit.dao.CommentDAO;
 import com.food.recifit.dao.ZzimDAO;
 import com.food.recifit.domain.Comment;
+import com.food.recifit.domain.Recipe;
 import com.food.recifit.domain.Zzim;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,23 +20,38 @@ public class ZzimServiceImpl implements ZzimService{
 	@Autowired
 	ZzimDAO zzimDAO;
 
+	//찜 저장
 	@Override
-	public int insertZzim(Zzim zzim) {
-		int zim = zzimDAO.insertZzim(zzim);
-		return zim;
+	public int insertzzim(Zzim zzim) {
+		int result = zzimDAO.insertzzim(zzim);
+		return result;
 		
 	}
 	
+	//찜 목록 불러오기
 	@Override
-	public ArrayList<Zzim> listZzim() {
-		ArrayList<Zzim> list = zzimDAO.listZzim();
-		return list;
+	public ArrayList<Zzim> listzzim(String searchWord) {
+		ArrayList<Zzim> zzimlist = zzimDAO.listzzim(searchWord);
+		return zzimlist;
 	}
 	
+	//찜 삭제
 	@Override
-	public int deleteZzim(int num) {
-		int cnt = zzimDAO.deleteZzim(num);
+	public int deletezzim(Zzim zzim) {
+		int cnt = zzimDAO.deletezzim(zzim);
 		return cnt;
 	}
+	//찜 한개 글 읽기
+	public Zzim selectzzim(int zzim_num) {
+		Zzim zzim = zzimDAO.selectzzim(zzim_num);
+		return zzim;
+	}
+	//찜 수정
+	public int updatezzim(Zzim zzim) {
+		int n = zzimDAO.updatezzim(zzim);
+		return n;
+	}
+
+
 	
 }
