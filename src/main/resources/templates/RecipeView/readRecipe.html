@@ -74,6 +74,24 @@
 				</tr>
 			</table>
 		</form>
+		
+		<!-- 현재 글의 댓글들 출력 -->
+		<table>
+			<tr th:each="comment : ${commentlist}">
+				<td th:text="${comment.user_id}"></td>
+				<td th:text="${comment.comment_text}"></td>
+				<td th:text="${comment.comment_date}"></td>
+				
+				<!-- 자기 댓글 삭제 -->
+				<td>
+					<span th:if="${#authentication.name} == ${comment.user_id}">
+						<a th:href="|javascript:deleteReply(${reply.replynum}, ${reply.boardnum})|">
+							<img th:src="@{/image/icon_delete_24.png}">
+						</a>
+					</span>
+				</td>
+			</tr>	
+		</table>
 
 	</section>
 </body>
