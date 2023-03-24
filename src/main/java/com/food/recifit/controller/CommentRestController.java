@@ -35,37 +35,7 @@ public class CommentRestController {
 		@Autowired
 		CommentService service;
 		
-		//코멘트 저장
-		@PostMapping("insertComment")
-		public String insert(Comment comment, @AuthenticationPrincipal UserDetails user) {
-			//폼에서 전달된 본문글번호, 리플내용에 작성자 아이디 추가 저장
-			comment.setUser_id(user.getUsername());
-			//서비스로 전달해서 DB에 저장
-			log.info("전달된 객체 : {}", comment);
-			service.insertComment(comment);
-			//읽던 글로 되돌아감	
-			return "redirect:read?num=" + comment.getComment_num();
-		}
 		
-		//코멘트 리스트 불러오기
-		@GetMapping("listComment")
-		public ArrayList<Comment> list(){
-			ArrayList<Comment> list = service.listComment();
-			log.debug("결과:{}", list);
-			return list;
-		}
-		
-		//코멘트 삭제
-		@GetMapping("deleteComment")
-		public String deleteComment(
-				Comment comment
-			, @AuthenticationPrincipal UserDetails user) {
-			
-			comment.setUser_id(user.getUsername());
-			int result = service.deleteComment(comment);
-			
-			return "redirect:/board/read?num=" + comment.getComment_num();
-		}
 		
 		
 }

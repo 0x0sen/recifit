@@ -1,7 +1,7 @@
 package com.food.recifit.controller;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 import com.food.recifit.domain.User;
-
+import com.food.recifit.service.CommentService;
 import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;
 
@@ -32,6 +32,12 @@ import lombok.extern.slf4j.Slf4j;
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 유진선
 /**
  * 전체 레시피 보기에 관한 컨트롤러 입니다.
  */
@@ -43,6 +49,9 @@ public class RecipeController {
 
 	@Autowired
 	RecipeService service;
+	
+	@Autowired
+	CommentService service2;
 
 	//설정파일에 정의된 업로드할 경로를 읽어서 아래 변수에 대입
 	@Value("${spring.servlet.multipart.location}")
@@ -150,6 +159,7 @@ public class RecipeController {
 		if (result == 1 && savedfile != null) {
 			FileService.deleteFile(uploadPath + "/" + oldRecipe_savedfile);
 		}
+<<<<<<< HEAD
 		return "redirect:read?num=" + recipe.getRecipe_num();
 	}
 
@@ -210,7 +220,39 @@ public class RecipeController {
 		Recipe recipe = service.selectrecipe(num);
 		if(recipe == null || recipe.getRecipe_savedfile() == null) {
 			return "redirect:list";
+=======
+		
+		
+		//글 클릭해서 읽기, 조회수 증가
+		
+		@GetMapping("/read")
+		//int num만 쓰기는 위험하다. 
+		//요청 파라미터를 넣어서 넣어달라.
+		public String read(
+				@RequestParam(name = "num", defaultValue="0") int num
+				, Model model) {
+			//본문글 정보
+			log.debug("read: ",num);
+			if(num == 0) {
+				return "redirect:list";
+			}
+			//num이라는 이름의 글번호를 전달받음
+			//전달받은 글번호를 서비스로 전달
+			Recipe recipe = service.selectrecipe(num);
+			//서비스가 리턴한 Recipe객체를 Model에 저장
+			model.addAttribute("Recipe", recipe);
+			
+			//해당 글에 달린 리플 목록 
+			ArrayList<Comment> commentlist = service2.commentlist(num);
+			model.addAttribute("commentlist", commentlist);
+			log.debug("{}글의 리플들 : {}", num, commentlist);
+			
+			//HTML파일로 포워딩하여 출력
+			return "RecipeView/readRecipe";
+>>>>>>> 유진선
 		}
+		
+		
 
 		String file = uploadPath + "/" + recipe.getRecipe_savedfile();
 
