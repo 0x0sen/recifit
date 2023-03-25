@@ -45,7 +45,7 @@ function deleteComment(comment_num, recipe_num) {
 				<tr>
 
 					<!-- 화면에 바로뜸.  -->
-					<img th:src="@{/recipe/download(num=${Recipe.recipe_num})}">
+					<img th:src="@{/Recipe/download(num=${Recipe.recipe_num})}">
 					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
 					</td></tr>
 
@@ -95,7 +95,7 @@ function deleteComment(comment_num, recipe_num) {
 		<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
 		<div sec:authorize="isAuthenticated()">
 			<form th:action="@{/recipe/writeComment}" method="post" onsubmit="return validation()">
-				<input type="hidden" name="recipe_num" th:value="${recipe.recipe_num}">
+				<input type="hidden" name="recipe_num" th:value="${Recipe.recipe_num}">
 				<input type="text" name="comment_text" id="comment_text" style="width:500px;">
 				<input type="submit" value="확인">
 			</form>
