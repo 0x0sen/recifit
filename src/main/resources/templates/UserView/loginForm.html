@@ -8,7 +8,7 @@
     <title>Food Website</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="short icon" href="image/short_icon.png">
+
     <script>
 	//로그인폼 확인
 	function validation() {
@@ -31,7 +31,7 @@
 
             <h1>로그인</h1>
 
-            <form id="loginForm" th:action="@{/user/loginForm}" method="post" onSubmit="return validation();" class="input_box" >
+            <form id="loginForm" th:action="@{/user/login}" method="post" onSubmit="return validation();" class="input_box" >
 
                 <input type="text" name="user_id" id="user_id"  class="field" placeholder="아이디 ">
                 <input type="password" name="user_pw" id="user_pw"  class="field" placeholder="비밀번호">

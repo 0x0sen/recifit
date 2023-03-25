@@ -38,7 +38,7 @@ public class WebSecurityConfig {
         .and()
         .formLogin()                  //일반적인 폼을 이용한 로그인 처리/실패 방법을 사용
         .loginPage("/user/loginForm")      //시큐리티에서 제공하는 기본 폼이 아닌 사용자가 만든 폼 사용
-        .loginProcessingUrl("/user/loginForm").permitAll()   //인증 처리를 하는 URL을 설정. 로그인 폼의 action으로 지정
+        .loginProcessingUrl("/user/login").permitAll()   //인증 처리를 하는 URL을 설정. 로그인 폼의 action으로 지정
         .usernameParameter("user_id")      //로그인폼의 아이디 입력란의 name
         .passwordParameter("user_pw")      //로그인폼의 비밀번호 입력란의 name
         .and()
@@ -60,14 +60,14 @@ public class WebSecurityConfig {
         .dataSource(dataSource)
         // 인증 (로그인)
         .usersByUsernameQuery(
-	        "select user_id username, user_pw password, enabled " +
+	        " select user_id username, user_pw password, enabled " +
 	        " from rf_user " +
 	        " where user_id = ?")
 	        
         // 권한
         .authoritiesByUsernameQuery(
               "select user_id username, user_role role_name " +
-                "from rf_user" + 
+                "from rf_user " + 
         		"where user_id = ?");
     }
 

@@ -20,7 +20,7 @@ public interface UserDAO {
 	//회원정보 저장
 	int insertUser_id(User member);
 	//회원정보 조회
-	User selectOneUser(String id);
+	User selectOneUser(String user_id);
 	//회원정보 수정
 	int updateMember(User member);
 	//회원 탈퇴

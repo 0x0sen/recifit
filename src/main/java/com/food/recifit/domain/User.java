@@ -24,9 +24,10 @@ public class User implements UserDetails{
        String user_name;       //가입자 이름
        String user_phone;      //가입자 전화번호
        String user_email;      //가입자 이메일
-       String user_originalfile;   //가입자 사진(첨부파일 원래이름)
-       String user_savedfile;       //가입자 사진(첨부파일 서버에 저장)
-       String user_pr;           //가입자 소개
+       //String user_originalfile;   //가입자 사진(첨부파일 원래이름)
+       //String user_savedfile;       //가입자 사진(첨부파일 서버에 저장)
+       //String user_pr;           //가입자 소개
+   	   boolean enabled; 		//계정 상태 (1-사용가능, 0-불가능)
        String user_role;         //일반유저,관리자 구분 관리자는 ‘ROLE_ADMIN’
       @Override
       public Collection<? extends GrantedAuthority> getAuthorities() {
