@@ -18,9 +18,9 @@ import com.food.recifit.domain.User;
 @Mapper
 public interface UserDAO {
 	//회원정보 저장
-	int insert(User member);
+	int insertUser_id(User member);
 	//회원정보 조회
-	User select(String memberid);
+	User selectOneUser(String id);
 	//회원정보 수정
 	int updateMember(User member);
 	//회원 탈퇴

@@ -14,9 +14,6 @@ CREATE TABLE rf_user (
     user_phone   VARCHAR2(20)   NOT NULL,      --가입자 전화번호
     user_email    VARCHAR2(50)    NOT NULL,      --가입자 이메일
     user_id       VARCHAR2(20)     NOT NULL UNIQUE,--닉네임ex)요리왕
-    user_originalfile   VARCHAR2(255)   NOT NULL,    --가입자 사진(originalfile)
-    user_savedfile   VARCHAR(100),            --가입자 사진 저장(savedfile)
-    user_pr     VARCHAR2(255),                 --가입자 소개
     user_role   VARCHAR2(20)   DEFAULT 'ROLE_USER'   --일반유저,관리자 구분 관리자는 ‘ROLE_ADMIN’
     );
 

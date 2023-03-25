@@ -27,12 +27,9 @@ public class WebSecurityConfig {
         .antMatchers("/",
               "/thymeleaf",
               "/user/join",
-              "/user/idcheck",
+              "/user/idCheck",
               "/recipe/list",
-               "/recipe/read",
-               "/recipe/write",
-               "/recipe/delete",
-               "/recipe/update",              
+               "/recipe/read",              
                 "/recipe/download",
                 "/image/**",
                 "/css/**",
@@ -70,8 +67,8 @@ public class WebSecurityConfig {
         // 권한
         .authoritiesByUsernameQuery(
               "select user_id username, user_role role_name " +
-                "from rf_user" +
-                "where user_id = ?");
+                "from rf_user" + 
+        		"where user_id = ?");
     }
 
     // 단방향 비밀번호 암호화

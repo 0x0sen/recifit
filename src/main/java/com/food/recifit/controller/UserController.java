@@ -54,25 +54,26 @@ public class UserController {
 	@PostMapping("join")
 	public String join(User member) {
 		log.debug("가입데이터 : {}", member);
-		service.insert(member);
+		service.insertUser_id(member);
 		return "redirect:/";
 	}
 	
-	@GetMapping("idcheck")
-	public String idcheck() {
-		return "memberView/idcheck";
+	@GetMapping("idCheck")
+	public String idCheck() {
+		
+		return "UserView/idCheck";
 	}
 	
-	@PostMapping("idcheck")
-	public String idcheck(String id, Model model) {
+	@PostMapping("idCheck")
+	public String idCheck(String id, Model model) {
 		log.debug("검색할 아이디 : {}" , id);
 		
-		boolean res = service.idcheck(id);
+		boolean res = service.idCheck(id);
 		
 		model.addAttribute("searchId", id);
 		model.addAttribute("result", res);
 		
-		return "memberView/idcheck";
+		return "UserView/idCheck";
 		
 	}
 	

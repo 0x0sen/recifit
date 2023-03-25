@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ID 중복 확인</title>
+<script>
+	function inputId() {
+		//현재 페이지의 id가 "id"인 입력란의 값을
+		//바깥쪽 창의 id가 "user_id"인 입력란에 넣는다
+		//현재 창을 닫는다
+		opener.document.getElementById("user_id").value = document
+				.getElementById("id").value;
+		this.close();
+	}
+	
+	function validation() {
+		let id = document.getElementById('id').value;
+		
+		
+		if (id.length < 3 || id.length > 10) {
+			alert("ID는 3~10자로 입력하세요.");
+			return false;
+		}
+		
+		
+		return true;
+	}
+</script>
+</head>
+<body>
+	<h2>[ ID 중복확인 ]</h2>
+	<form th:action="@{/user/idCheck}" method="post" onsubmit="return validation();">
+		검색할 ID <input type="text" name="id" id="id" th:value="${searchId}">
+		<input type="submit" value="검색">
+	</form>
+
+	<!-- 검색 후 (searchId가 null이 아닐 때)-->
+	<div th:if="${searchId != null}">
+		<!-- 사용 불가능 (result가 true일때)-->
+		<div th:if="${result}">
+			<p>이미 사용중인 아이디 입니다.</p>
+		</div>
+		<!-- 사용 가능 (result가 false일때)-->
+		<div th:if="${not result}">
+			<p>사용 가능한 아이디 입니다.</p>
+			<p>
+				<input type="button" value="ID사용하기" onclick="inputId()">
+			</p>
+		</div>
+	</div>
+
+</body>
+</html>

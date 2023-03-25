@@ -14,7 +14,7 @@ public interface UserService {
 	 * @param member 가입양식에서 전달된 회원정보
 	 * @return 저장된 개수
 	 */
-	public int insert(User member);
+	public int insertUser_id(User member);
 
 	/**
 	 * 아이디 존재 확인
@@ -22,7 +22,7 @@ public interface UserService {
 	 * @return 해당 아이디 존재 여부 (있으면 true)
 	 */
 
-	public boolean idcheck(String id);
+	public boolean idCheck(String id);
 	
 	/**
 	 * 아이디로 회원 정보 찾기

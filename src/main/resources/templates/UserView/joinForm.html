@@ -1,71 +1,108 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Website</title>
-    <link rel="stylesheet" th:href="@{/css/singup.css}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="short icon" href="image/short_icon.png">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Website</title>
+<link rel="stylesheet" th:href="@{/css/singup.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="short icon" href="image/short_icon.png">
 <script>
 //가입폼 확인
 function validation() {
-	let user_id = $('#user_id').val();
-	let user_pw = $('#user_pw').val();
-
 	
-	if (user_id.length < 3 || memberid.length > 10) {
-		alert("ID는 3~10자로 입력하세요.");
-		return false;
-	}
-	if (user_pw.length < 3 || memberpw.length > 10) {
+	
+	let user_pw = document.getElementById('user_pw').value;
+	let user_pw2 = document.getElementById('user_pw2').value;
+	let user_name = document.getElementById('user_name').value;
+	
+	if (user_pw.length < 3 || user_pw.length > 10) {
 		alert("비밀번호는 3~10자로 입력하세요.");
 		return false;
-
+	}
+	
+	if (user_pw != user_pw2) {
+		alert("비밀번호를 정확하게 입력하세요.");
+		return false;
+	}
+	
+	if (user_name == '') {
+		alert("이름을 입력하세요.");
+		return false;
+	}
+	
 	return true;
 }
-</script>    
+
+function idCheck() {
+	window.open('idCheck', 'win', 'top=100,left=500,width=400,height=400');
+}
+</script>
 </head>
 <body>
-    
-<div class="hero">
 
-<div class="login_form">
+	<div class="hero">
 
-    <h1>Register</h1>
+		<div class="login_form">
 
-    <form class="input_box" id="joinform" th:action="@{/user/join}"  method="post" onsubmit="return validation();">
+			<h1>Register</h1>
 
-            <input type="text" class="field" placeholder="아이디" name="user_id" id="user_id">
-            <input type="password" class="field" placeholder="비밀번호" name="user_pw" id="user_pw">
-            
-            <input type="text" class="field" placeholder="이름" name="user_name" id="user_name">
-            <input type="email" class="field" placeholder="Email"name="user_email" id="user_email">
 
-              <input type="text" class="field" placeholder="전화번호" name="user_phone" id="user_phone">
-            <input type="checkbox" class="check_box"><p>비밀 번호를 기억</p>
-            <input type="submit" value="가입"  class="submit_btn">
-            <button type="submit" class="submit_btn">Register</button>
+			<form class="input_box" id="joinform" th:action="@{/user/join}"
+				method="post" onsubmit="return validation();">
 
-            <div class="social_icon">
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-google"></i>
-            </div>
+				<input type="text" class="field" name="user_id" id="user_id" readonly="readonly" placeholder="ID중복확인 이용">
+				
+					
+						<input type="button" class="field" value="ID중복확인" onclick="idCheck()">	
+					
+					
+						<input type="password" class="field" placeholder="비밀번호" name="user_pw" id="user_pw">
+					 
+					
+						<input type="password" class="field" id="user_pw2" placeholder="비밀번호 다시 입력">
+					
+					
+						<input type="text" class="field" placeholder="이름" name="user_name" id="user_name">
+					
+					
+						<input type="email" class="field" placeholder="Email" name="user_email" id="user_email">
+					
+					
+						<input type="text" class="field" placeholder="전화번호" name="user_phone" id="user_phone">
+					
+					
+						<input type="checkbox" class="check_box">
+					
+					
+						<p>비밀 번호를 기억</p>
+					
+					
 
-            <div class="tag">
-                <a th:href="@{/}"  >홈으로</a>
-                <span>/</span>
-                <a th:href="@{/user/loginForm}">로그인</a>
-            </div>
+				
+				<input type="submit" value="가입" class="submit_btn">
+				<!--  <button type="submit" class="submit_btn">Register</button>-->
 
-        </form>
+				<div class="social_icon">
+					<i class="fa-brands fa-facebook-f"></i> <i
+						class="fa-brands fa-twitter"></i> <i class="fa-brands fa-google"></i>
+				</div>
 
-    </div>
+				<div class="tag">
+					<a th:href="@{/}">홈으로</a> <span>/</span> <a
+						th:href="@{/user/loginForm}">로그인</a>
+				</div>
 
-</div>
+			</form>
+
+		</div>
+
+	</div>
 
 </body>
 </html>

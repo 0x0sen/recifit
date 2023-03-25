@@ -24,18 +24,18 @@ public class UserServiceImpl implements UserService {
 	PasswordEncoder encoder;
 	
 	@Override
-	public int insert(User member) {
+	public int insertUser_id(User member) {
 		//비밀번호 암호화
 		String pw = encoder.encode(member.getUser_pw());//비번 꺼내옴
 		member.setUser_pw(pw);//비번 암호화해서 넣음		member.setMemberpw(pw);//비번 암호화해서 넣음
 		
-		int n = dao.insert(member);
+		int n = dao.insertUser_id(member);
 		return n;
 	}
 
 	@Override
-	public boolean idcheck(String id) {
-		User member = dao.select(id);
+	public boolean idCheck(String id) {
+		User member = dao.selectOneUser(id);
 //		boolean res;
 //		if (member == null) {
 //			res = false;			
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getMember(String id) {
-		User member = dao.select(id);		
+		User member = dao.selectOneUser(id);		
 		return member;
 	}
 	
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int delete(User a) {
 		String id = a.getUser_id();
-		User list = dao.select(id);
+		User list = dao.selectOneUser(id);
 		// Member라는 객체의 사용자a를 선언함.
 		//사용자a의 아이디를 불러와서 id에 넣음.
 		//DB에 id의 객체를 불러옴.
