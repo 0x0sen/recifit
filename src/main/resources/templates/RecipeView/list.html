@@ -43,7 +43,7 @@ function pagingFormSubmit(currentPage){
 				<li sec:authorize="not isAuthenticated()"><a
 					th:href="@{/user/loginForm}">로그인/회원가입</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="#Review">마이페이지</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="#Order">로그아웃</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></li>
 			</ul>
 			<!-- 위에 메뉴입니다 -->
 

@@ -60,15 +60,15 @@ public class WebSecurityConfig {
         .dataSource(dataSource)
         // 인증 (로그인)
         .usersByUsernameQuery(
-	        "select user_id username, user_pw password, enabled " +
-	        " from rf_user " +
+	        "select user_id username, user_pw password, enabled" +
+	        " from rf_user" +
 	        " where user_id = ?")
 	        
         // 권한
         .authoritiesByUsernameQuery(
-              "select user_id username, user_role role_name " +
-                "from rf_user" + 
-        		"where user_id = ?");
+              "select user_id username, user_role role_name" +
+               " from rf_user" + 
+        	   " where user_id = ?");
     }
 
     // 단방향 비밀번호 암호화

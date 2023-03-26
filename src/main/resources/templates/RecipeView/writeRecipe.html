@@ -20,6 +20,25 @@
 	$(document).ready(function() {
 		  $('#summernote').summernote();
 		});
+	
+	function validation() {
+		let title = document.getElementById('recipe_name');
+		let contents = document.getElementById('recipe_howto');
+		
+		if (recipe_name.value.length < 5) {
+			alert("제목을 입력하세요.");
+			recipe_name.focus();
+			recipe_name.select();
+			return false;
+		}
+		if (recipe_howto.value.length < 5) {
+			alert("내용을 입력하세요.");
+			recipe_howto.focus();
+			recipe_howto.select();
+			return false;
+		}
+		return true;
+	}
 
 </script>
 
@@ -38,34 +57,33 @@
 	<tr>
 		<th>레시피 제목</th>
 		<td>
-			<input type="text" name="title" id="title" style="width:400px;">
+			<input type="text" name="recipe_name" id="recipe_name" style="width:400px;">
 		</td>
 	</tr>
 	<tr>
 		<th>요리 소개</th> 
 		<td>
-			<textarea name="contents" id="summernote"></textarea>
+			<textarea name="recipe_howto" id="summernote"></textarea>
 		</td>
 	</tr>
 	<tr>
 		<th>재료</th>
 		<td>
-			<input type="text" name="title" id="title" style="width:400px;">
+			<input type="text" name="recipe_need" id="recipe_need" style="width:400px;">
 		</td>
 	</tr>
 	<tr>
-		<th>재료</th>
+		<th>분류</th>
 		<td>
-			<input type="radio" id="option1" name="option" value="1" style="width:400px">
-		    <label for="option1">옵션 1</label><br>
-		    <input type="radio" id="option2" name="option" value="2" style="width:400px">
-		    <label for="option2">옵션 2</label><br>
-		    <input type="radio" id="option3" name="option" value="3" style="width:400px">
-		    <label for="option3">옵션 3</label><br>
+			<input type="text" name="recipe_type" style="width:400px;">
 		</td>
 	</tr>
-	
-	
+	<tr>
+		<th>아이콘</th>
+		<td>
+			<input type="text" name="recipe_icon" style="width:400px;">
+		</td>
+	</tr>
 	<tr>
 		<th>파일첨부</th> 
 		<td>

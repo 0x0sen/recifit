@@ -34,7 +34,7 @@
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
-                <span sec:authorize="isAuthenticated()" ><a href="login.html">로그아웃</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
         </nav>

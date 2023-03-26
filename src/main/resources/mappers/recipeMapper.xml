@@ -8,34 +8,38 @@
 <insert id="insertrecipe" parameterType="Recipe">
     insert into rf_recipe (
        recipe_num
-      , user_id
-      , recipe_name
-      , recipe_originalfile
-      , recipe_savedfile
-      , recipe_need
-      , recipe_howto
-      , recipe_type
-      , recipe_icon
+	      , user_id
+	      , recipe_name
+	      <if test="recipe_originalfile != null and recipe_savedfile != null">
+	      , recipe_originalfile
+	      , recipe_savedfile
+	      </if>
+	      , recipe_need
+	      , recipe_howto
+	      , recipe_type
+	      , recipe_icon
    )
     values (
-       recipe_num_seq.nextval
-      , #{user_id}
-      , #{recipe_name}
-      , #{recipe_originalfile}
-      , #{recipe_savedfile}
-      , #{recipe_need}
-      , #{recipe_howto}
-      , #{recipe_type}
-      , #{recipe_icon}
+       rf_recipe_seq.nextval
+	      , #{user_id}
+	      , #{recipe_name}
+	      <if test="recipe_originalfile != null and recipe_savedfile != null">
+	      , #{recipe_originalfile}
+	      , #{recipe_savedfile}
+	      </if>
+	      , #{recipe_need}
+	      , #{recipe_howto}
+	      , #{recipe_type}
+	      , #{recipe_icon}
    )
 </insert>
 
 <!-- 레시피 제목으로 한개 조회 -->
 <select id="selectrecipe" parameterType="int" resultType="Recipe">
    select 
-	*
+		*
     from rf_recipe 
-    where recipe_num = #{recipe_num}
+ 	  	where recipe_num = #{recipe_num}
 </select>
 
 <!-- 레시피 수정 -->

@@ -61,9 +61,14 @@ public class RecipeController {
 	int pagePerGroup;
 
 
+	//글쓰기 폼
+		@GetMapping("write")
+		public String write() {		
+			return "RecipeView/writeRecipe";
+		}
 
 	//글저장
-	@PostMapping("/write")
+	@PostMapping("write")
 	public String write(Recipe recipe
 			, @AuthenticationPrincipal UserDetails user
 			, MultipartFile upload) {
@@ -86,7 +91,7 @@ public class RecipeController {
 	}
 
 	//글 삭제
-	@GetMapping("/delete")
+	@GetMapping("delete")
 	public String delete(
 			@RequestParam(name="num", defaultValue="0") int num
 			, @AuthenticationPrincipal UserDetails user) {
@@ -110,7 +115,7 @@ public class RecipeController {
 	}
 
 	//수정 폼으로 이동
-	@GetMapping("/update")
+	@GetMapping("update")
 	public String update(int recipe_num, Model model, @AuthenticationPrincipal UserDetails user) {
 		//전달된 번호의 글정보 읽기
 		Recipe recipe = service.selectrecipe(recipe_num);
@@ -126,7 +131,7 @@ public class RecipeController {
 
 
 	//수정폼에서 보낸 내용 처리
-	@PostMapping("/update")
+	@PostMapping("update")
 	public String update(Recipe recipe, @AuthenticationPrincipal UserDetails user, MultipartFile upload) {
 		log.debug("저장할 글정보 : {}", recipe);
 		log.debug("파일 정보: {}", upload);
@@ -160,7 +165,7 @@ public class RecipeController {
 	
 
 	//글 목록 + 검색기능추가 
-	@GetMapping("/list")
+	@GetMapping("list")
 	public String list(
 			String searchWord
 			, Model model) {
@@ -182,14 +187,14 @@ public class RecipeController {
 		
 		//글 클릭해서 읽기, 조회수 증가
 		
-		@GetMapping("/read")
+		@GetMapping("read")
 		//int num만 쓰기는 위험하다. 
 		//요청 파라미터를 넣어서 넣어달라.
 		public String read(
 				@RequestParam(name = "num", defaultValue="0") int num
 				, Model model) {
 			//본문글 정보
-			log.debug("read: ",num);
+			log.debug("read: ", num);
 			if(num == 0) {
 				return "redirect:list";
 			}
@@ -197,7 +202,7 @@ public class RecipeController {
 			//전달받은 글번호를 서비스로 전달
 			Recipe recipe = service.selectrecipe(num);
 			//서비스가 리턴한 Recipe객체를 Model에 저장
-			model.addAttribute("Recipe", recipe);
+			model.addAttribute("recipe", recipe);
 			
 			//해당 글에 달린 리플 목록 
 			ArrayList<Comment> commentlist = service2.commentlist(num);
