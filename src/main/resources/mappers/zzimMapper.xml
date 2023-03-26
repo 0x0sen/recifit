@@ -2,9 +2,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.food.recifit.dao.RecipeDAO">
+<mapper namespace="com.food.recifit.dao.ZzimDAO">
 
-	<!-- 레시피 저장 -->
+	<!-- 찜 저장 -->
 	<insert id="insertzzim" parameterType="Zzim">
 		insert into rf_zzim (
 		zzim_num
@@ -84,7 +84,6 @@
 		<!-- 조건이 없을 땐 where를 없애라 where -->
 		<where>
 			<if test="searchWord != null">
-
 				upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
 				or
 				upper(zzim_need) like '%' || upper(#{searchWord}) || '%'

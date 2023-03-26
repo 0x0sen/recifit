@@ -22,10 +22,4 @@ public class HomeController {
 	 * @return
 	 */
 
-
-	//글쓰기 폼
-	@GetMapping("/recipe/write")
-	public String write() {		
-		return "RecipeView/writeRecipe";
-	}
 }

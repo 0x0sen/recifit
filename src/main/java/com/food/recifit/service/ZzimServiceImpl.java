@@ -31,8 +31,8 @@ public class ZzimServiceImpl implements ZzimService{
 	//찜 리스트 불러오기
 	@Override
 	public ArrayList<Zzim> listzzim(String searchWord) {
-		ArrayList<Zzim> zzimlist = zzimDAO.listzzim(searchWord);
-		return zzimlist;
+		ArrayList<Zzim> zzimList = zzimDAO.listzzim(searchWord);
+		return zzimList;
 	}
 	
 	//찜 삭제

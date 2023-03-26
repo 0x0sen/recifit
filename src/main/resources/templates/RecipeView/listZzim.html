@@ -53,11 +53,11 @@ function pagingFormSubmit(currentPage){
 
 		<div class="menu" id="Menu">
 			<h1>
-				공유된<span>모든 레시피</span>
+			  찜한 <span>모든 레시피</span>
 			</h1>
 
 			<!-- 검색 폼 -->
-			<form id="pagingForm" th:action="@{/recipe/list}" method="get">
+			<form id="pagingForm" th:action="@{/recipe/listzzim}" method="get">
 				<input type="hidden" name="page" id="page" />
 				<!-- id 는 자바 스크립트 보낼때 -->
 				<!-- name은 홈페이지에서 보낼때 -->
@@ -69,12 +69,12 @@ function pagingFormSubmit(currentPage){
 
 			<div class="menu_box">
 				<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
-				<tr th:each="recipe:${recipeList}">
+				<tr th:each="zzim:${zzimList}">
 					<div class="menu_card">
 						<div class="menu_image">
 							<!-- DB에서 가져올 이미지 텍스트 -->
-							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}">
-							<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
+							<a th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}">
+							<img th:src="@{/recipe/downloadzzim(num=${zzim.zzim_num})}">
 							</a>
 						</div>
 
@@ -83,9 +83,9 @@ function pagingFormSubmit(currentPage){
 						</div>
 
 						<div class="menu_info">
-							<h2><a th:text="${recipe.recipe_name}" th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a></h2>
+							<h2><a th:text="${zzim.zzim_name}" th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}"></a></h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
-							<h3 th:text="${recipe.user_id}"></h3>
+							<h3 th:text="${zzim.zzim_id}"></h3>
 							<div class="menu_icon">
 								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>

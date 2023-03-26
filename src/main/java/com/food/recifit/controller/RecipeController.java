@@ -1,7 +1,7 @@
 package com.food.recifit.controller;
 
-
-
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -31,10 +31,8 @@ import com.food.recifit.util.FileService;
 import lombok.extern.slf4j.Slf4j;
 
 
-
-
 /**
- * 전체 레시피 보기에 관한 컨트롤러 입니다.
+ * 레시피 관련 컨트롤러 입니다.
  */
 
 @Slf4j
@@ -61,6 +59,11 @@ public class RecipeController {
 	int pagePerGroup;
 
 
+	//글쓰기 폼
+	@GetMapping("/write")
+	public String write() {		
+		return "RecipeView/writeRecipe";
+	}
 
 	//글저장
 	@PostMapping("/write")
@@ -131,7 +134,7 @@ public class RecipeController {
 		log.debug("저장할 글정보 : {}", recipe);
 		log.debug("파일 정보: {}", upload);
 
-		//전달된 User객체(글번호, 제목, 내용) 에 로그인한 아이디 추가 저장
+		//전달된 Recipe객체(글번호, 제목, 내용) 에 로그인한 아이디 추가 저장
 		recipe.setUser_id(user.getUsername());
 		Recipe oldRecipe = null;
 		String oldRecipe_savedfile = null;
@@ -208,32 +211,48 @@ public class RecipeController {
 			return "RecipeView/readRecipe";
 
 		}
-		
+		//첨부파일 다운로드
+		//Stream
+		//오늘 얘를 배웠다. HttpServletResponse response
+		@GetMapping("/download")
+		public String download(
+				@RequestParam(name = "num", defaultValue="0") int num
+				,HttpServletResponse response) {
+			
+			//num이라는 이름의 글번호를 전달받음
+			//전달받은 글번호를 서비스로 전달
+			Recipe recipe = service.selectrecipe(num);
+			if(recipe == null || recipe.getRecipe_savedfile() == null) {
+				return "redirect:list";
+			}
+			
+			String file = uploadPath + "/" + recipe.getRecipe_savedfile();
+
+			//FileInputStream
+			FileInputStream in = null;
+			ServletOutputStream out = null;
+			
+			try {
+				//응답 정보의 헤더 세팅
+				response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(recipe.getRecipe_originalfile(), "UTF-8"));
+				
+				in = new FileInputStream(file);
+				out = response.getOutputStream();
+				
+				//파일 전송(하나씩 반복해서 받아서 출력해라..읽고 쓰고 반복)
+				FileCopyUtils.copy(in, out);
+				
+				in.close();
+				out.close();
+			} 
+			catch (IOException e) {
+				//예외메시지 출력
+			}
+			return "redirect:/";
+		}
+				
 		
 
-//		String file = uploadPath + "/" + recipe.getRecipe_savedfile();
-//
-//		//FileInputStream
-//		FileInputStream in = null;
-//		ServletOutputStream out = null;
-//
-//		try {
-//			//응답 정보의 헤더 세팅
-//			response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(recipe.getRecipe_originalfile(), "UTF-8"));
-//
-//			in = new FileInputStream(file);
-//			out = response.getOutputStream();
-//
-//			//파일 전송(하나씩 반복해서 받아서 출력해라..읽고 쓰고 반복)
-//			FileCopyUtils.copy(in, out);
-//
-//			in.close();
-//			out.close();
-//		} 
-//		catch (IOException e) {
-//			//예외메시지 출력
-//		}
-//		return "redirect:/";
-//	}
+
 
 }

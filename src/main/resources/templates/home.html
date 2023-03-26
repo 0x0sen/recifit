@@ -28,13 +28,13 @@
                 <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
                 
                 <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-                <li ><a href="#Review">내 찜목록</a></li>
-                <li  ><a href="#Review">마이페이지</a></li>
+                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+                <li><a href="#Review">마이페이지</a></li>
             </ul>
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
-                <span sec:authorize="isAuthenticated()" ><a href="login.html">로그아웃</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
         </nav>
