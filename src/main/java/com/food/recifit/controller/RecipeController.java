@@ -42,7 +42,7 @@ public class RecipeController {
 
 	@Autowired
 	RecipeService service;
-	
+
 	@Autowired
 	CommentService service2;
 
@@ -160,7 +160,7 @@ public class RecipeController {
 
 		return "redirect:read?num=" + recipe.getRecipe_num();
 	}
-	
+
 
 	//글 목록 + 검색기능추가 
 	@GetMapping("/list")
@@ -181,77 +181,77 @@ public class RecipeController {
 
 		return "RecipeView/list";
 	}
-	
-		
-		//글 클릭해서 읽기, 조회수 증가
-		
-		@GetMapping("/read")
-		//int num만 쓰기는 위험하다. 
-		//요청 파라미터를 넣어서 넣어달라.
-		public String read(
-				@RequestParam(name = "num", defaultValue="0") int num
-				, Model model) {
-			//본문글 정보
-			log.debug("read: ",num);
-			if(num == 0) {
-				return "redirect:list";
-			}
-			//num이라는 이름의 글번호를 전달받음
-			//전달받은 글번호를 서비스로 전달
-			Recipe recipe = service.selectrecipe(num);
-			//서비스가 리턴한 Recipe객체를 Model에 저장
-			model.addAttribute("Recipe", recipe);
-			
-			//해당 글에 달린 리플 목록 
-			ArrayList<Comment> commentlist = service2.commentlist(num);
-			model.addAttribute("commentlist", commentlist);
-			log.debug("{}글의 리플들 : {}", num, commentlist);
-			
-			//HTML파일로 포워딩하여 출력
-			return "RecipeView/readRecipe";
 
-		}
-		//첨부파일 다운로드
-		//Stream
-		//오늘 얘를 배웠다. HttpServletResponse response
-		@GetMapping("/download")
-		public String download(
-				@RequestParam(name = "num", defaultValue="0") int num
-				,HttpServletResponse response) {
-			
-			//num이라는 이름의 글번호를 전달받음
-			//전달받은 글번호를 서비스로 전달
-			Recipe recipe = service.selectrecipe(num);
-			if(recipe == null || recipe.getRecipe_savedfile() == null) {
-				return "redirect:list";
-			}
-			
-			String file = uploadPath + "/" + recipe.getRecipe_savedfile();
 
-			//FileInputStream
-			FileInputStream in = null;
-			ServletOutputStream out = null;
-			
-			try {
-				//응답 정보의 헤더 세팅
-				response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(recipe.getRecipe_originalfile(), "UTF-8"));
-				
-				in = new FileInputStream(file);
-				out = response.getOutputStream();
-				
-				//파일 전송(하나씩 반복해서 받아서 출력해라..읽고 쓰고 반복)
-				FileCopyUtils.copy(in, out);
-				
-				in.close();
-				out.close();
-			} 
-			catch (IOException e) {
-				//예외메시지 출력
-			}
-			return "redirect:/";
+	//글 클릭해서 읽기, 조회수 증가
+
+	@GetMapping("/read")
+	//int num만 쓰기는 위험하다. 
+	//요청 파라미터를 넣어서 넣어달라.
+	public String read(
+			@RequestParam(name = "num", defaultValue="0") int num
+			, Model model) {
+		//본문글 정보
+		log.debug("read: ",num);
+		if(num == 0) {
+			return "redirect:list";
 		}
-				
-		
+		//num이라는 이름의 글번호를 전달받음
+		//전달받은 글번호를 서비스로 전달
+		Recipe recipe = service.selectrecipe(num);
+		//서비스가 리턴한 Recipe객체를 Model에 저장
+		model.addAttribute("Recipe", recipe);
+
+		//해당 글에 달린 리플 목록 
+		ArrayList<Comment> commentlist = service2.commentlist(num);
+		model.addAttribute("commentlist", commentlist);
+		log.debug("{}글의 리플들 : {}", num, commentlist);
+
+		//HTML파일로 포워딩하여 출력
+		return "RecipeView/readRecipe";
+
+	}
+	//첨부파일 다운로드
+	//Stream
+	//오늘 얘를 배웠다. HttpServletResponse response
+	@GetMapping("/download")
+	public String download(
+			@RequestParam(name = "num", defaultValue="0") int num
+			,HttpServletResponse response) {
+
+		//num이라는 이름의 글번호를 전달받음
+		//전달받은 글번호를 서비스로 전달
+		Recipe recipe = service.selectrecipe(num);
+		if(recipe == null || recipe.getRecipe_savedfile() == null) {
+			return "redirect:list";
+		}
+
+		String file = uploadPath + "/" + recipe.getRecipe_savedfile();
+
+		//FileInputStream
+		FileInputStream in = null;
+		ServletOutputStream out = null;
+
+		try {
+			//응답 정보의 헤더 세팅
+			response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(recipe.getRecipe_originalfile(), "UTF-8"));
+
+			in = new FileInputStream(file);
+			out = response.getOutputStream();
+
+			//파일 전송(하나씩 반복해서 받아서 출력해라..읽고 쓰고 반복)
+			FileCopyUtils.copy(in, out);
+
+			in.close();
+			out.close();
+		} 
+		catch (IOException e) {
+			//예외메시지 출력
+		}
+		return "redirect:/";
+	}
+
+
 
 
 

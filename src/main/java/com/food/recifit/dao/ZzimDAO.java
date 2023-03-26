@@ -26,5 +26,4 @@ public interface ZzimDAO {
 	public int updatezzim(Zzim zzim); 
 	//전체 찜 개수 
 	public int totalzzim(HashMap<String, String> map);
-
 }

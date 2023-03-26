@@ -29,7 +29,6 @@ public interface RecipeDAO {
 	public ArrayList<Recipe> list(String searchWord);
 	//전체 레시피 개수 
 	public int total(HashMap<String, String> map);
-	
 	//댓글 목록
 	public ArrayList<Comment> commentlist(int num);
 

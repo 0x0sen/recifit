@@ -39,150 +39,155 @@
 
 			<!-- 위에 메뉴입니다 -->
 			<ul>
-                <li><a href="#Home">레시피 추천</a></li>
-                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-                <li><a th:href="@{/recipe/write}">레시피 쓰기</li>
-                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-				<li sec:authorize="not isAuthenticated()"><a th:href="@{/user/loginForm}">로그인/회원가입</a></li>
-                <li sec:authorize="isAuthenticated()" ><a href="#Review">마이페이지</a></li>
-                <li sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></li>
-            </ul>
+				<li><a href="#Home">레시피 추천</a></li>
+				<li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+				<li><a th:href="@{/recipe/write}">레시피 쓰기</li>
+				<li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+				<li sec:authorize="not isAuthenticated()"><a
+					th:href="@{/user/loginForm}">로그인/회원가입</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="#Review">마이페이지</a></li>
+				<li sec:authorize="isAuthenticated()"><a
+					th:href="@{/user/logout}">로그아웃</a></li>
+			</ul>
 			<!-- 위에 메뉴입니다 -->
 
 		</nav>
 
 		<!-- 자세한 글보기 시작 -->
-	
-	<section id="container">
-		<div id="main_container">
 
-			<section class="b_inner">
+		<section id="container">
+			<div id="main_container">
 
-				<div class="contents_box">
+				<section class="b_inner">
 
-					<article class="contents cont01">
+					<div class="contents_box">
 
-						<div class="img_section">
-							<div class="trans_inner">
-								<div>
-									<img th:src="@{/image/food/buger.jpg}">
-								</div>
-								
-							</div>
-							
-							<div>
-									필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명
-							</div>
-							<div>
-							만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 
-							</div>
-							
-						</div>
+						<article class="contents cont01">
 
-
-						<div class="detail--right_box">
-
-							<header class="top">
-								<div class="user_container">
-									
-									<div class="user_name">
-										<div class="nick_name">글쓴이 닉네임</div>
-									</div>
-								</div>
-							</header>
-
-							<section class="scroll_section">
-								<div class="admin_container">
-									
-									<div class="comment">
-										<span class="user_id">익명1</span>정말 마싯겠따~
-									</div>
-								</div>
-
-								<div class="user_container-detail">
-									
-									<div class="comment">
-										<span class="user_id">익명2</span>치킨이 좋아~
-									</div>
-								</div>
-								<div class="user_container-detail">
-									
-									<div class="comment">
-										<span class="user_id">익명2</span>치킨이 좋아~
-									</div>
-								</div>
-								<div class="user_container-detail">
-									
-									<div class="comment">
-										<span class="user_id">익명2</span>치킨이 좋아~
-									</div>
-								</div>
-
-								
-
-								
-
-							</section>
-
-
-							<div class="bottom_icons">
-								<div class="left_icons">
-									<div class="heart_btn">
-										<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
-									</div>
+							<div class="img_section">
+								<div class="trans_inner">
 									<div>
-										<div class="sprite_bubble_icon"></div>
+										<img th:src="@{/image/food/buger.jpg}">
 									</div>
-									<div>
-										<div class="sprite_share_icon" data-name="share"></div>
+
+								</div>
+
+								<div>필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료
+									설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료
+									설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료
+									설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명필요한 제료 설명</div>
+								<div>만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는
+									방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는
+									방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는
+									방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는
+									방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법 만드는 방법</div>
+
+							</div>
+
+
+							<div class="detail--right_box">
+
+								<header class="top">
+									<div class="user_container">
+
+										<div class="user_name">
+											<div class="nick_name">글쓴이 닉네임</div>
+										</div>
+									</div>
+								</header>
+
+								<section class="scroll_section">
+									<div class="admin_container">
+
+										<div class="comment">
+											<span class="user_id">익명1</span>정말 마싯겠따~
+										</div>
+									</div>
+
+									<div class="user_container-detail">
+
+										<div class="comment">
+											<span class="user_id">익명2</span>치킨이 좋아~
+										</div>
+									</div>
+									<div class="user_container-detail">
+
+										<div class="comment">
+											<span class="user_id">익명2</span>치킨이 좋아~
+										</div>
+									</div>
+									<div class="user_container-detail">
+
+										<div class="comment">
+											<span class="user_id">익명2</span>치킨이 좋아~
+										</div>
+									</div>
+
+
+
+
+
+								</section>
+
+
+								<div class="bottom_icons">
+									<div class="left_icons">
+										<div class="heart_btn">
+											<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
+										</div>
+										<div>
+											<div class="sprite_bubble_icon"></div>
+										</div>
+										<div>
+											<div class="sprite_share_icon" data-name="share"></div>
+										</div>
+									</div>
+
+									<div class="right_icon">
+										<div class="sprite_bookmark_outline" data-name="book-mark"></div>
 									</div>
 								</div>
 
-								<div class="right_icon">
-									<div class="sprite_bookmark_outline" data-name="book-mark"></div>
+								<div class="count_likes">
+									좋아요 <span class="count">2,351</span> 개
 								</div>
+								<div class="timer">2시간</div>
+
+								<div class="commit_field">
+									<input type="text" placeholder="댓글달기..">
+
+									<div class="upload_btn">게시</div>
+								</div>
+
+
+
 							</div>
 
-							<div class="count_likes">
-								좋아요 <span class="count">2,351</span> 개
-							</div>
-							<div class="timer">2시간</div>
 
-							<div class="commit_field">
-								<input type="text" placeholder="댓글달기..">
-
-								<div class="upload_btn">게시</div>
-							</div>
+						</article>
 
 
-
-						</div>
-
-
-					</article>
+					</div>
 
 
-				</div>
+				</section>
 
-
-			</section>
-
-		</div>
-
-
-		<div class="del_pop">
-			<div class="btn_box">
-				<div class="del">삭제</div>
-				<div class="cancel">취소</div>
 			</div>
-		</div>
+
+
+			<div class="del_pop">
+				<div class="btn_box">
+					<div class="del">삭제</div>
+					<div class="cancel">취소</div>
+				</div>
+			</div>
+
+		</section>
+
 
 	</section>
 
 
-	</section>
-
-	
 
 
 

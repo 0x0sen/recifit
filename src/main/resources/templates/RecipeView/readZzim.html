@@ -37,7 +37,8 @@
 					<!-- 화면에 바로뜸.  -->
 					<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
 					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
-					</td></tr>
+					</td>
+				</tr>
 
 				<tr>
 					<th>레시피 제목</th>
@@ -54,7 +55,8 @@
 
 				<tr>
 					<th>레시피 찜버튼(수정필요)</th>
-					<td><a th:href="@{/recipe/readzzim(num=${Zzim.zzim_num})}">찜(찜버튼을 다시 누르면 경고창나오고 찜 해제)</a></td>
+					<td><a th:href="@{/recipe/readzzim(num=${Zzim.zzim_num})}">찜(찜버튼을
+							다시 누르면 경고창나오고 찜 해제)</a></td>
 				</tr>
 				<tr>
 					<th>찜한 날짜</th>
@@ -68,7 +70,7 @@
 					<th>요리 소개</th>
 					<td th:text="${Zzim.zzim_howto}"></td>
 				</tr>
-			<a th:href="@{/recipe/updatezzim(zzim_num=${Zzim.zzim_num})}"  >수정</a>
+				<a th:href="@{/recipe/updatezzim(zzim_num=${Zzim.zzim_num})}">수정</a>
 			</table>
 		</form>
 

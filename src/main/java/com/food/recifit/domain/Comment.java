@@ -14,6 +14,4 @@ public class Comment {
    String comment_date;     //코멘트 작성 시간
    int comment_sum;         //코멘트 총 개수  
    String user_id;  	    //코멘트 아이디    
-
-
 }

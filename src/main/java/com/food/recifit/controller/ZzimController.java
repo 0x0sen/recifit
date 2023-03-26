@@ -35,28 +35,28 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("recipe")
 @Controller
 public class ZzimController {
-	
+
 	@Autowired
 	ZzimServiceImpl service;
-	
+
 	//설정파일에 정의된 업로드할 경로를 읽어서 아래 변수에 대입
 	@Value("${spring.servlet.multipart.location}")
 	String uploadPath;
-	
+
 	//찜 목록 불러오기
 	@GetMapping("/listzzim")
 	public String listzzim(			
 			String searchWord
 			, Model model){
-		
+
 		ArrayList<Zzim> zzimList = service.listzzim(searchWord);
 		log.debug("넘어간 값 : {}", searchWord);
 		model.addAttribute("zzimList", zzimList);
 		model.addAttribute("searchWord", searchWord);
-		
+
 		return "RecipeView/listZzim";
 	}
-	
+
 	//찜 한개 글 읽기
 	@GetMapping("/readzzim")
 	//int num만 쓰기는 위험하다. 
@@ -80,19 +80,19 @@ public class ZzimController {
 		//HTML파일로 포워딩하여 출력
 		return "RecipeView/readZzim";
 	}
-	
+
 	//찜 저장 폼
 	@GetMapping("/insertzzim")
 	public String write() {		
 		return "redirect:/recipe/listZzim";
 	}
-	
+
 	//찜 저장
 	@PostMapping("/insertzzim")
 	public String insertzzim(Zzim zzim
 			, @AuthenticationPrincipal UserDetails user
 			, MultipartFile upload) {
-		
+
 		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 zzim객체에 추가
 		if ( upload != null && !upload.isEmpty()) {
 			String filename = FileService.saveFile(upload, uploadPath);
@@ -107,7 +107,7 @@ public class ZzimController {
 		service.insertzzim(zzim);
 		return "redirect:/recipe/listZzim";
 	}
-	
+
 	//찜 수정
 	//수정 폼으로 이동
 	@GetMapping("/updatezzim")
@@ -124,8 +124,8 @@ public class ZzimController {
 		//수정폼 html로 포워딩	
 		return "RecipeView/updateZzim";
 	}
-	
-/**	// 찜수정폼에서 보낸 내용 처리** 아직 안됬음.
+
+	/**	// 찜수정폼에서 보낸 내용 처리** 아직 안됬음.
 	@PostMapping("/updatezzim")
 	public String update(Zzim zzim, @AuthenticationPrincipal UserDetails user, MultipartFile upload) {
 		log.debug("저장할 글정보 : {}", zzim);
@@ -156,8 +156,8 @@ public class ZzimController {
 //		}
 		return "redirect:read?num=" + zzim.getZzim_num();
 	}**/
-	
-	
+
+
 	//찜 삭제
 	@GetMapping("/deletezzim")
 	public String deletezzim(@RequestParam(name="num", defaultValue="0") int num
@@ -181,7 +181,7 @@ public class ZzimController {
 		return "redirect:listZzim";
 	}		
 
-	
+
 	//찜 파일 다운로드
 	@GetMapping("/downloadzzim")
 	public String downloadzzim(
@@ -221,4 +221,3 @@ public class ZzimController {
 	}
 }
 
-	

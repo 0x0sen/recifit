@@ -13,14 +13,13 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- 페이지 이동 스크립트 -->
 <script>
-function pagingFormSubmit(currentPage){
-	//화면에 있는 폼을 이벤트 발생해서 
-	var form = document.getElementById('pagingForm');
-	var page = document.getElementById('page');
-	page.value = currentPage;
-	form.submit();
-}
-
+	function pagingFormSubmit(currentPage) {
+		//화면에 있는 폼을 이벤트 발생해서 
+		var form = document.getElementById('pagingForm');
+		var page = document.getElementById('page');
+		page.value = currentPage;
+		form.submit();
+	}
 </script>
 </head>
 <body>
@@ -44,7 +43,8 @@ function pagingFormSubmit(currentPage){
 				<li sec:authorize="not isAuthenticated()"><a
 					th:href="@{/user/loginForm}">로그인/회원가입</a></li>
 				<li sec:authorize="isAuthenticated()"><a href="#Review">마이페이지</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></li>
+				<li sec:authorize="isAuthenticated()"><a
+					th:href="@{/user/logout}">로그아웃</a></li>
 			</ul>
 			<!-- 위에 메뉴입니다 -->
 
@@ -73,8 +73,8 @@ function pagingFormSubmit(currentPage){
 					<div class="menu_card">
 						<div class="menu_image">
 							<!-- DB에서 가져올 이미지 텍스트 -->
-							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}">
-							<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
+							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}"> <img
+								th:src="@{/recipe/download(num=${recipe.recipe_num})}">
 							</a>
 						</div>
 
@@ -83,7 +83,10 @@ function pagingFormSubmit(currentPage){
 						</div>
 
 						<div class="menu_info">
-							<h2><a th:text="${recipe.recipe_name}" th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a></h2>
+							<h2>
+								<a th:text="${recipe.recipe_name}"
+									th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
+							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
 							<h3 th:text="${recipe.user_id}"></h3>
 							<div class="menu_icon">

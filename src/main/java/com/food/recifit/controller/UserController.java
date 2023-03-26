@@ -21,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("user")
 @Controller
-	
+
 public class UserController {
-	
-	
+
+
 	@Autowired
 	UserService service;
-	
-	
+
+
 	/**
 	 * 로그인 폼으로 이동
 	 * @return
@@ -38,47 +38,47 @@ public class UserController {
 		log.debug("로그인 되냐?");
 		return "UserView/loginForm";
 	}
-	
+
 	/**
 	 * 회원 가입 폼으로 이동
 	 * @return 회원가입 양식 HTMl
 	 */
-	
+
 	@GetMapping("join")
 	public String join() {
 		return "UserView/joinForm";
 	}
-	
-	
-	
+
+
+
 	@PostMapping("join")
 	public String join(User member) {
 		log.debug("가입데이터 : {}", member);
 		service.insertUser_id(member);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("idCheck")
 	public String idCheck() {
-		
+
 		return "UserView/idCheck";
 	}
-	
+
 	@PostMapping("idCheck")
 	public String idCheck(String id, Model model) {
 		log.debug("검색할 아이디 : {}" , id);
-		
+
 		boolean res = service.idCheck(id);
-		
+
 		model.addAttribute("searchId", id);
 		model.addAttribute("result", res);
-		
-		return "UserView/idCheck";
-		
-	}
-	
 
-	
+		return "UserView/idCheck";
+
+	}
+
+
+
 	/**
 	 * 개인정보 수정 폼으로 이동
 	 * @return
@@ -89,7 +89,7 @@ public class UserController {
 		//DB에서 현재 사용자 정보 읽어서  Member객체로 받음
 		//Model에 Member객체 담기
 		//수정폼으로 이동		
-		
+
 		User member = service.getMember(user.getUsername());
 
 		model.addAttribute("member", member);
@@ -108,7 +108,7 @@ public class UserController {
 		member.setUser_id(user.getUsername());
 		service.updateMember(member);
 		return "redirect:/";
-		
+
 	}
 	/**
 	 * 회원탈퇴 폼으로 이동
@@ -120,7 +120,7 @@ public class UserController {
 		//DB에서 현재 사용자 정보 읽어서  Member객체로 받음
 		//Model에 Member객체 담기
 		//탈퇴폼으로 이동		
-		
+
 		User member = service.getMember(user.getUsername());
 
 		model.addAttribute("member", member);
@@ -135,10 +135,10 @@ public class UserController {
 		//회원폼에서 사용자가 입력한 정보를 member로 전달받음->Member member선언.
 		//로그인한 ID를 읽어서 member객체에 추가저장
 		//서비스로 전달하여 DB의 내용 수정
-		
+
 		//로그인한 아이디
 		log.debug("인증정보2 : {}", user.getUsername());
-		
+
 		//탈퇴성공하면 로그아웃, 탈퇴실패하면 딜리트폼
 		int n = service.delete(member);
 		if (n == 0) {
@@ -146,8 +146,7 @@ public class UserController {
 			return "memberView/deleteForm";
 		}
 		return "redirect:/member/logout";
-		
+
 	}
 }
 
-	
