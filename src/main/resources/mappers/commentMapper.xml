@@ -38,7 +38,7 @@
 			, comment_text
 		)
 	values (
-			spring5_reply_seq.nextval
+			rf_comment_seq.nextval
 			, #{recipe_num}
 			, #{user_id}
 			, #{comment_text}
