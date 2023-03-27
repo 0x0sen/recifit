@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- 폼없이 데이터 주고 받을 html 파일 폼완성은 2에서 할께요 여기서 연습해주세요 -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<title>myRecipe</title>
+
+<script type="text/javascript">
+	//리플 삭제
+	function deleteComment(comment_num, recipe_num) {
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'deleteComment?comment_num=' + comment_num
+					+ '&recipe_num=' + recipe_num;
+		}
+	}
+</script>
+
+</head>
+<body>
+	<header>
+		<h1>[레시핏 보기 이거인가?]</h1>
+	</header>
+
+	<section>
+		<form id="readRecipe" th:action="@{/recipe/read}" method="post">
+
+			<table>
+				<tr>
+
+					<!-- 화면에 바로뜸.  -->
+					<img th:src="@{/recipe/download(num=${Recipe.recipe_num})}">
+					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
+					</td>
+				</tr>
+
+				<tr>
+					<th>레시피 제목</th>
+					<td th:text="${Recipe.recipe_name}"></td>
+				</tr>
+				<tr>
+					<th>레시피 분류</th>
+					<td th:text="${Recipe.recipe_type}"></td>
+				</tr>
+				<tr>
+					<th>레시피 아이콘</th>
+					<td th:text="${Recipe.recipe_icon}"></td>
+				</tr>
+				<tr>
+					<th>레시피 조회수</th>
+					<td th:text="${Recipe.recipe_hit}"></td>
+				</tr>
+				<tr>
+					<th>레시피 찜수</th>
+					<td th:text="${Recipe.recipe_zzimSum}"></td>
+				</tr>
+				<tr>
+					<th>레시피 찜버튼</th>
+					<td><a
+						th:href="@{/recipe/insertzzim(num=${Recipe.recipe_num})}">찜</a></td>
+				</tr>
+				<tr>
+					<th>아이디</th>
+					<td th:text="${Recipe.user_id}"></td>
+				</tr>
+				<tr>
+					<th>글 작성 날짜</th>
+					<td th:text="${Recipe.recipe_date}"></td>
+				</tr>
+				<tr>
+					<th>재료</th>
+					<td th:text="${Recipe.recipe_need}"></td>
+				</tr>
+				<tr>
+					<th>요리 소개</th>
+					<td th:text="${Recipe.recipe_howto}"></td>
+				</tr>
+			</table>
+		</form>
+
+		<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/recipe/writeComment}" method="post"
+				onsubmit="return validation()">
+				<input type="hidden" name="recipe_num"
+					th:value="${Recipe.recipe_num}"> <input type="text"
+					name="comment_text" id="comment_text" style="width: 500px;">
+				<input type="submit" value="확인">
+			</form>
+		</div>
+
+		<!-- 현재 글의 댓글들 출력 -->
+		<table>
+			<tr th:each="comment : ${commentlist}">
+				<td th:text="${comment.user_id}"></td>
+				<td th:text="${comment.comment_text}"></td>
+				<td th:text="${comment.comment_date}"></td>
+
+				<!-- 자기 댓글 삭제 -->
+
+				<td><span th:if="${#authentication.name} == ${comment.user_id}">
+						<a
+						th:href="|javascript:deleteComment(${comment.comment_num}, ${comment.recipe_num})|">
+							<img th:src="@{/image/icon_delete_24.png}">
+					</a>
+				</span></td>
+			</tr>
+		</table>
+
+	</section>
+</body>
+</html>

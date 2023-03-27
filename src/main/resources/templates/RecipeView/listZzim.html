@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>레시피 보기</title>
-<link rel="stylesheet" th:href="@{/css/foodstyle.css}">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- 페이지 이동 스크립트 -->
-<script>
-	function pagingFormSubmit(currentPage) {
-		//화면에 있는 폼을 이벤트 발생해서 
-		var form = document.getElementById('pagingForm');
-		var page = document.getElementById('page');
-		page.value = currentPage;
-		form.submit();
-	}
-</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" th:href="@{/css/foodread.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 </head>
 <body>
 
-	<section id="Home">
-		<nav>
-			<div class="logo">
-				<!-- 로고수정해야할 img 입니다. -->
-				<a th:href="@{/}"> <img th:src="@{/image/food/logo.png}"></a>
-				<!-- 로고수정해야할 img 입니다. -->
-			</div>
+    <section id="Home">
 
+        <nav>
 
+            <div class="logo">
+                <a th:href="@{/}"> <img th:src="@{/image/food/logo.svg}"></a>
+            </div>
 
-			<!-- 위에 메뉴입니다 -->
-			<ul>
-				<li><a href="#Home">레시피 추천</a></li>
-				<li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-				<li><a th:href="@{/recipe/write}">레시피 쓰기</li>
-				<li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-				<li sec:authorize="not isAuthenticated()"><a
-					th:href="@{/user/loginForm}">로그인/회원가입</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="#Review">마이페이지</a></li>
-				<li sec:authorize="isAuthenticated()"><a
-					th:href="@{/user/logout}">로그아웃</a></li>
-			</ul>
-			<!-- 위에 메뉴입니다 -->
+            <ul>
+                <li><a href="#Home">레시피 추천</a></li>
+                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+                <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
+                <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
+                <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
+                
+                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+                <li><a href="#Review">마이페이지</a></li>
+            </ul>
 
-		</nav>
+            <div class="login">
+                <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
+            </div>
 
+        </nav>
 
-		<div class="menu" id="Menu">
+    </section>
+<!-- 베너부분입니다 -->
+    <div class="banner_bg">
+        <h1>찜한<span>모든 레시피</span></h1>
+    </div>
+    
+<!-- 베너부분입니다 -->
+	<div class="menu" id="Menu">
 			<h1>
-				찜한 <span>모든 레시피</span>
+				<span></span>
 			</h1>
 
 			<!-- 검색 폼 -->
-			<form id="pagingForm" th:action="@{/recipe/listzzim}" method="get">
+			<form id="pagingForm" th:action="@{/recipe/list}" method="get">
 				<input type="hidden" name="page" id="page" />
 				<!-- id 는 자바 스크립트 보낼때 -->
 				<!-- name은 홈페이지에서 보낼때 -->
@@ -69,12 +64,12 @@
 
 			<div class="menu_box">
 				<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
-				<tr th:each="zzim:${zzimList}">
+				<tr th:each="recipe:${recipeList}">
 					<div class="menu_card">
 						<div class="menu_image">
 							<!-- DB에서 가져올 이미지 텍스트 -->
-							<a th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}"> <img
-								th:src="@{/recipe/downloadzzim(num=${zzim.zzim_num})}">
+							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}"> <img
+								th:src="@{/recipe/download(num=${recipe.recipe_num})}">
 							</a>
 						</div>
 
@@ -84,11 +79,11 @@
 
 						<div class="menu_info">
 							<h2>
-								<a th:text="${zzim.zzim_name}"
-									th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}"></a>
+								<a th:text="${recipe.recipe_name}"
+									th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
 							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
-							<h3 th:text="${zzim.zzim_id}"></h3>
+							<h3 th:text="${recipe.user_id}"></h3>
 							<div class="menu_icon">
 								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
@@ -105,8 +100,71 @@
 
 		</div>
 
-	</section>
+
+    
 
 
 
-	<!--Footer-->
+    <!--밑에부분-->
+
+    <footer>
+
+        <div class="footer_main">
+
+            <div class="footer_tag">
+
+                <h2>Back-End</h2>
+                <p>applemail486@gmail.com / 김지희</p>
+                <p>jsyoo1029@gmail.com / 유진선</p>
+                <p>entergo94@gmail.com / 정세원</p>
+
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2></h2>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2></h2>
+                <p></p>
+
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2>Front-End</h2>
+                <p>kimyeaji01@gmail.com / 김예지</p>
+                <p>entergo94@gmail.com / 정세원</p>
+
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    
+</body>
+</html>
