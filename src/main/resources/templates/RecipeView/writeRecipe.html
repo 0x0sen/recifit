@@ -53,13 +53,13 @@
 		let title = document.getElementById('recipe_name');
 		let contents = document.getElementById('recipe_howto');
 		
-		if (recipe_name.value.length < 5) {
+		if (recipe_name.value.length = 0) {
 			alert("제목을 입력하세요.");
 			recipe_name.focus();
 			recipe_name.select();
 			return false;
 		}
-		if (recipe_howto.value.length < 5) {
+		if (recipe_howto.value.length = 0) {
 			alert("내용을 입력하세요.");
 			recipe_howto.focus();
 			recipe_howto.select();

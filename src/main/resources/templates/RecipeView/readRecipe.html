@@ -73,6 +73,82 @@
 
 	<form id="readRecipe" th:action="@{/recipe/read}" method="post">
 
+<<<<<<< HEAD
+=======
+			<table>
+				<tr>
+
+					<!-- 화면에 바로뜸.  -->
+					<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
+					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
+					</td>
+				</tr>
+
+				<tr>
+					<th>레시피 제목</th>
+					<td th:text="${recipe.recipe_name}"></td>
+				</tr>
+				<tr>
+					<th>레시피 분류</th>
+					<td th:text="${recipe.recipe_type}"></td>
+				</tr>
+				<tr>
+					<th>레시피 아이콘</th>
+					<td th:text="${recipe.recipe_icon}"></td>
+				</tr>
+				<tr>
+					<th>레시피 조회수</th>
+					<td th:text="${recipe.recipe_hit}"></td>
+				</tr>
+				<tr>
+					<th>레시피 찜수</th>
+					<td th:text="${recipe.recipe_zzimSum}"></td>
+				</tr>
+				<tr>
+					<th>레시피 찜버튼</th>
+					<td><a
+						th:href="@{/recipe/insertzzim(num=${recipe.recipe_num})}">찜</a></td>
+				</tr>
+				<tr>
+					<th>아이디</th>
+					<td th:text="${recipe.user_id}"></td>
+				</tr>
+				<tr>
+					<th>글 작성 날짜</th>
+					<td th:text="${recipe.recipe_date}"></td>
+				</tr>
+				<tr>
+					<th>재료</th>
+					<td th:text="${recipe.recipe_need}"></td>
+				</tr>
+				<tr>
+					<th>요리 소개</th>
+					<td th:text="${recipe.recipe_howto}"></td>
+				</tr>
+			</table>
+		</form>
+		
+		<!-- 본인글일때 출력 -->
+		<div th:if="${#authentication.name} == ${recipe.user_id}">
+			<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a>
+			<a th:href="|javascript:deleteBoard(${recipe.recipe_num})|">삭제</a>
+		</div>
+
+
+
+		<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
+		<div sec:authorize="isAuthenticated()">
+			<form th:action="@{/recipe/writeComment}" method="post"
+				onsubmit="return validation()">
+				<input type="hidden" name="recipe_num"
+					th:value="${recipe.recipe_num}"> <input type="text"
+					name="comment_text" id="comment_text" style="width: 500px;">
+				<input type="submit" value="확인">
+			</form>
+		</div>
+
+		<!-- 현재 글의 댓글들 출력 -->
+>>>>>>> 유진선
 		<table>
 			<tr>
 
