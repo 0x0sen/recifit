@@ -1,82 +1,229 @@
 <!DOCTYPE html>
-<!-- 폼없이 데이터 주고 받을 html 파일 폼완성은 2에서 할께요 여기서 연습해주세요 -->
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-
+	
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 진선이형 추가 -->
 <!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- include summernote css/js -->
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<title>myRecipe</title>
+<!-- 추가 끝 -->    
+    <title>Food Website</title>
+    <link rel="stylesheet" th:href="@{/css/foodwrite.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#summernote').summernote();
-	});
-</script>
+		  $('#summernote').summernote();
+		});
+	
+	function validation() {
+		let title = document.getElementById('recipe_name');
+		let contents = document.getElementById('recipe_howto');
+		
+		if (recipe_name.value.length < 5) {
+			alert("제목을 입력하세요.");
+			recipe_name.focus();
+			recipe_name.select();
+			return false;
+		}
+		if (recipe_howto.value.length < 5) {
+			alert("내용을 입력하세요.");
+			recipe_howto.focus();
+			recipe_howto.select();
+			return false;
+		}
+		return true;
+	}
 
+</script>
 </head>
 <body>
-	<header>
-		<h1>[ 마이 레시핏 ]</h1>
-		<h2>찜 레시피 수정</h2>
-	</header>
 
-	<section>
-		<form th:action="@{/recipe/write}" method="post"
-			enctype="multipart/form-data" onsubmit="return validation();">
+    <section id="Home">
 
-			<table>
-				<tr>
-					<th>레시피 제목</th>
-					<td><input type="text" name="title" id="title"
-						style="width: 400px;"></td>
-				</tr>
-				<tr>
-					<th>요리 소개</th>
-					<td><textarea name="contents" id="summernote"></textarea></td>
-				</tr>
-				<tr>
-					<th>재료</th>
-					<td><input type="text" name="title" id="title"
-						style="width: 400px;"></td>
-				</tr>
-				<tr>
-					<th>재료</th>
-					<td><input type="radio" id="option1" name="option" value="1"
-						style="width: 400px"> <label for="option1">옵션 1</label><br>
-						<input type="radio" id="option2" name="option" value="2"
-						style="width: 400px"> <label for="option2">옵션 2</label><br>
-						<input type="radio" id="option3" name="option" value="3"
-						style="width: 400px"> <label for="option3">옵션 3</label><br>
-					</td>
-				</tr>
+        <nav>
+
+            <div class="logo">
+                <a th:href="@{/}"> <img th:src="@{/image/food/logo.svg}"></a>
+            </div>
+
+            <ul>
+                <li><a href="#Home">레시피 추천</a></li>
+                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+                <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
+                <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
+                <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
+                
+                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+                <li><a href="#Review">마이페이지</a></li>
+            </ul>
+
+            <div class="login">
+                <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
+            </div>
+
+        </nav>
+
+    </section>
+	<!-- 베너 -->
+	
+    <div class="banner_bg">
+        <h1><span>찜한 레시피</span>수정</h1>
+    </div>
+    
+    <!-- 베너 -->
+	
 
 
-				<tr>
-					<th>파일첨부</th>
-					<td><input type="file" name="upload"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="white center"><input type="submit"
-						value="저장"></td>
-				</tr>
-			</table>
-		</form>
+        <!--Oder-->
+<form th:action="@{/recipe/updatezzim}"  method="post" 
+	enctype="multipart/form-data"
+	onsubmit="return validation();">
+	
+    <div class="oder">
 
-	</section>
+
+        <div class="oder_main">
+
+            
+
+            <div class="oder_form">
+                <div class="oder_list">
+
+                    <div class="oder_left">
+
+                        <p>레시피 이름</p>
+                        <input type="text" name="recipe_name" id="recipe_name"  placeholder="레시피 이름">
+
+                        <p>요리 소개</p>
+						<textarea name="recipe_howto" id="summernote" ></textarea>
+						
+						<p>파일첨부</p>
+						<input type="file" name="upload">
+                        <p>재료</p>
+                       <input type="text" name="recipe_need" id="recipe_need" placeholder="재료">
+
+                  </div>
+
+
+
+
+
+                    <div >
+
+ 음식 분류
+<table  >
+		<tr>
+            <td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="한식"> 한식</label> <img th:src="@{/image/food/logo.svg}"></td>
+        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="양식"> 양식</label> <img th:src="@{/image/food/logo.svg}"></td>
+        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="일식"> 일식</label> <img th:src="@{/image/food/logo.svg}"></td>
+        </tr>
+		<tr>
+            <td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="중식"> 중식</label> <img th:src="@{/image/food/logo.svg}"></td>
+        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img th:src="@{/image/food/logo.svg}"></td>
+        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="디저트"> 디저트</label> <img th:src="@{/image/food/logo.svg}"></td>
+        </tr>
+    </table>
+    <br>
+     음식타입
+<table  >
+		<tr>
+            <td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="해당사항없음"> </label> <img th:src="@{/image/food/logo.svg}"></td>
+        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/고추.svg}"></td>
+        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="다이어트"> </label> <img th:src="@{/image/food/다이어트.svg}"></td>
+        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="이유식"> </label> <img th:src="@{/image/food/이유식.svg}"></td>
+        </tr>
+	
+    </table>
+                    </div>
+
+                </div>
+
+				<input type="submit" value="저장" class="oder_btn">
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+
+
+
+
+    <!--밑에부분-->
+
+    <footer>
+
+        <div class="footer_main">
+
+            <div class="footer_tag">
+
+                <h2>Back-End</h2>
+                <p>applemail486@gmail.com / 김지희</p>
+                <p>jsyoo1029@gmail.com / 유진선</p>
+                <p>entergo94@gmail.com / 정세원</p>
+
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2></h2>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2></h2>
+                <p></p>
+
+
+            </div>
+
+            <div class="footer_tag">
+
+                <h2>Front-End</h2>
+                <p>kimyeaji01@gmail.com / 김예지</p>
+                <p>entergo94@gmail.com / 정세원</p>
+
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    
 </body>
 </html>

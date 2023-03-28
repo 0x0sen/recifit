@@ -12,7 +12,8 @@
 		, zzim_id
 		, zzim_name
 		, zzim_originalfile
-		, zzim_savedfile
+		,
+		zzim_savedfile
 		, zzim_need
 		, zzim_howto
 		, zzim_type
@@ -23,11 +24,13 @@
 		, #{recipe_num}
 		, #{zzim_id}
 		, #{zzim_name}
-		, #{zzim_originalfile}
+		,
+		#{zzim_originalfile}
 		, #{zzim_savedfile}
 		, #{zzim_need}
 		, #{zzim_howto}
-		, #{zzim_type}
+		,
+		#{zzim_type}
 		, #{zzim_icon}
 		)
 	</insert>
@@ -47,9 +50,11 @@
 		set
 		zzim_name = #{zzim_name}
 		, zzim_need = #{zzim_need}
-		, zzim_howto = #{zzim_howto}
+		,
+		zzim_howto = #{zzim_howto}
 		, zzim_type = #{zzim_type}
-		, zzim_icon = #{zzim_icon}
+		, zzim_icon =
+		#{zzim_icon}
 		<if test="zzim_originalfile != null and zzim_originalfile != ''">
 			, zzim_originalfile = #{zzim_originalfile}
 		</if>
@@ -63,7 +68,8 @@
 	<!-- 찜 삭제 -->
 	<delete id="deletezzim" parameterType="Zzim">
 		delete from rf_zzim
-		where zzim_num = #{zzim_num}
+		where
+		zzim_num = #{zzim_num}
 		and zzim_id = #{zzim_id}
 	</delete>
 
@@ -74,7 +80,8 @@
 		, zzim_date
 		, zzim_name
 		, zzim_originalfile
-		, zzim_savedfile
+		,
+		zzim_savedfile
 		, zzim_type
 		, zzim_icon
 		from

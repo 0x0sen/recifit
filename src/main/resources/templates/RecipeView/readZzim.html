@@ -41,7 +41,7 @@
 				</tr>
 
 				<tr>
-					<th>레시피 제목</th>
+					<th>레시피 이름</th>
 					<td th:text="${Zzim.zzim_name}"></td>
 				</tr>
 				<tr>
@@ -51,12 +51,6 @@
 				<tr>
 					<th>레시피 아이콘</th>
 					<td th:text="${Zzim.zzim_icon}"></td>
-				</tr>
-
-				<tr>
-					<th>레시피 찜버튼(수정필요)</th>
-					<td><a th:href="@{/recipe/readzzim(num=${Zzim.zzim_num})}">찜(찜버튼을
-							다시 누르면 경고창나오고 찜 해제)</a></td>
 				</tr>
 				<tr>
 					<th>찜한 날짜</th>
@@ -70,7 +64,7 @@
 					<th>요리 소개</th>
 					<td th:text="${Zzim.zzim_howto}"></td>
 				</tr>
-				<a th:href="@{/recipe/updatezzim(zzim_num=${Zzim.zzim_num})}">수정</a>
+				<a th:href="@{/recipe/updatezzim(num=${Zzim.zzim_num})}">수정</a>
 			</table>
 		</form>
 
