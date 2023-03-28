@@ -28,6 +28,8 @@ public class WebSecurityConfig {
               "/thymeleaf",
               "/user/join",
               "/user/idCheck",
+              "/user/mypage",
+              "/user/delete",
               "/recipe/list",
                "/recipe/read",              
                 "/recipe/download",

@@ -1,33 +1,48 @@
 	<!DOCTYPE mapper
 	        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-	<mapper namespace="com.food.recifit.dao.UserDAO">
-	
-	
+
+<mapper namespace="com.food.recifit.dao.UserDAO">
+
+
 	<!-- 회원정보 저장 -->
 	<insert id="insertUser_id" parameterType="User">
-	    insert into rf_user (
-			user_id
-			, user_pw
-			, user_name
-			, user_email
-			, user_phone
-		) 
-	    values (
-			#{user_id}
-			, #{user_pw}
-			, #{user_name}
-			, #{user_email}
-			, #{user_phone}
+		insert into rf_user (
+		user_id
+		, user_pw
+		, user_name
+		, user_email
+		, user_phone
+		)
+		values (
+		#{user_id}
+		, #{user_pw}
+		, #{user_name}
+		, #{user_email}
+		, #{user_phone}
 		)
 	</insert>
-	
-	<select id="selectOneUser" parameterType="string" resultType="User">
+
+	<select id="selectOneUser" parameterType="string"
+		resultType="User">
 		select * from rf_user where user_id = #{user_id}
 	</select>
-	
-	
-	
-	</mapper> 
+
+	<update id="updateMember" parameterType="User">
+		update rf_user
+		set
+		user_name = #{user_name}
+		,user_email = #{user_email}
+		,user_phone=#{user_phone}
+		<if test="user_pw != null and user_pw != ''">
+			,user_pw =#{user_pw}
+		</if>
+		where
+		user_id = #{user_id}
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from rf_user
+		where user_id = #{user_id}
+	</delete>
+</mapper> 
 	 

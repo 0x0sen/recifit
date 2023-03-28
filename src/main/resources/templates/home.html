@@ -8,7 +8,7 @@
     <title>Food Website</title>
     <link rel="stylesheet" th:href="@{/css/foodstyle.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="short icon" th:href="@{/image/foodshort_icon.png}">
+    <link rel="short icon" href="image/short_icon.png">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
         <nav>
 
             <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/logo.svg}"></a>
+                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
             </div>
 
             <ul>
@@ -29,7 +29,7 @@
                 
                 <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
                 <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a href="#Review">마이페이지</a></li>
+                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
             </ul>
 
             <div class="login">
@@ -59,24 +59,31 @@
                 <div class="about_services">
 
                     <div class="s_1">
-                        <i class="fa-solid fa-truck-fast"></i>
-                        <a href="#">모든 레시피</a>
+                         <img th:src="@{/image/food/1111111.svg}">
                     </div>
 
                     <div class="s_1">
-                        <i class="fa-brands fa-amazon-pay"></i>
-                        <a href="#">한식</a>
+                        <img th:src="@{/image/food/1111111.svg}">
                     </div>
 
                     <div class="s_1">
-                        <i class="fa-solid fa-headset"></i>
-                        <a href="#">양식</a>
+                        <img th:src="@{/image/food/1111111.svg}">
+                    </div>
+				 <div class="s_1">
+                         <img th:src="@{/image/food/1111111.svg}">
                     </div>
 
+                    <div class="s_1">
+                        <img th:src="@{/image/food/1111111.svg}">
+                    </div>
+
+                    <div class="s_1" >
+                        <img th:src="@{/image/food/1111111.svg}">
+                    </div>
                 </div>
 
                 <a href="#" class="about_btn">
-                    <i class="fa-solid fa-burger"></i>레시피 추천받기
+                    레시피 추천받기
                 </a>
 
             </div>

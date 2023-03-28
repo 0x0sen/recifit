@@ -93,7 +93,7 @@ public class UserController {
 		User member = service.getMember(user.getUsername());
 
 		model.addAttribute("member", member);
-		return "memberView/mypageForm";
+		return "UserView/mypageForm";
 	}
 	/**
 	 * 개인정보 수정 처리
@@ -109,6 +109,7 @@ public class UserController {
 		service.updateMember(member);
 		return "redirect:/";
 
+		
 	}
 	/**
 	 * 회원탈퇴 폼으로 이동
@@ -124,7 +125,7 @@ public class UserController {
 		User member = service.getMember(user.getUsername());
 
 		model.addAttribute("member", member);
-		return "memberView/deleteForm";
+		return "UserView/deleteForm";
 	}
 	/**
 	 * 회원 탈퇴 처리
@@ -143,10 +144,14 @@ public class UserController {
 		int n = service.delete(member);
 		if (n == 0) {
 			model.addAttribute("error", 0);
-			return "memberView/deleteForm";
+			return "UserView/deleteForm";
 		}
-		return "redirect:/member/logout";
+		return "redirect://user/logout";
 
 	}
+
 }
+
+
+
 
