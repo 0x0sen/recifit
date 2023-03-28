@@ -89,11 +89,12 @@ public class RecipeController {
 	}
 
 	//글 삭제
-	@GetMapping("/delete")
-	public String delete(
+	@GetMapping("delete")
+	public String deleterecipe(
 			@RequestParam(name="num", defaultValue="0") int num
 			, @AuthenticationPrincipal UserDetails user) {
 		//			글 읽기 화면에서 글번호가 전달됨
+		log.debug("삭제할 글 번호 : {}", num);
 		//			로그인한 사용자의 아이디를 읽음
 		String id = user.getUsername();
 		//			글번호로 DB에서 글 내용을 읽음

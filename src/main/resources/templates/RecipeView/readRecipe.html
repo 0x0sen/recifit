@@ -15,14 +15,19 @@
 
 
 <script type="text/javascript">
-	  //리플 삭제
+		//레시피 삭제 
+		function deleterecipe(n){
+			if (confirm('삭제하시겠습니까?')){
+			location.href='delete?num=' + n;
+			}
+		}
+	    //리플 삭제
 	    function deleteComment(comment_num, recipe_num) {
 	    	if (confirm('삭제하시겠습니까?')) {
 	    		location.href = 'deleteComment?comment_num=' + comment_num + '&recipe_num=' + recipe_num;
 	    	}
 	    }
-    
-	  
+    	  
     </script>
 
 
@@ -122,6 +127,11 @@
 			</tr>
 		</table>
 	</form>
+	<!-- 본인글일때 출력 -->
+	<span th:if="${#authentication.name} == ${Recipe.user_id}">
+		<a th:href="@{/recipe/update(num=${Recipe.recipe_num})}">수정</a> 
+		<a th:href="|javascript:deleterecipe(${Recipe.recipe_num})|">삭제</a>
+	</span>
 
 	<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
 	<div sec:authorize="isAuthenticated()">

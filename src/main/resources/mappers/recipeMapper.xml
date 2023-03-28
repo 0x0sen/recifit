@@ -43,7 +43,7 @@
 </select>
 
 <!-- 레시피 수정 -->
-<update id="updateRecipe" parameterType="Recipe">
+<update id="updaterecipe" parameterType="Recipe">
    update 
       rf_recipe
    set
@@ -62,7 +62,7 @@
 </update>
 
 <!-- 레시피 삭제 -->
-<delete id="deleteRecipe"  parameterType="Recipe">
+<delete id="deleterecipe"  parameterType="Recipe">
    delete from rf_recipe
    where recipe_num = #{recipe_num} 
 </delete>
