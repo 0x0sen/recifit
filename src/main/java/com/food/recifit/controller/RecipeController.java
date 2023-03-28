@@ -124,7 +124,7 @@ public class RecipeController {
 		//글정보를 모델에 저장
 		model.addAttribute("recipe", recipe);
 		//수정폼 html로 포워딩	
-		return "recipeView/update.html";
+		return "RecipeView/updateRecipe";
 	}
 
 
@@ -200,7 +200,7 @@ public class RecipeController {
 		//전달받은 글번호를 서비스로 전달
 		Recipe recipe = service.selectrecipe(num);
 		//서비스가 리턴한 Recipe객체를 Model에 저장
-		model.addAttribute("Recipe", recipe);
+		model.addAttribute("recipe", recipe);
 
 		//해당 글에 달린 리플 목록 
 		ArrayList<Comment> commentlist = service2.commentlist(num);

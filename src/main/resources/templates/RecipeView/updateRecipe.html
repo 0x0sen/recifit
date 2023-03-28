@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>spring5</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+
+<script>
+	//글수정폼 확인
+	function validation() {
+		let recipe_name = document.getElementById('recipe_name');
+		let recipe_howto = document.getElementById('recipe_howto');
+
+		if (recipe_name.value.length = 0) {
+			alert("제목을 입력하세요.");
+			recipe_name.focus();
+			recipe_name.select();
+			return false;
+		}
+		if (recipe_howto.value.length = 0) {
+			alert("내용을 입력하세요.");
+			recipe_howto.focus();
+			recipe_howto.select();
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<section>
+		<!-- 바이너리 데이터 포함되는 폼. enctype 반드시 정확히 지정 -->
+		<form th:action="@{/recipe/update}" method="post"
+			enctype="multipart/form-data" onsubmit="return validation();">
+
+			<input type="hidden" name="recipe_num"
+				th:value="${recipe.recipe_num}">
+
+			<div>
+				<p>레시피 이름</p>
+					<input type="text" name="recipe_name" id="recipe_name"
+					th:value="${recipe.recipe_name}">
+
+				<p>요리 소개</p>
+					<textarea name="recipe_howto" id="summernote" th:text="${recipe.recipe_howto}"></textarea>
+
+				<p>파일첨부</p>
+					<input type="file" name="upload">
+					<span th:text="${recipe.recipe_originalfile}"></span>
+					
+				<p>재료</p>
+					<input type="text" name="recipe_need" id="recipe_need" th:text="${recipe.recipe_need}">
+				
+			</div>
+			
+			<div>
+
+				음식 분류
+				
+				<table>
+					<tr>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="한식"> 한식</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="양식"> 양식</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="일식"> 일식</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+					</tr>
+					<tr>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="중식"> 중식</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+						<td width="150px" height="100px"><label><input
+								type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+					</tr>
+				</table>
+				
+				<br> 음식타입
+				
+				<table>
+					<tr>
+						<td width="120px" height="100px"><label><input
+								type="radio" name="recipe_icon" value="해당사항없음"> </label> <img
+							th:src="@{/image/food/logo.svg}"></td>
+						<td width="120px" height="100px"><label><input
+								type="radio" name="recipe_icon" value="고추"> </label> <img
+							th:src="@{/image/food/고추.svg}"></td>
+						<td width="120px" height="100px"><label><input
+								type="radio" name="recipe_icon" value="다이어트"> </label> <img
+							th:src="@{/image/food/다이어트.svg}"></td>
+						<td width="120px" height="100px"><label><input
+								type="radio" name="recipe_icon" value="이유식"> </label> <img
+							th:src="@{/image/food/이유식.svg}"></td>
+					</tr>
+
+				</table>
+			</div>
+
+			<input type="submit" value="저장" class="oder_btn">
+			
+		</form>
+
+	</section>
+</body>
+</html>

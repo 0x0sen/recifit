@@ -43,7 +43,7 @@
 </select>
 
 <!-- 레시피 수정 -->
-<update id="updateRecipe" parameterType="Recipe">
+<update id="updaterecipe" parameterType="Recipe">
    update 
       rf_recipe
    set
