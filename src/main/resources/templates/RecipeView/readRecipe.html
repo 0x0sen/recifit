@@ -128,7 +128,7 @@
 	</form>
 	<!-- 본인글일때 출력 -->
 	<span th:if="${#authentication.name} == ${recipe.user_id}">
-		<a th:href="@{/recipe/update(num=${recipe.recipe_num})}">수정</a> 
+		<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a> 
 		<a th:href="|javascript:deleterecipe(${recipe.recipe_num})|">삭제</a>
 	</span>
 
