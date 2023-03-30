@@ -256,9 +256,112 @@ public class RecipeController {
 		}
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	
+	//음식 종류별 목록
+	@GetMapping("Korean")
+	public String Korean(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 
+		ArrayList<Recipe> recipeList = service.KoreanList(searchWord);
 
+		log.debug("넘어간 값 : {}", searchWord);
 
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
 
+		return "RecipeView/list";
+	}
+	
+	@GetMapping("Western")
+	public String Western(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 
+		ArrayList<Recipe> recipeList = service.WesternList(searchWord);
+
+		log.debug("넘어간 값 : {}", searchWord);
+
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
+
+		return "RecipeView/list";
+	}
+	
+	@GetMapping("Japanese")
+	public String Japanese(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+
+		ArrayList<Recipe> recipeList = service.JapaneseList(searchWord);
+
+		log.debug("넘어간 값 : {}", searchWord);
+
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
+
+		return "RecipeView/list";
+	}
+	
+	@GetMapping("Chinese")
+	public String Chinese(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+
+		ArrayList<Recipe> recipeList = service.ChineseList(searchWord);
+
+		log.debug("넘어간 값 : {}", searchWord);
+
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
+
+		return "RecipeView/list";
+	}
+	
+	@GetMapping("Asian")
+	public String Asian(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+
+		ArrayList<Recipe> recipeList = service.AsianList(searchWord);
+
+		log.debug("넘어간 값 : {}", searchWord);
+
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
+
+		return "RecipeView/list";
+	}
+	
+	@GetMapping("dessert")
+	public String dessert(String searchWord, Model model) {
+				
+		//			PageNavigator navi = 
+		//					service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+
+		ArrayList<Recipe> recipeList = service.dessertList(searchWord);
+
+		log.debug("넘어간 값 : {}", searchWord);
+
+		model.addAttribute("recipeList", recipeList);
+		//model.addAttribute("navi", navi);
+		model.addAttribute("searchWord", searchWord);
+
+		return "RecipeView/list";
+	}
+	
 }
