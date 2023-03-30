@@ -6,6 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Food Website</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <link rel="stylesheet" th:href="@{/css/foodread.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -18,7 +21,7 @@ $(document).ready(function(){
 });
 //프론트에서 서버로 가져오는 것
 function formSubmit(){
-		//레시피 불러온다.
+	//레시피 불러온다.
 	let n = $('#recipe_name').val();
 	let t = $('#recipe_type').val();
 	let i = $('#recipe_icon').val();
@@ -43,7 +46,7 @@ function formSubmit(){
 		}
 	});
 }
-
+</script>
 <script type="text/javascript">
 		//레시피 삭제 
 		function deleterecipe(n){

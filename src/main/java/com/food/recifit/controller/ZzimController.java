@@ -173,7 +173,8 @@ public class ZzimController {
 		if (result == 1 && savedfile != null) {
 			FileService.deleteFile(uploadPath + "/" + oldZzim_savedfile);
 		}
-		return "redirect:readzzim?num=" + zzim.getZzim_num();
+	return "redirect:/";
+//		return "redirect:readzzim?num=" + zzim.getZzim_num();
 	}
 
 
