@@ -46,23 +46,21 @@
 	<!-- 찜 글 수정 -->
 	<update id="updatezzim" parameterType="Zzim">
 		update
-		rf_zzim
+			rf_zzim
 		set
-		zzim_name = #{zzim_name}
-		, zzim_need = #{zzim_need}
-		,
-		zzim_howto = #{zzim_howto}
-		, zzim_type = #{zzim_type}
-		, zzim_icon =
-		#{zzim_icon}
-		<if test="zzim_originalfile != null and zzim_originalfile != ''">
+			zzim_name = #{zzim_name}
+			, zzim_need = #{zzim_need}
+			, zzim_howto = #{zzim_howto}
+			, zzim_type = #{zzim_type}
+			, zzim_icon = #{zzim_icon}
+			<if test="zzim_originalfile != null and zzim_originalfile != ''">
 			, zzim_originalfile = #{zzim_originalfile}
-		</if>
-		<if test="zzim_savedfile != null and zzim_savedfile != ''">
+			</if>
+			<if test="zzim_savedfile != null and zzim_savedfile != ''">
 			, zzim_savedfile = #{zzim_savedfile}
-		</if>
-		where
-		zzim_num = #{zzim_num}
+			</if>
+		<!--  where
+			zzim_num = #{zzim_num}-->
 	</update>
 
 	<!-- 찜 삭제 -->
@@ -87,7 +85,6 @@
 		from
 		rf_zzim
 		<!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
-
 		<!-- 조건이 없을 땐 where를 없애라 where -->
 		<where>
 			<if test="searchWord != null">

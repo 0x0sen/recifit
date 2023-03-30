@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 진선이형 추가 -->
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 진선이형 추가 -->
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script type="text/javascript"
+	th:src="@{/summerNote/lang/summernote-ko-KR.min.js}"></script>
 
-<!-- 추가 끝 -->    
-    <title>Food Website</title>
-    <link rel="stylesheet" th:href="@{/css/foodwrite.css}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="short icon" th:href="@{/image/food/short_icon.png}">
+<!-- 추가 끝 -->
+<title>Food Website</title>
+<link rel="stylesheet" th:href="@{/css/foodwrite.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="short icon" th:href="@{/image/food/short_icon.png}">
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		  $('#summernote').summernote();
+
+		  $('#summernote').summernote({
+			  height : 300,
+			  toolbar : [
+				  ['fontname',['fontname']],
+				  ['fontsize',['fontsize']],
+				  ['style',['bold','italic','underline']],
+				  ['color',['color']],
+				  ['para',['ul','ol','paragraph']],
+				  ['insert',['insert']],
+				  ['view',['fullscreen','codeview','help']]
+				  ['fontname',['fontname']]
+
+				  ],
+				  fontNames:['Arial', 'Arial Black','Comic Sans MS','Courier New',
+					  '맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				  fontSizes:['8','9','10','11','12','14','16','18','20','22','24']  
+		  });
 		});
 	
 	function validation() {
-		let title = document.getElementById('recipe_name');
-		let contents = document.getElementById('recipe_howto');
+		let title = document.getElementById('zzim_name');
+		let contents = document.getElementById('zzim_howto');
 		
-		if (recipe_name.value.length < 5) {
+		if (zzim_name.value.length = 0) {
 			alert("제목을 입력하세요.");
-			recipe_name.focus();
-			recipe_name.select();
+			zzim_name.focus();
+			zzim_name.select();
 			return false;
 		}
-		if (recipe_howto.value.length < 5) {
+		if (zzim_howto.value.length = 0) {
 			alert("내용을 입력하세요.");
-			recipe_howto.focus();
-			recipe_howto.select();
+			zzim_howto.focus();
+			zzim_howto.select();
 			return false;
 		}
 		return true;
@@ -50,12 +78,12 @@
 </head>
 <body>
 
-    <section id="Home">
+	<section id="Home">
 
         <nav>
 
             <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/logo.svg}"></a>
+                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
             </div>
 
             <ul>
@@ -67,7 +95,7 @@
                 
                 <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
                 <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a href="#Review">마이페이지</a></li>
+                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
             </ul>
 
             <div class="login">
@@ -79,151 +107,169 @@
 
     </section>
 	<!-- 베너 -->
-	
-    <div class="banner_bg">
-        <h1><span>찜한 레시피</span>수정</h1>
-    </div>
-    
-    <!-- 베너 -->
-	
 
+	<div class="banner_bg">
+		<h1>
+			<span>레시피</span>편집
+		</h1>
+	</div>
 
-        <!--Oder-->
-<form th:action="@{/recipe/updatezzim}"  method="post" 
-	enctype="multipart/form-data"
-	onsubmit="return validation();">
-	
-    <div class="oder">
-
-
-        <div class="oder_main">
-
-            
-
-            <div class="oder_form">
-                <div class="oder_list">
-
-                    <div class="oder_left">
-
-                        <p>레시피 이름</p>
-                        <input type="text" name="recipe_name" id="recipe_name"  placeholder="레시피 이름">
-
-                        <p>요리 소개</p>
-						<textarea name="recipe_howto" id="summernote" ></textarea>
-						
-						<p>파일첨부</p>
-						<input type="file" name="upload">
-                        <p>재료</p>
-                       <input type="text" name="recipe_need" id="recipe_need" placeholder="재료">
-
-                  </div>
+	<!-- 베너 -->
 
 
 
+	<!--Oder-->
+	<form th:action="@{/recipe/updatezzim}" method="post"
+		enctype="multipart/form-data" onsubmit="return validation();">
+
+		<div class="oder">
+			<div class="oder_main">
+				<div class="oder_form">
+					<div class="oder_list">
+
+						<div class="oder_left">
+
+							<p>요리 이름</p>
+							<input type="text" name="zzim_name" id="zzim_name"
+								th:value="${Zzim.zzim_name}">
+								<p>
+	<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
+	</p>
+							<p>사진수정</p>
+							<input type="file" name="upload">
+
+							<p>만드는 법</p>
+							<textarea name="zzim_howto" id="summernote" th:text="${Zzim.zzim_howto}"></textarea>
 
 
-                    <div >
+							<p>재료</p>
+							<input type="text" name="zzim_need" id="zzim_need" th:value="${Zzim.zzim_need}">
 
- 음식 분류
-<table  >
-		<tr>
-            <td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="한식"> 한식</label> <img th:src="@{/image/food/logo.svg}"></td>
-        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="양식"> 양식</label> <img th:src="@{/image/food/logo.svg}"></td>
-        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="일식"> 일식</label> <img th:src="@{/image/food/logo.svg}"></td>
-        </tr>
-		<tr>
-            <td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="중식"> 중식</label> <img th:src="@{/image/food/logo.svg}"></td>
-        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img th:src="@{/image/food/logo.svg}"></td>
-        	<td width="150px"  height="100px"><label><input type="radio" name="recipe_type" value="디저트"> 디저트</label> <img th:src="@{/image/food/logo.svg}"></td>
-        </tr>
-    </table>
-    <br>
-     음식타입
-<table  >
-		<tr>
-            <td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="해당사항없음"> </label> <img th:src="@{/image/food/logo.svg}"></td>
-        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/고추.svg}"></td>
-        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="다이어트"> </label> <img th:src="@{/image/food/다이어트.svg}"></td>
-        	<td width="120px"  height="100px"><label><input type="radio" name="recipe_icon" value="이유식"> </label> <img th:src="@{/image/food/이유식.svg}"></td>
-        </tr>
-	
-    </table>
-                    </div>
+						</div>
 
-                </div>
+						<div>
 
-				<input type="submit" value="저장" class="oder_btn">
-            </div>
+							분류
+							<table>
+								<tr>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="한식" checked="checked"> 한식</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="양식"> 양식</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="일식"> 일식</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+								</tr>
+								<tr>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="중식"> 중식</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="아시안식"> 아시안식</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+									<td width="150px" height="100px"><label><input
+											type="radio" name="zzim_type" value="디저트"> 디저트</label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+								</tr>
+							</table>
+							<br> 이런 사람에게 추천해요.
+							<table>
+								<tr>
+									<td width="120px" height="100px"><label><input
+											type="checkbox" name="zzim_icon" value="모두다" checked="checked"> </label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+									<td width="120px" height="100px"><label><input
+											type="checkbox" name="zzim_icon" value="고추"> </label> <img
+										th:src="@{/image/food/고추.svg}"></td>
+									<td width="120px" height="100px"><label><input
+											type="checkbox" name="zzim_icon" value="다이어트"> </label> <img
+										th:src="@{/image/food/다이어트.svg}"></td>
+									<td width="120px" height="100px"><label><input
+											type="checkbox" name="zzim_icon" value="이유식"> </label> <img
+										th:src="@{/image/food/이유식.svg}"></td>
+									<td width="120px" height="100px"><label><input
+											type="checkbox" name="zzim_icon" value="간단요리"> </label> <img
+										th:src="@{/image/food/logo.svg}"></td>
+								</tr>
 
-        </div>
+							</table>
+						</div>
 
-    </div>
-</form>
+					</div>
 
+					<input type="submit" value="저장" class="oder_btn">
+				</div>
 
+			</div>
 
-
-
-    <!--밑에부분-->
-
-    <footer>
-
-        <div class="footer_main">
-
-            <div class="footer_tag">
-
-                <h2>Back-End</h2>
-                <p>applemail486@gmail.com / 김지희</p>
-                <p>jsyoo1029@gmail.com / 유진선</p>
-                <p>entergo94@gmail.com / 정세원</p>
-
-
-            </div>
-
-            <div class="footer_tag">
-
-                <h2></h2>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-
-            </div>
-
-            <div class="footer_tag">
-
-                <h2>Follows</h2>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-linkedin-in"></i>
-
-            </div>
-
-            <div class="footer_tag">
-
-                <h2></h2>
-                <p></p>
-
-
-            </div>
-
-            <div class="footer_tag">
-
-                <h2>Front-End</h2>
-                <p>kimyeaji01@gmail.com / 김예지</p>
-                <p>entergo94@gmail.com / 정세원</p>
-
-
-            </div>
-
-        </div>
-
-    </footer>
+		</div>
+	</form>
 
 
 
-    
+
+
+	<!--밑에부분-->
+
+	<footer>
+
+		<div class="footer_main">
+
+			<div class="footer_tag">
+
+				<h2>Back-End</h2>
+				<p>applemail486@gmail.com / 김지희</p>
+				<p>jsyoo1029@gmail.com / 유진선</p>
+				<p>entergo94@gmail.com / 정세원</p>
+
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2></h2>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2>Follows</h2>
+				<i class="fa-brands fa-facebook-f"></i> <i
+					class="fa-brands fa-twitter"></i> <i class="fa-brands fa-instagram"></i>
+				<i class="fa-brands fa-linkedin-in"></i>
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2></h2>
+				<p></p>
+
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2>Front-End</h2>
+				<p>kimyeaji01@gmail.com / 김예지</p>
+				<p>entergo94@gmail.com / 정세원</p>
+
+
+			</div>
+
+		</div>
+
+	</footer>
+
+
+
+
 </body>
 </html>

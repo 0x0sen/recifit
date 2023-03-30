@@ -12,7 +12,37 @@
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
-
+<script>
+$(document).ready(function(){
+	$('#submit').click(formSubmit);
+});
+//프론트에서 서버로 가져오는 것
+function formSubmit(){
+		//레시피 불러온다.
+	let n = $('#recipe_name').val();
+	let t = $('#recipe_type').val();
+	let i = $('#recipe_icon').val();
+	let id = $('#user_id').val();
+	let nd = $('#recipe_need').val();
+	let h = $('#recipe_howto').val();
+	//입력한 내용을 서버로 전송
+	$.ajax({
+		url: 'insertzzim',
+		type: 'post',
+		data:{recipe_name:n,
+			recipe_type:t,
+			recipe_icon:i,
+			user_id:id,
+			recipe_need:nd,
+			recipe_howto:h},
+		success: function(){
+			alert('저장되었습니다.');
+		},
+		error: function(){
+			alert('저장실패');
+		}
+	});
+}
 
 <script type="text/javascript">
 		//레시피 삭제 
@@ -80,20 +110,22 @@
 				<!-- 화면에 바로뜸.  -->
 				<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
 				<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
-				</td>
+
 			</tr>
 
 			<tr>
 				<th>요리 제목</th>
-				<td th:text="${recipe.recipe_name}"></td>
+				<td th:text="${recipe.recipe_name}" id="recipe_name"></td>
 			</tr>
 			<tr>
 				<th>레시피 분류</th>
-				<td th:text="${recipe.recipe_type}"></td>
+				<td th:text="${recipe.recipe_type}" id="recipe_type"></td>
+			</tr>
+			<tr>
 			</tr>
 			<tr>
 				<th>레시피 아이콘</th>
-				<td th:text="${recipe.recipe_icon}"></td>
+				<td th:text="${recipe.recipe_icon}" id="recipe_icon"></td>
 			</tr>
 			<tr>
 				<th>레시피 조회수</th>
@@ -105,24 +137,24 @@
 			</tr>
 			<tr>
 				<th>레시피 찜버튼</th>
-				<td><a
-					th:href="@{/recipe/insertzzim(num=${recipe.recipe_num})}">찜</a></td>
+				<td><input type="button" id="submit" value="찜"></td>
+				<!--  <td><a th:href="@{/recipe/insertzzim(num=${recipe.recipe_num})}">찜</a></td>-->
 			</tr>
 			<tr>
-				<th>아이디</th>
-				<td th:text="${recipe.user_id}"></td>
+				<th>작성자 아이디</th>
+				<td th:text="${recipe.user_id}" id="user_id"></td>
 			</tr>
 			<tr>
 				<th>글 작성 날짜</th>
-				<td th:text="${recipe.recipe_date}"></td>
+				<td th:text="${recipe.recipe_date}" ></td>
 			</tr>
 			<tr>
 				<th>재료</th>
-				<td th:text="${recipe.recipe_need}"></td>
+				<td th:text="${recipe.recipe_need}" id="recipe_need"></td>
 			</tr>
 			<tr>
 				<th>요리 순서</th>
-				<td th:utext="${recipe.recipe_howto}"></td>
+				<td th:utext="${recipe.recipe_howto}" id="recipe_howto"></td>
 			</tr>
 		</table>
 	</form>

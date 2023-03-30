@@ -39,13 +39,19 @@
 			  placeholder:'내용을 입력해주세요.',
 			  height : 300,
 			  toolbar : [
-				  ['style',['style']],
+				  ['fontname',['fontname']],
+				  ['fontsize',['fontsize']],
+				  ['style',['bold','italic','underline']],
 				  ['color',['color']],
 				  ['para',['ul','ol','paragraph']],
-				  ['table',['table']],
 				  ['insert',['insert']],
 				  ['view',['fullscreen','codeview','help']]
-				  ]
+				  ['fontname',['fontname']]
+
+				  ],
+				  fontNames:['Arial', 'Arial Black','Comic Sans MS','Courier New',
+					  '맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				  fontSizes:['8','9','10','11','12','14','16','18','20','22','24']  
 		  });
 		});
 	
@@ -146,7 +152,7 @@
 							<table>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="한식"> 한식</label> <img
+											type="radio" name="recipe_type" value="한식" checked="checked"> 한식</label> <img
 										th:src="@{/image/food/logo.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="양식"> 양식</label> <img
@@ -171,7 +177,7 @@
 							<table>
 								<tr>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="모두다"> </label> <img
+											type="checkbox" name="recipe_icon" value="모두다" checked="checked"> </label> <img
 										th:src="@{/image/food/logo.svg}"></td>
 									<td width="120px" height="100px"><label><input
 											type="checkbox" name="recipe_icon" value="고추"> </label> <img

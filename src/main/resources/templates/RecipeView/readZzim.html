@@ -62,9 +62,9 @@
 				</tr>
 				<tr>
 					<th>요리 소개</th>
-					<td th:text="${Zzim.zzim_howto}"></td>
+					<td th:utext="${Zzim.zzim_howto}"></td>
 				</tr>
-				<a th:href="@{/recipe/updatezzim(num=${Zzim.zzim_num})}">수정</a>
+				<a th:href="@{/recipe/updatezzim(num=${Zzim.zzim_num})}">레시피 편집</a>
 			</table>
 		</form>
 

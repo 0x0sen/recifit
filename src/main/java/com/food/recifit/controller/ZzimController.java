@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.recifit.domain.Zzim;
@@ -26,6 +27,7 @@ import com.food.recifit.service.ZzimServiceImpl;
 import com.food.recifit.util.FileService;
 
 import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * 로그인에 관한 컨트롤러 입니다. 
@@ -82,38 +84,55 @@ public class ZzimController {
 	}
 
 	//찜 저장 폼
-	@GetMapping("/insertzzim")
-	public String write() {		
-		return "redirect:/recipe/listZzim";
+//	@GetMapping("/insertzzim")
+//	public String write() {		
+//		return "redirect:/recipe/listZzim";
+//	}
+	//여러개 받을 때, 하나하나변수선언하는 방법1
+	@ResponseBody
+	@PostMapping("insertzzim")
+	public void insertzzim(String recipe_name
+			,String recipe_type
+			,String recipe_icon
+			,String user_id
+			,String recipe_need
+			,String recipe_howto) {
+		//전달받은 값 console에 출력
+		log.debug("recipe_name:{}"
+				+ ", recipe_type:{}"
+				+ ", recipe_icon:{}"
+				+ ", user_id:{}"
+				+ ", recipe_need:{}"
+				+ ", recipe_howto:{}"
+				, recipe_name, recipe_type, recipe_icon, user_id, recipe_need, recipe_howto);
 	}
-
-	//찜 저장
-	@PostMapping("/insertzzim")
-	public String insertzzim(Zzim zzim
-			, @AuthenticationPrincipal UserDetails user
-			, MultipartFile upload) {
-
-		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 zzim객체에 추가
-		if ( upload != null && !upload.isEmpty()) {
-			String filename = FileService.saveFile(upload, uploadPath);
-			zzim.setZzim_originalfile(upload.getOriginalFilename());
-			zzim.setZzim_savedfile(filename);
-		}
-		//로그인한 아이디 읽어서 board객체에 추가 
-		zzim.setZzim_id(user.getUsername());
-
-		//서비스로 전달해서 DB에 저장
-		log.debug("전달된 객체 : {}", zzim);
-		service.insertzzim(zzim);
-		return "redirect:/recipe/listZzim";
-	}
+//	//찜 저장
+//	@PostMapping("/insertzzim")
+//	public String insertzzim(Zzim zzim
+//			, @AuthenticationPrincipal UserDetails user
+//			, MultipartFile upload) {
+//
+//		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 zzim객체에 추가
+//		if ( upload != null && !upload.isEmpty()) {
+//			String filename = FileService.saveFile(upload, uploadPath);
+//			zzim.setZzim_originalfile(upload.getOriginalFilename());
+//			zzim.setZzim_savedfile(filename);
+//		}
+//		//로그인한 아이디 읽어서 board객체에 추가 
+//		zzim.setZzim_id(user.getUsername());
+//
+//		//서비스로 전달해서 DB에 저장
+//		log.debug("전달된 객체 : {}", zzim);
+//		service.insertzzim(zzim);
+//		return "redirect:/recipe/listZzim";
+//	}
 
 	//찜 수정
 	//수정 폼으로 이동
 	@GetMapping("/updatezzim")
-	public String updatezzim(int zzim_num, Model model, @AuthenticationPrincipal UserDetails user) {
+	public String updatezzim(int num, Model model, @AuthenticationPrincipal UserDetails user) {
 		//전달된 번호의 글정보 읽기
-		Zzim zzim = service.selectzzim(zzim_num);
+		Zzim zzim = service.selectzzim(num);
 		log.debug("잘되니");
 		//본인글인지 확인. 아니면 글목록으로 이동.
 		if (!zzim.getZzim_id().equals(user.getUsername())) {
@@ -125,7 +144,7 @@ public class ZzimController {
 		return "RecipeView/updateZzim";
 	}
 
-	/**	// 찜수정폼에서 보낸 내용 처리** 아직 안됬음.
+	// 찜수정폼에서 보낸 내용 처리
 	@PostMapping("/updatezzim")
 	public String update(Zzim zzim, @AuthenticationPrincipal UserDetails user, MultipartFile upload) {
 		log.debug("저장할 글정보 : {}", zzim);
@@ -138,24 +157,24 @@ public class ZzimController {
 		String savedfile = null;
 
 		//첨부파일이 있는 경우 기존파일 삭제 후 새 파일 저장
-//		if (upload != null && !upload.isEmpty()) {
-//			oldZzim = service.selectzzim(zzim.getZzim_num());
-//			oldZzim_savedfile = oldZzim == null ? null : oldZzim.getZzim_savedfile();
-//
-//			savedfile = FileService.saveFile(upload, uploadPath);
-//			zzim.setZzim_originalfile(upload.getZzim_originalFilename());
-//			zzim.setZzim_savedfile(savedfile);
-//			log.debug("새파일:{}, 구파일:{}", zzim_savedfile, oldZzim_savedfile);
-//		}
+		if (upload != null && !upload.isEmpty()) {
+			oldZzim = service.selectzzim(zzim.getZzim_num());
+			oldZzim_savedfile = oldZzim == null ? null : oldZzim.getZzim_savedfile();
+
+			savedfile = FileService.saveFile(upload, uploadPath);
+			zzim.setZzim_originalfile(upload.getOriginalFilename());
+			zzim.setZzim_savedfile(savedfile);
+			log.debug("새파일:{}, 구파일:{}", savedfile, oldZzim_savedfile);
+		}
 
 		int result = service.updatezzim(zzim);
 
-//		//글 수정 성공 and 첨부된 파일이 있는 경우 파일도 삭제
-//		if (result == 1 && savedfile != null) {
-//			FileService.deleteFile(uploadPath + "/" + oldZzim_savedfile);
-//		}
-		return "redirect:read?num=" + zzim.getZzim_num();
-	}**/
+		//글 수정 성공 and 첨부된 파일이 있는 경우 파일도 삭제
+		if (result == 1 && savedfile != null) {
+			FileService.deleteFile(uploadPath + "/" + oldZzim_savedfile);
+		}
+		return "redirect:readzzim?num=" + zzim.getZzim_num();
+	}
 
 
 	//찜 삭제
