@@ -9,6 +9,13 @@
     <link rel="stylesheet" th:href="@{/css/foodstyle.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="short icon" href="image/short_icon.png">
+    
+    
+<script>
+function recifitCheck() {
+	window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=100,left=500,width=400,height=400');
+}
+</script>    
 </head>
 <body>
 
@@ -21,7 +28,7 @@
             </div>
 
             <ul>
-                <li><a href="#Home">레시피 추천</a></li>
+                <li><a th:href="@{/}"> 레시피 추천</a></li>
                 <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
                 <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
                 <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
@@ -82,10 +89,10 @@
                     </div>
                 </div>
 
-                <a href="#" class="about_btn">
+             <!-- <input type="button" class="about_btn" onclick="recifitCheck()"  value="레시피 추천받기"> -->   
+				<a href="#" class="about_btn" onclick="recifitCheck()">
                     레시피 추천받기
                 </a>
-
             </div>
 
         </div>

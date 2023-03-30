@@ -57,7 +57,12 @@ public class RecipeController {
 	//페이지 이동 링크 수
 	@Value("${user.board.group}")
 	int pagePerGroup;
+	//레시피 자세한 검색으로 추천받기
+	@GetMapping("recifitCheck")
+	public String recifitCheck() {
 
+		return "RecipeView/recifitCheck";
+	}
 
 	//글쓰기 폼
 	@GetMapping("/write")

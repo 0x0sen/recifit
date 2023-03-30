@@ -34,32 +34,42 @@
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  placeholder:'내용을 입력해주세요.',
-			  height : 300,
-			  toolbar : [
-				  ['style',['style']],
-				  ['color',['color']],
-				  ['para',['ul','ol','paragraph']],
-				  ['table',['table']],
-				  ['insert',['insert']],
-				  ['view',['fullscreen','codeview','help']]
-				  ]
-		  });
-		});
-	
+	$(document)
+			.ready(
+					function() {
+						$('#summernote')
+								.summernote(
+										{
+											placeholder : '내용을 입력해주세요.',
+											height : 300,
+											toolbar : [
+													[ 'style', [ 'style' ] ],
+													[ 'color', [ 'color' ] ],
+													[
+															'para',
+															[ 'ul', 'ol',
+																	'paragraph' ] ],
+													[ 'table', [ 'table' ] ],
+													[ 'insert', [ 'insert' ] ],
+													[
+															'view',
+															[ 'fullscreen',
+																	'codeview',
+																	'help' ] ] ]
+										});
+					});
+
 	function validation() {
 		let title = document.getElementById('recipe_name');
 		let contents = document.getElementById('recipe_howto');
-		
-		if (recipe_name.value.length = 0) {
+
+		if (recipe_name.value.length < 5) {
 			alert("제목을 입력하세요.");
 			recipe_name.focus();
 			recipe_name.select();
 			return false;
 		}
-		if (recipe_howto.value.length = 0) {
+		if (recipe_howto.value.length < 5) {
 			alert("내용을 입력하세요.");
 			recipe_howto.focus();
 			recipe_howto.select();
@@ -67,48 +77,21 @@
 		}
 		return true;
 	}
-
+	
+	const add_textbox = () => {
+        const box = document.getElementById("box");
+        const newP = document.createElement('p');
+        newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
+        box.appendChild(newP);
+    }
+    const remove = (obj) => {
+        document.getElementById('box').removeChild(obj.parentNode);
+    }
+	
 </script>
 </head>
 <body>
 
-	<section id="Home">
-
-        <nav>
-
-            <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
-            </div>
-
-            <ul>
-                <li><a th:href="@{/}"> 레시피 추천</a></li>
-                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-                <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
-                <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
-                <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
-                
-                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
-            </ul>
-
-            <div class="login">
-                <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
-                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
-            </div>
-
-        </nav>
-
-    </section>
-	<!-- 베너 -->
-
-	<div class="banner_bg">
-		<h1>
-			<span>레시피</span>쓰기
-		</h1>
-	</div>
-
-	<!-- 베너 -->
 
 
 
@@ -121,27 +104,15 @@
 				<div class="oder_form">
 					<div class="oder_list">
 
-						<div class="oder_left">
-
-							<p>요리 이름</p>
-							<input type="text" name="recipe_name" id="recipe_name"
-								placeholder="레시피 이름">
-
-							<p>사진첨부</p>
-							<input type="file" name="upload">
-
-							<p>만드는 법</p>
-							<textarea name="recipe_howto" id="summernote"></textarea>
-
-
-							<p>재료</p>
-							<input type="text" name="recipe_need" id="recipe_need"
-								placeholder="재료">
-
-						</div>
-
 						<div>
-
+							<P>맞춤레시피 찾기</P>
+							<p>키워드</p>
+							<div id="box">
+							<input type="text" name="recipe_name" placeholder="감자 닭고기 미역국..."> 
+							 <input type="button" value="추가" onclick="add_textbox()">
+							</div>	
+							
+							
 							분류
 							<table>
 								<tr>
@@ -186,17 +157,12 @@
 											type="checkbox" name="recipe_icon" value="간단요리"> </label> <img
 										th:src="@{/image/food/logo.svg}"></td>
 								</tr>
-
 							</table>
 						</div>
-
 					</div>
-
 					<input type="submit" value="저장" class="oder_btn">
 				</div>
-
 			</div>
-
 		</div>
 	</form>
 
@@ -204,62 +170,7 @@
 
 
 
-	<!--밑에부분-->
 
-	<footer>
-
-		<div class="footer_main">
-
-			<div class="footer_tag">
-
-				<h2>Back-End</h2>
-				<p>applemail486@gmail.com / 김지희</p>
-				<p>jsyoo1029@gmail.com / 유진선</p>
-				<p>entergo94@gmail.com / 정세원</p>
-
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2></h2>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2>Follows</h2>
-				<i class="fa-brands fa-facebook-f"></i> <i
-					class="fa-brands fa-twitter"></i> <i class="fa-brands fa-instagram"></i>
-				<i class="fa-brands fa-linkedin-in"></i>
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2></h2>
-				<p></p>
-
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2>Front-End</h2>
-				<p>kimyeaji01@gmail.com / 김예지</p>
-				<p>entergo94@gmail.com / 정세원</p>
-
-
-			</div>
-
-		</div>
-
-	</footer>
 
 
 
