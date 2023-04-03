@@ -44,18 +44,21 @@ public class ZzimController {
 	//설정파일에 정의된 업로드할 경로를 읽어서 아래 변수에 대입
 	@Value("${spring.servlet.multipart.location}")
 	String uploadPath;
-
+	
 	//찜 목록 불러오기
 	@GetMapping("/listzzim")
 	public String listzzim(			
 			String searchWord
-			, Model model){
+			,Model model
+			,@AuthenticationPrincipal UserDetails user){
 
-		ArrayList<Zzim> zzimList = service.listzzim(searchWord);
+		String zzim_id = user.getUsername();
+		
+		ArrayList<Zzim> zzimList = service.listzzim(zzim_id, searchWord);
 		log.debug("넘어간 값 : {}", searchWord);
 		model.addAttribute("zzimList", zzimList);
 		model.addAttribute("searchWord", searchWord);
-
+		
 		return "RecipeView/listZzim";
 	}
 
@@ -82,51 +85,7 @@ public class ZzimController {
 		//HTML파일로 포워딩하여 출력
 		return "RecipeView/readZzim";
 	}
-
-	//찜 저장 폼
-//	@GetMapping("/insertzzim")
-//	public String write() {		
-//		return "redirect:/recipe/listZzim";
-//	}
-	//여러개 받을 때, 하나하나변수선언하는 방법1
-	@ResponseBody
-	@PostMapping("insertzzim")
-	public void insertzzim(String recipe_name
-			,String recipe_type
-			,String recipe_icon
-			,String user_id
-			,String recipe_need
-			,String recipe_howto) {
-		//전달받은 값 console에 출력
-		log.debug("recipe_name:{}"
-				+ ", recipe_type:{}"
-				+ ", recipe_icon:{}"
-				+ ", user_id:{}"
-				+ ", recipe_need:{}"
-				+ ", recipe_howto:{}"
-				, recipe_name, recipe_type, recipe_icon, user_id, recipe_need, recipe_howto);
-	}
-//	//찜 저장
-//	@PostMapping("/insertzzim")
-//	public String insertzzim(Zzim zzim
-//			, @AuthenticationPrincipal UserDetails user
-//			, MultipartFile upload) {
-//
-//		//첨부파일이 있으면 지정한 경로에 저장하고 파일명을 zzim객체에 추가
-//		if ( upload != null && !upload.isEmpty()) {
-//			String filename = FileService.saveFile(upload, uploadPath);
-//			zzim.setZzim_originalfile(upload.getOriginalFilename());
-//			zzim.setZzim_savedfile(filename);
-//		}
-//		//로그인한 아이디 읽어서 board객체에 추가 
-//		zzim.setZzim_id(user.getUsername());
-//
-//		//서비스로 전달해서 DB에 저장
-//		log.debug("전달된 객체 : {}", zzim);
-//		service.insertzzim(zzim);
-//		return "redirect:/recipe/listZzim";
-//	}
-
+	
 	//찜 수정
 	//수정 폼으로 이동
 	@GetMapping("/updatezzim")
@@ -183,61 +142,23 @@ public class ZzimController {
 	public String deletezzim(@RequestParam(name="num", defaultValue="0") int num
 			, @AuthenticationPrincipal UserDetails user) {
 		//			레시피 읽기 화면에서 레시피번호가 전달됨
-		//			로그인한 사용자의 아이디를 읽음
+
+		log.debug("삭제할 찜 번호 : {}", num);	
+		//			로그인한 사용자의 아이디를 읽음		
 		String id = user.getUsername();
+		log.debug("로그인한 사용자 아이디 : {}", id);	
 		//			글번호로 DB에서 글 내용을 읽음
 		Zzim zzim = service.selectzzim(num);
 		//			해당번호의 글이 있는지 확인. 없으면 글목록으로
-		if (zzim == null) return "redirect:list";
+		if (zzim == null) return "redirect:listzzim";
 		//			로그인한 본인의 글이 맞는지 확인. 아니면 글목록으로
-		if (!zzim.getZzim_id().equals(id)) return "redirect:list";
-		//			첨부된 파일이 있으면 파일삭제
-		if (zzim.getZzim_savedfile() != null) {
-			FileService.deleteFile(uploadPath + "/" + zzim.getZzim_savedfile());
-		}
+		if (!zzim.getZzim_id().equals(id)) return "redirect:listzzim";
 		//			실제 글 DB에서 삭제
 		service.deletezzim(zzim);
 		//			글 목록으로 리다이렉트
-		return "redirect:listZzim";
+		return "redirect:listzzim";
 	}		
 
-
-	//찜 파일 다운로드
-	@GetMapping("/downloadzzim")
-	public String downloadzzim(
-			@RequestParam(name = "num", defaultValue="0") int num
-			,HttpServletResponse response) {
-
-		//num이라는 이름의 글번호를 전달받음
-		//전달받은 글번호를 서비스로 전달
-		Zzim zzim = service.selectzzim(num);
-		if(zzim == null || zzim.getZzim_savedfile() == null) {
-			return "redirect:listZzim";
-		}
-
-		String file = uploadPath + "/" + zzim.getZzim_savedfile();
-
-		//FileInputStream
-		FileInputStream in = null;
-		ServletOutputStream out = null;
-
-		try {
-			//응답 정보의 헤더 세팅
-			response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(zzim.getZzim_originalfile(), "UTF-8"));
-
-			in = new FileInputStream(file);
-			out = response.getOutputStream();
-
-			//파일 전송(하나씩 반복해서 받아서 출력해라..읽고 쓰고 반복)
-			FileCopyUtils.copy(in, out);
-
-			in.close();
-			out.close();
-		} 
-		catch (IOException e) {
-			//예외메시지 출력
-		}
-		return "redirect:/";
-	}
+	
 }
 

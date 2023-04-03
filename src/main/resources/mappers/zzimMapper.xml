@@ -12,25 +12,22 @@
 		, zzim_id
 		, zzim_name
 		, zzim_originalfile
-		,
-		zzim_savedfile
+		, zzim_savedfile
 		, zzim_need
 		, zzim_howto
 		, zzim_type
 		, zzim_icon
 		)
 		values (
-		zzim_num_seq.nextval
+		rf_zzim_seq.nextval
 		, #{recipe_num}
 		, #{zzim_id}
 		, #{zzim_name}
-		,
-		#{zzim_originalfile}
+		, #{zzim_originalfile}
 		, #{zzim_savedfile}
 		, #{zzim_need}
 		, #{zzim_howto}
-		,
-		#{zzim_type}
+		, #{zzim_type}
 		, #{zzim_icon}
 		)
 	</insert>
@@ -43,6 +40,15 @@
 		where zzim_num = #{zzim_num}
 	</select>
 
+	<!-- 찜 목록에서 레시피 조회 -->
+	<select id="findzzim" parameterType="map" resultType="Zzim">
+		select
+		*
+		from rf_zzim
+		where recipe_num = #{recipe_num}
+		and zzim_id = #{zzim_id}		
+	</select>
+	
 	<!-- 찜 글 수정 -->
 	<update id="updatezzim" parameterType="Zzim">
 		update
@@ -71,32 +77,30 @@
 		and zzim_id = #{zzim_id}
 	</delete>
 
-	<!-- 찜 전체 글 보기 -->
-	<select id="listzzim" parameterType="String" resultType="Zzim">
+	<!-- 찜 목록 보기 -->
+	<select id="listzzim" parameterType="map" resultType="Zzim">
 		select
 		zzim_num
 		, zzim_date
 		, zzim_name
 		, zzim_originalfile
-		,
-		zzim_savedfile
+		, zzim_savedfile
 		, zzim_type
 		, zzim_icon
 		from
 		rf_zzim
-		<!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
-		<!-- 조건이 없을 땐 where를 없애라 where -->
-		<where>
-			<if test="searchWord != null">
-				upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
-				or
-				upper(zzim_need) like '%' || upper(#{searchWord}) || '%'
-				or
-				upper(zzim_howto) like '%' || upper(#{searchWord}) || '%'
-				or
-				upper(zzim_id) like '%' || upper(#{searchWord}) || '%'
-			</if>
-		</where>
+		WHERE zzim_id = #{zzim_id} 
+         <if test="searchWord != null">
+         	and
+            upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
+            or
+            upper(zzim_need) like '%' || upper(#{searchWord}) || '%'
+            or
+            upper(zzim_howto) like '%' || upper(#{searchWord}) || '%'
+            or
+            upper(zzim_id) like '%' || upper(#{searchWord}) || '%'
+         </if>
+
 		order by
 		zzim_num desc
 	</select>

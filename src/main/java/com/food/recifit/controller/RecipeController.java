@@ -57,6 +57,7 @@ public class RecipeController {
 	//페이지 이동 링크 수
 	@Value("${user.board.group}")
 	int pagePerGroup;
+	
 	//레시피 자세한 검색으로 추천받기
 	@GetMapping("recifitCheck")
 	public String recifitCheck() {
@@ -83,7 +84,7 @@ public class RecipeController {
 			recipe.setRecipe_savedfile(filename);
 		}
 
-		//로그인한 아이디 읽어서 board객체에 추가 
+		//로그인한 아이디 읽어서 recipe 객체에 추가 
 		recipe.setUser_id(user.getUsername());
 		log.debug("저장할 글 정보 : ", recipe);
 
@@ -108,10 +109,6 @@ public class RecipeController {
 		if (recipe == null) return "redirect:list";
 		//			로그인한 본인의 글이 맞는지 확인. 아니면 글목록으로
 		if (!recipe.getUser_id().equals(id)) return "redirect:list";
-		//			첨부된 파일이 있으면 파일삭제
-		if (recipe.getRecipe_savedfile() != null) {
-			FileService.deleteFile(uploadPath + "/" + recipe.getRecipe_savedfile());
-		}
 		//			실제 글 DB에서 삭제
 		service.deleterecipe(recipe);
 		//			글 목록으로 리다이렉트

@@ -19,7 +19,14 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+<script>
+function deletezzim(n){
+	if (confirm('삭제하시겠습니까?')){
+	location.href='deletezzim?num=' + n;
+	// http://localhost:8884/spring5/board/delete?num=1
+	}
+}
+</script>
 <title>myRecipe</title>
 
 </head>
@@ -31,9 +38,8 @@
 	<section>
 		<form id="readZzim" th:action="@{/recipe/readzzim}" method="post">
 
-			<table>
+			<table>		
 				<tr>
-
 					<!-- 화면에 바로뜸.  -->
 					<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
 					<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
@@ -64,7 +70,14 @@
 					<th>요리 소개</th>
 					<td th:utext="${Zzim.zzim_howto}"></td>
 				</tr>
+				<p>
+				<tr>
 				<a th:href="@{/recipe/updatezzim(num=${Zzim.zzim_num})}">레시피 편집</a>
+				</tr>
+				<p>
+				<tr>
+				<a th:href="|javascript:deletezzim(${Zzim.zzim_num})|" >삭제</a>
+				</tr>
 			</table>
 		</form>
 
