@@ -63,6 +63,45 @@ public class RecipeServiceImpl implements RecipeService {
 
 	
 	
+	//음식 종류별 목록
+	@Override
+	public ArrayList<Recipe> KoreanList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.KoreanList(searchWord);
+		return recipelist;
+	}
+
+	@Override
+	public ArrayList<Recipe> WesternList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.WesternList(searchWord);
+		return recipelist;
+	}
+
+	@Override
+	public ArrayList<Recipe> JapaneseList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.JapaneseList(searchWord);
+		return recipelist;
+	}
+
+	@Override
+	public ArrayList<Recipe> ChineseList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.ChineseList(searchWord);
+		return recipelist;
+	}
+
+	@Override
+	public ArrayList<Recipe> AsianList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.AsianList(searchWord);
+		return recipelist;
+	}
+
+	@Override
+	public ArrayList<Recipe> dessertList(String searchWord) {
+		ArrayList<Recipe> recipelist = recipeDAO.dessertList(searchWord);
+		return recipelist;
+	}
+
+	
+	
 	//조회 결과 중 위치, 개수 지정
 	//RowBounds rb = new RowBounds(start, count);
 

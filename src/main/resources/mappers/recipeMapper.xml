@@ -101,6 +101,274 @@
        recipe_num desc
 </select>
 
+<!-- 음식 종류별 글 목록 -->
+	<select id="KoreanList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '한식'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '한식'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+<select id="WesternList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '양식'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '양식'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+<select id="JapaneseList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '일식'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '일식'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+<select id="ChineseList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '중식'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '중식'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+<select id="AsianList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '아시안식'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '아시안식'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+<select id="dessertList" parameterType="String" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+     <where>
+       <if test="searchWord != null">
+       
+                      upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+       </if>
+       
+       <if test="searchWord == null">
+          <!-- searchWord가 null인 경우 -->
+          recipe_type = '디저트'
+       </if>
+       
+       <if test="searchWord != null">
+          <!-- searchWord가 null이 아닌 경우 -->
+          recipe_type = '디저트'
+       </if>
+       
+    </where>
+
+    order by 
+       recipe_num desc
+</select>
+
+
+
+
 <!-- 전체 레시피 개수 (이 함수 외우기)-->
 <select id="total" parameterType="map" resultType="int">
    select 
@@ -118,5 +386,9 @@
     </where>
     </if>
 </select>
+
+
+
+
 </mapper> 
  

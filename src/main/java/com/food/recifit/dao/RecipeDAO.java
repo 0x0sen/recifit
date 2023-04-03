@@ -31,5 +31,23 @@ public interface RecipeDAO {
 	public int total(HashMap<String, String> map);
 	//댓글 목록
 	public ArrayList<Comment> commentlist(int num);
+	
+	//한식 목록
+	public ArrayList<Recipe> KoreanList(String searchWord);
+	
+	//양식 레시피
+	public ArrayList<Recipe> WesternList(String searchWord);
+	
+	//일식 레시피
+	public ArrayList<Recipe> JapaneseList(String searchWord);
+	
+	//중식 레시피
+	public ArrayList<Recipe> ChineseList(String searchWord);
+	
+	//아시안 레시피
+	public ArrayList<Recipe> AsianList(String searchWord);
+	
+	//디저트 레시피
+	public ArrayList<Recipe> dessertList(String searchWord);
 
 	}

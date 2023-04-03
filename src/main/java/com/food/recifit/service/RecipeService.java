@@ -26,6 +26,24 @@ public interface RecipeService {
 	//페이지 정보 객체 생성
 	//public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String searchWord);
 	
+	//한식 레시피
+	public ArrayList<Recipe> KoreanList(String searchWord);
+	
+	//양식 레시피
+	public ArrayList<Recipe> WesternList(String searchWord);
+	
+	//일식 레시피
+	public ArrayList<Recipe> JapaneseList(String searchWord);
+	
+	//중식 레시피
+	public ArrayList<Recipe> ChineseList(String searchWord);
+	
+	//아시안 레시피
+	public ArrayList<Recipe> AsianList(String searchWord);
+	
+	//디저트 레시피
+	public ArrayList<Recipe> dessertList(String searchWord);
+	
 	
 		
 }
