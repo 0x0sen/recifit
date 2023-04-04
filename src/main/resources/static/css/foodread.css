@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    
 }
 
 nav{
@@ -93,8 +94,14 @@ nav .login a:hover{
 
 /*Menu*/
 .menu{
+	
     width: 100%;
     padding: 70px 0;
+    
+}
+#Menu{
+	background-image: url(../image/about_bg.png);
+	     background-size: cover;
 }
 
 .menu h1{
@@ -131,10 +138,11 @@ nav .login a:hover{
 
 .menu .menu_box .menu_card{
     width: 325px;
-    height: 480px;
+    height: 500px;
     padding-top: 10px;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+   background: 	#F5F5F5;
 }
 
 .menu .menu_box .menu_card .menu_image{

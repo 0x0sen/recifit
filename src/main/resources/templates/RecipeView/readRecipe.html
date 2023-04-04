@@ -15,53 +15,57 @@
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
+<link rel="stylesheet" th:href="@{/css/oneread.css}">
 <script>
-$(document).ready(function(){
-	$('#submit').click(formSubmit);
-});
-//프론트에서 서버로 가져오는 것
-function formSubmit(){
-	//레시피 불러온다.
-	let n = $('#recipe_name').val();
-	let t = $('#recipe_type').val();
-	let i = $('#recipe_icon').val();
-	let id = $('#user_id').val();
-	let nd = $('#recipe_need').val();
-	let h = $('#recipe_howto').val();
-	//입력한 내용을 서버로 전송
-	$.ajax({
-		url: 'insertzzim',
-		type: 'post',
-		data:{recipe_name:n,
-			recipe_type:t,
-			recipe_icon:i,
-			user_id:id,
-			recipe_need:nd,
-			recipe_howto:h},
-		success: function(){
-			alert('저장되었습니다.');
-		},
-		error: function(){
-			alert('저장실패');
-		}
+	$(document).ready(function() {
+		$('#submit').click(formSubmit);
 	});
-}
+	//프론트에서 서버로 가져오는 것
+	function formSubmit() {
+		//레시피 불러온다.
+		let n = $('#recipe_name').val();
+		let t = $('#recipe_type').val();
+		let i = $('#recipe_icon').val();
+		let id = $('#user_id').val();
+		let nd = $('#recipe_need').val();
+		let h = $('#recipe_howto').val();
+		//입력한 내용을 서버로 전송
+		$.ajax({
+
+			url : 'insertzzim',
+			type : 'post',
+			data : {
+				recipe_name : n,
+				recipe_type : t,
+				recipe_icon : i,
+				user_id : id,
+				recipe_need : nd,
+				recipe_howto : h
+			},
+			success : function() {
+				alert('저장되었습니다.');
+			},
+			error : function() {
+				alert('저장실패');
+			}
+		});
+	}
 </script>
 <script type="text/javascript">
-		//레시피 삭제 
-		function deleterecipe(n){
-			if (confirm('삭제하시겠습니까?')){
-			location.href='delete?num=' + n;
-			}
+	//레시피 삭제 
+	function deleterecipe(n) {
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'delete?num=' + n;
 		}
-	    //리플 삭제
-	    function deleteComment(comment_num, recipe_num) {
-	    	if (confirm('삭제하시겠습니까?')) {
-	    		location.href = 'deleteComment?comment_num=' + comment_num + '&recipe_num=' + recipe_num;
-	    	}
-	    }
-    	  
-    </script>
+	}
+	//리플 삭제
+	function deleteComment(comment_num, recipe_num) {
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'deleteComment?comment_num=' + comment_num
+					+ '&recipe_num=' + recipe_num;
+		}
+	}
+</script>
 
 
 </head>
@@ -69,134 +73,43 @@ function formSubmit(){
 
 	<section id="Home">
 
-        <nav>
+		<nav>
 
-            <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
-            </div>
+			<div class="logo">
+				<a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
+			</div>
 
-            <ul>
-                <li><a th:href="@{/}"> 레시피 추천</a></li>
-                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-                <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
-                <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
-                <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
-                
-                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
-            </ul>
+			<ul>
+				<li><a th:href="@{/}"> 레시피 추천</a></li>
+				<li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+				<!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
+				<!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
+				<!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
 
-            <div class="login">
-                <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
-                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
-            </div>
+				<li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+				<li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+				<li><a th:href="@{/user/mypage}">마이페이지</a></li>
+			</ul>
 
-        </nav>
+			<div class="login">
+				<span sec:authorize="not isAuthenticated()"><a
+					th:href="@{/user/loginForm}">로그인</a></span> <span
+					sec:authorize="isAuthenticated()"><a
+					th:href="@{/user/logout}">로그아웃</a></span>
+			</div>
 
-    </section>
+		</nav>
+
+	</section>
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
 		<h1>
-			공유된<span>모든 레시피</span>
+			수정<span>중입니다. </span>
 		</h1>
 	</div>
 
 	<!-- 베너부분입니다 -->
 
-	<form id="readRecipe" th:action="@{/recipe/read}" method="post">
-
-
-		<table>
-			<tr>
-
-				<!-- 화면에 바로뜸.  -->
-				<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
-				<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
-
-			</tr>
-
-			<tr>
-				<th>요리 제목</th>
-				<td th:text="${recipe.recipe_name}" id="recipe_name"></td>
-			</tr>
-			<tr>
-				<th>레시피 분류</th>
-				<td th:text="${recipe.recipe_type}" id="recipe_type"></td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-				<th>레시피 아이콘</th>
-				<td th:text="${recipe.recipe_icon}" id="recipe_icon"></td>
-			</tr>
-			<tr>
-				<th>레시피 조회수</th>
-				<td th:text="${recipe.recipe_hit}"></td>
-			</tr>
-			<tr>
-				<th>레시피 찜수</th>
-				<td th:text="${recipe.recipe_zzimSum}"></td>
-			</tr>
-			<tr>
-				<th>레시피 찜버튼</th>
-				<td><input type="button" id="submit" value="찜"></td>
-				<!--  <td><a th:href="@{/recipe/insertzzim(num=${recipe.recipe_num})}">찜</a></td>-->
-			</tr>
-			<tr>
-				<th>작성자 아이디</th>
-				<td th:text="${recipe.user_id}" id="user_id"></td>
-			</tr>
-			<tr>
-				<th>글 작성 날짜</th>
-				<td th:text="${recipe.recipe_date}" ></td>
-			</tr>
-			<tr>
-				<th>재료</th>
-				<td th:text="${recipe.recipe_need}" id="recipe_need"></td>
-			</tr>
-			<tr>
-				<th>요리 순서</th>
-				<td th:utext="${recipe.recipe_howto}" id="recipe_howto"></td>
-			</tr>
-		</table>
-	</form>
-	<!-- 본인글일때 출력 -->
-	<span th:if="${#authentication.name} == ${recipe.user_id}">
-		<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a> 
-		<a th:href="|javascript:deleterecipe(${recipe.recipe_num})|">삭제</a>
-	</span>
-
-	<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
-	<div sec:authorize="isAuthenticated()">
-		<form th:action="@{/recipe/writeComment}" method="post"
-			onsubmit="return validation()">
-			<input type="hidden" name="recipe_num"
-				th:value="${recipe.recipe_num}"> <input type="text"
-				name="comment_text" id="comment_text" style="width: 500px;">
-			<input type="submit" value="확인">
-		</form>
-	</div>
-
-	<!-- 현재 글의 댓글들 출력 -->
-	<table>
-		<tr th:each="comment : ${commentlist}">
-			<td th:text="${comment.user_id}"></td>
-			<td th:text="${comment.comment_text}"></td>
-			<td th:text="${comment.comment_date}"></td>
-
-			<!-- 자기 댓글 삭제 -->
-
-			<td><span th:if="${#authentication.name} == ${comment.user_id}">
-					<a
-					th:href="|javascript:deleteComment(${comment.comment_num}, ${comment.recipe_num})|">
-						<img th:src="@{/image/icon_delete_24.png}">
-				</a>
-			</span></td>
-		</tr>
-	</table>
-
-	</section>
 
 
 
@@ -204,66 +117,163 @@ function formSubmit(){
 
 
 
-
-	<!--밑에부분-->
-
-	<footer>
-
-		<div class="footer_main">
-
-			<div class="footer_tag">
-
-				<h2>Back-End</h2>
-				<p>applemail486@gmail.com / 김지희</p>
-				<p>jsyoo1029@gmail.com / 유진선</p>
-				<p>entergo94@gmail.com / 정세원</p>
-
-
+	<!--그림페이지 -->
+	<div class="card-wrapper">
+		<div class="card">
+			<!-- card left -->
+			<div class="product-imgs">
+				<div class="img-display">
+					<div class="img-showcase">
+						<img th:src="@{/image/food/pizza.jpg}">
+					</div>
+				</div>
 			</div>
-
-			<div class="footer_tag">
-
-				<h2></h2>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2>Follows</h2>
-				<i class="fa-brands fa-facebook-f"></i> <i
-					class="fa-brands fa-twitter"></i> <i class="fa-brands fa-instagram"></i>
-				<i class="fa-brands fa-linkedin-in"></i>
-
-			</div>
-
-			<div class="footer_tag">
-
-				<h2></h2>
-				<p></p>
+			<!--그림페이지 -->
+			<!-- card right -->
+			<div class="product-content">
+				<h2 class="product-title">음식이름</h2>
+				<a href="#" class="product-link">글쓴 사람</a>
 
 
-			</div>
+				<div class="product-price">
+					<table>
+						<table>
+							<tr>
+								<td width="150px" height="100px"><img
+									th:src="@{/image/food/매운 음식 폴라.svg}"></td>
+								<td width="150px" height="100px"><img
+									th:src="@{/image/food/1111111.svg}"></td>
+							</tr>
+						</table>
+						</div>
 
-			<div class="footer_tag">
+						<div class="product-detail">
+							<ul>
+								<li>필요한 제료: <span>치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨
+										,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨
+										,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨 ,감자,피자치킨
+										,감자,피자치킨 ,감자,피자치킨 ,감자,피자</span></li>
+								<li>만드는 방법: <span>kfc에 주문하기kfc에 주문하기kfc에 주문하기kfc에
+										주문하기kfc에 주문하기kfc에 주문하기kfc에 주문하기kfc에 주문하기kfc에 주문하기kfc에 주문하기kfc에
+										주문하기</span></li>
+							</ul>
+						</div>
 
-				<h2>Front-End</h2>
-				<p>kimyeaji01@gmail.com / 김예지</p>
-				<p>entergo94@gmail.com / 정세원</p>
+						<div class="purchase-info">
+
+							<button type="button" class="btn">찜</button>
+							<button type="button" class="btn">나만의 레시핏 만들기</button>
+						</div>
+						</div>
+						<div class="product-detail">
+							<ul>
+								<!-- 본인글일때 출력 -->
+								<span th:if="${#authentication.name} == ${recipe.user_id}">
+									<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a>
+									<a th:href="|javascript:deleterecipe(${recipe.recipe_num})|">삭제</a>
+								</span>
+
+								<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
+								<div sec:authorize="isAuthenticated()">
+									<form th:action="@{/recipe/writeComment}" method="post"
+										onsubmit="return validation()">
+										<input type="hidden" name="recipe_num"
+											th:value="${recipe.recipe_num}"> <input type="text"
+											name="comment_text" id="comment_text" style="width: 500px;">
+										<input type="submit" value="확인">
+									</form>
+								</div>
+
+								<!-- 현재 글의 댓글들 출력 -->
+								<table>
+									<tr th:each="comment : ${commentlist}">
+										<td th:text="${comment.user_id}"></td>
+										<td th:text="${comment.comment_text}"></td>
+										<td th:text="${comment.comment_date}"></td>
+
+										<!-- 자기 댓글 삭제 -->
+
+										<td><span
+											th:if="${#authentication.name} == ${comment.user_id}">
+												<a
+												th:href="|javascript:deleteComment(${comment.comment_num}, ${comment.recipe_num})|">
+													<img th:src="@{/image/icon_delete_24.png}">
+											</a>
+										</span></td>
+									</tr>
+								</table>
+							</ul>
+						</div>
+						</div>
+						</div>
 
 
-			</div>
-
-		</div>
-
-	</footer>
 
 
 
 
+
+
+
+
+
+
+						<!--밑에부분-->
+
+						<footer>
+
+							<div class="footer_main">
+
+								<div class="footer_tag">
+
+									<h2>Back-End</h2>
+									<p>applemail486@gmail.com / 김지희</p>
+									<p>jsyoo1029@gmail.com / 유진선</p>
+									<p>entergo94@gmail.com / 정세원</p>
+
+
+								</div>
+
+								<div class="footer_tag">
+
+									<h2></h2>
+									<p></p>
+									<p></p>
+									<p></p>
+									<p></p>
+									<p></p>
+
+								</div>
+
+								<div class="footer_tag">
+
+									<h2>Follows</h2>
+									<i class="fa-brands fa-facebook-f"></i> <i
+										class="fa-brands fa-twitter"></i> <i
+										class="fa-brands fa-instagram"></i> <i
+										class="fa-brands fa-linkedin-in"></i>
+
+								</div>
+
+								<div class="footer_tag">
+
+									<h2></h2>
+									<p></p>
+
+
+								</div>
+
+								<div class="footer_tag">
+
+									<h2>Front-End</h2>
+									<p>kimyeaji01@gmail.com / 김예지</p>
+									<p>entergo94@gmail.com / 정세원</p>
+
+
+								</div>
+
+							</div>
+
+						</footer>
 </body>
 </html>

@@ -9,12 +9,17 @@ nav#change{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    font-size: 16px;
     position: fixed;
     right: 0;
     left: 0;
     background: #fff;
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 nav#change .logo img{
@@ -22,10 +27,18 @@ nav#change .logo img{
     position: relative;
     left: -45%;
     cursor: pointer;
+     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 nav#change ul.newul {
     list-style: none;
+     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 nav#change ul.newul li.newli{
@@ -94,11 +107,14 @@ nav#change .login a:hover{
 /*Oder*/
 .mama{
 	height: 13vh;
+	
 }
 .oder{
     width: 100%;
-    height: 100vh;
+    height: 105vh;
     padding: 5px 0;
+    background-image: url(../image/about_bg.png);
+
 }
 
 .oder h1{
@@ -127,7 +143,7 @@ nav#change .login a:hover{
 
 .oder .oder_main .oder_form{
     width: 80%;
-    height: 620px;
+    height: 670px;
     background: #faf3ce;
     padding: 15px 20px 0 20px;
     border-radius: 10px;

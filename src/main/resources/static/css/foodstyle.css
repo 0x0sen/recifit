@@ -7,7 +7,7 @@
 
 section{
     width: 100%;
-    height: 17vh;
+    height: 15vh;
 }
 
 section nav{
@@ -160,7 +160,7 @@ section .main .main_image img{
 }
 
 .about .about_main .about_image img{
-    width: 750px;
+    width: 600px;
 }
 
 .about .about_main .about_text h1{
@@ -197,7 +197,6 @@ section .main .main_image img{
     align-items: center;
     width: 180px;
     padding: 10px;
-    border: 2px solid #facc22;
     cursor: pointer;
 }
 

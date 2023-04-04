@@ -73,9 +73,6 @@
 							</a>
 						</div>
 
-						<div class="small_card">
-							<i class="fa-solid fa-heart"></i>
-						</div>
 
 						<div class="menu_info">
 							<h2>
@@ -84,12 +81,13 @@
 							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
 							<h3 th:text="${recipe.user_id}"></h3>
-							<div class="menu_icon">
-								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star-half-stroke"></i>
-							</div>
-							<a href="#" class="menu_btn">Order Now</a>
+							<table>
+							<tr>
+								<td width="100px" height="70px"><img th:src="@{/image/food/매운 음식 폴라.svg}"></td>
+								<td ><a href="#" class="menu_btn">찜 하기</a></td>
+							</tr>
+						</table>
+							
 						</div>
 
 					</div>

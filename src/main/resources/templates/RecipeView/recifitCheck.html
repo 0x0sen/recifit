@@ -26,7 +26,7 @@
 
 <!-- 추가 끝 -->
 <title>Food Website</title>
-<link rel="stylesheet" th:href="@{/css/foodwrite.css}">
+<link rel="stylesheet" th:href="@{/css/recifitCheck.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -94,78 +94,83 @@
 
 
 
+	<div class="mama">
+		<!--Oder-->
+		<form th:action="@{/recipe/write}" method="post"
+			enctype="multipart/form-data" onsubmit="return validation();">
 
-	<!--Oder-->
-	<form th:action="@{/recipe/write}" method="post"
-		enctype="multipart/form-data" onsubmit="return validation();">
+			<div class="oder">
+				<div class="oder_main">
+					<div class="oder_form">
+						<div class="oder_list">
 
-		<div class="oder">
-			<div class="oder_main">
-				<div class="oder_form">
-					<div class="oder_list">
+							<div>
+								<P class="find">맞춤레시피 찾기</P>
+								<p>키워드</p>
+								<div id="box">
+									<input type="text" name="recipe_name"
+										placeholder="감자 닭고기 미역국..."> <input type="button"
+										value="추가" onclick="add_textbox()">
+								</div>
 
-						<div>
-							<P>맞춤레시피 찾기</P>
-							<p>키워드</p>
-							<div id="box">
-							<input type="text" name="recipe_name" placeholder="감자 닭고기 미역국..."> 
-							 <input type="button" value="추가" onclick="add_textbox()">
-							</div>	
-							
-							
-							분류
-							<table>
-								<tr>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="한식"> 한식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="양식"> 양식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="일식"> 일식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-								</tr>
-								<tr>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="중식"> 중식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-								</tr>
-							</table>
-							<br> 이런 사람에게 추천해요.
-							<table>
-								<tr>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="모두다"> </label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="고추"> </label> <img
-										th:src="@{/image/food/고추.svg}"></td>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="다이어트"> </label> <img
-										th:src="@{/image/food/다이어트.svg}"></td>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="이유식"> </label> <img
-										th:src="@{/image/food/이유식.svg}"></td>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="간단요리"> </label> <img
-										th:src="@{/image/food/logo.svg}"></td>
-								</tr>
-							</table>
+
+								분류
+								<table>
+									<tr>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="한식" checked="checked">
+												한식</label> <img th:src="@{/image/food/1111111.svg}"></td>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="양식"> 양식</label> <img
+											th:src="@{/image/food/1111111.svg}"></td>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="일식"> 일식</label> <img
+											th:src="@{/image/food/1111111.svg}"></td>
+									</tr>
+									<tr>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="중식"> 중식</label> <img
+											th:src="@{/image/food/1111111.svg}"></td>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
+											th:src="@{/image/food/1111111.svg}"></td>
+										<td width="150px" height="100px"><label><input
+												type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
+											th:src="@{/image/food/1111111.svg}"></td>
+									</tr>
+								</table>
+								<br> 이런 사람에게 추천해요.
+								<table>
+									<tr>
+										<td width="120px" height="100px"><label><input
+												type="checkbox" name="recipe_icon" value="모두다"
+												checked="checked"> </label> <img
+											th:src="@{/image/food/All 폴라.svg}"></td>
+										<td width="120px" height="100px"><label><input
+												type="checkbox" name="recipe_icon" value="고추"> </label> <img
+											th:src="@{/image/food/매운 음식 폴라.svg}"></td>
+										<td width="120px" height="100px"><label><input
+												type="checkbox" name="recipe_icon" value="다이어트"> </label> <img
+											th:src="@{/image/food/매운음식2 글씨굵게한거 폴라.svg}"></td>
+										<td width="120px" height="100px"><label><input
+												type="checkbox" name="recipe_icon" value="이유식"> </label> <img
+											th:src="@{/image/food/매운음식글씨굵게색깔갈색버전 폴라.svg}"></td>
+										<td width="120px" height="100px"><label><input
+												type="checkbox" name="recipe_icon" value="간단요리"> </label> <img
+											th:src="@{/image/food/다이어트식 폴라.svg}"></td>
+									</tr>
+
+								</table>
+							</div>
+
 						</div>
+						<input type="submit" value="저장" class="oder_btn">
 					</div>
-					<input type="submit" value="저장" class="oder_btn">
 				</div>
 			</div>
-		</div>
-	</form>
 
+		</form>
+	</div>
 
 
 
