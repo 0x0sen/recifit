@@ -3,7 +3,10 @@ package com.food.recifit.service;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,9 +103,65 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipelist;
 	}
 
+	@Override
+	public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon) {
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("recipe_type", recipe_type);
+		map.put("recipe_icon", recipe_icon);
+		map.put("searchWord", searchWord);
+		
+		log.debug("map : {}", map);
+		
+		ArrayList<Recipe> recipelist = recipeDAO.recifitCheck(map);
+		
+		log.debug("recipelist : {}", recipelist);
+		
+		return recipelist;
+		
+	}
+
+	
+
+	
+	
+	
+	}
+
+	
+
+	
+
+	
+
+//	@Override
+//	public ArrayList<Recipe> recifitCheck(List<String> searchWords, String recipe_type, List<String> recipeIcons) {
+//		ArrayList<Recipe> recipelist = recipeDAO.recifitCheck(searchWords, recipe_type, recipeIcons);
+//		return recipelist;
+//	}
+
+//	@Override
+//	public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon) {
+//		
+//		HashMap<String, String> map = new HashMap<>();
+//		map.put("recipe_type", recipe_type);
+//		map.put("recipe_icon", recipe_icon);
+//		map.put("searchWord", searchWord);
+//		
+//		log.debug("map : {}", map);
+//		
+//		ArrayList<Recipe> recipelist = recipeDAO.recifitCheck(map);
+//		
+//		log.debug("recipelist : {}", recipelist);
+//		
+//		return recipelist;
+//	}
+
+	
+
 	
 	
 	//조회 결과 중 위치, 개수 지정
 	//RowBounds rb = new RowBounds(start, count);
 
-}
+

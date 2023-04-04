@@ -17,12 +17,15 @@
     		self.close();
     	}
     }
-
+	
     function recifitCheck() {
-       window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=100,left=500,width=400,height=400');
-    }  
+    	window.open('recipe/recifitCheck', 'win', 'top=100,left=500,width=400,height=400');
+    }
+   
     </script>
     
+
+
 </head>
 <body>
 
@@ -74,42 +77,42 @@
 
                     <div class="s_1">
                    		<a th:href="@{/recipe/Korean}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/1111111.svg}">
                         </a>
                     </div>
 
                     <div class="s_1">
                      	<a th:href="@{/recipe/Western}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/1111111.svg}">
                     	</a>
                     </div>
 						
                     <div class="s_1">
                    		 <a th:href="@{/recipe/Japanese}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/1111111.svg}">
                        	</a>	 
                     </div>
 				 <div class="s_1">
 				 	<a th:href="@{/recipe/Chinese}">
-                         <img th:src="@{/image/food/logo.png}">
+                         <img th:src="@{/image/food/1111111.svg}">
                     </a>     
                    </div>
 
                     <div class="s_1">
 	                    <a th:href="@{/recipe/Asian}">
-	                        <img th:src="@{/image/food/logo.png}">
+	                        <img th:src="@{/image/food/1111111.svg}">
 	                     </a>    
                     </div>
 
                     <div class="s_1" >
 	                    <a th:href="@{/recipe/dessert}">
-	                        <img th:src="@{/image/food/logo.png}">
+	                        <img th:src="@{/image/food/1111111.svg}">
 	                    </a>     
                     </div>
                 </div>
 
              <!-- <input type="button" class="about_btn" onclick="recifitCheck()"  value="레시피 추천받기"> -->   
-				<a href="#" class="about_btn" onclick="recifitCheck()">
+				<a class="about_btn" onclick="recifitCheck()">
                     레시피 추천받기
                 </a>
             </div>

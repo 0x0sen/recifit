@@ -30,7 +30,7 @@ public class WebSecurityConfig {
               "/user/idCheck",
               "/user/delete",
               "/recipe/list",
-               "/recipe/read",              
+               "/recipe/read",
                 "/recipe/download",
                 "/image/**",
                 "/css/**",

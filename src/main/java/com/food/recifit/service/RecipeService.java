@@ -1,6 +1,7 @@
 package com.food.recifit.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,24 @@ public interface RecipeService {
 	
 	//디저트 레시피
 	public ArrayList<Recipe> dessertList(String searchWord);
+	
+	
+	public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//레시피 추천
+	//public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon);
+	//public ArrayList<Recipe> recifitCheck(List<String> searchWords, String recipe_type, List<String> recipeIcons);
 	
 	
 		
