@@ -31,7 +31,7 @@ public class WebSecurityConfig {
               "/user/mypage",
               "/user/delete",
               "/recipe/list",
-               "/recipe/read",              
+               "/recipe/read",
                 "/recipe/download",
                 "/recipe/listzzim",
                 "/recipe/readzzim",

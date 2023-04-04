@@ -195,10 +195,8 @@ section .main .main_image img{
 }
 
 .about .about_main .about_text .about_services .s_1{
-    display: flex;
     align-items: center;
     width: 180px;
-    background: #ececec;
     padding: 10px;
     border: 2px solid #facc22;
     cursor: pointer;
