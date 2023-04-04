@@ -65,8 +65,8 @@
 			<if test="zzim_savedfile != null and zzim_savedfile != ''">
 			, zzim_savedfile = #{zzim_savedfile}
 			</if>
-		<!--  where
-			zzim_num = #{zzim_num}-->
+		 where
+			zzim_num = #{zzim_num}
 	</update>
 
 	<!-- 찜 삭제 -->

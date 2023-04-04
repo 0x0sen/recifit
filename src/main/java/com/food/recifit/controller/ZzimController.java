@@ -95,9 +95,11 @@ public class ZzimController {
 		log.debug("잘되니");
 		//본인글인지 확인. 아니면 글목록으로 이동.
 		if (!zzim.getZzim_id().equals(user.getUsername())) {
+			log.debug("꽈당");
 			return "redirect:/recipe/listZzim";
 		}
 		//글정보를 모델에 저장
+		log.debug("수정할 찜 번호 : {}", num);	
 		model.addAttribute("Zzim", zzim);
 		//수정폼 html로 포워딩	
 		return "RecipeView/updateZzim";
@@ -132,11 +134,9 @@ public class ZzimController {
 		if (result == 1 && savedfile != null) {
 			FileService.deleteFile(uploadPath + "/" + oldZzim_savedfile);
 		}
-	return "redirect:/";
-//		return "redirect:readzzim?num=" + zzim.getZzim_num();
+	return "redirect:readzzim?num=" + zzim.getZzim_num();
 	}
-
-
+	
 	//찜 삭제
 	@GetMapping("/deletezzim")
 	public String deletezzim(@RequestParam(name="num", defaultValue="0") int num
