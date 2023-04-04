@@ -17,46 +17,6 @@
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 <link rel="stylesheet" th:href="@{/css/oneread.css}">
 <script>
-<<<<<<< HEAD
-
-$(document).ready(function(){
-	//찜6 버튼을 클릭하면 insertzzim()함수 호출 
-	$('#submit').click(insertzzim);
-
-});
-
-//찜 저장
-function insertzzim(){
-	
-	let recipe_num = $('#recipe_num').val();
-	let zzim_name = $('#zzim_name').html();
-	let zzim_originalfile = $('#zzim_originalfile').val(-------------------
-	
-			-	$.ajax({
-		url: 'insertzzim',
-		type: 'post',
-		data: {recipe_num: recipe_num
-			,zzim_name: zzim_name
-			,zzim_originalfile: zzim_originalfile
-			,zzim_savedfile: zzim_savedfile
-			,zzim_need: zzim_need
-			,zzim_howto: zzim_howto
-			,zzim_type: zzim_type
-			,zzim_icon: zzim_icon
-			},
-		success: function(result){
-			if(result == 1) 
-			alert('찜 저장되었습니다.');
-			else{
-			alert('이미 저장되어 있습니다.');}			
-		},
-		error: function(){
-			alert('로그인 후 이용가능합니다.');
-			 window.open('../user/loginForm', 'parent', 'width=700px,height=800px,scrollbars=yes');
-		}	
-	});
-}	
-=======
 	$(document).ready(function() {
 		$('#submit').click(formSubmit);
 	});
@@ -106,62 +66,7 @@ function insertzzim(){
 		}
 	}
 </script>
->>>>>>> d5771263b7e7150bb3ee7fad82b7b2816aef60fd
 
-
-
-	$(document).ready(function() {
-		$('#submit').click(formSubmit);
-	});
-	//프론트에서 서버로 가져오는 것
-	function formSubmit() {
-		//레시피 불러온다.
-		let n = $('#recipe_name').val();
-		let t = $('#recipe_type').val();
-		let i = $('#recipe_icon').val();
-		let id = $('#user_id').val();
-		let nd = $('#recipe_need').val();
-		let h = $('#recipe_howto').val();
-		//입력한 내용을 서버로 전송
-		$.ajax({
-
-			url : 'insertzzim',
-			type : 'post',
-			data : {
-				recipe_name : n,
-				recipe_type : t,
-				recipe_icon : i,
-				user_id : id,
-				recipe_need : nd,
-				recipe_howto : h
-			},
-			success : function() {
-				alert('저장되었습니다.');
-			},
-			error : function() {
-				alert('저장실패');
-			}
-		});
-	}
->>>>>>> origin/SWHTML
-</script>
-
-
-<script type="text/javascript">
-	//레시피 삭제 
-	function deleterecipe(n) {
-		if (confirm('삭제하시겠습니까?')) {
-			location.href = 'delete?num=' + n;
-		}
-	}
-	//리플 삭제
-	function deleteComment(comment_num, recipe_num) {
-		if (confirm('삭제하시겠습니까?')) {
-			location.href = 'deleteComment?comment_num=' + comment_num
-					+ '&recipe_num=' + recipe_num;
-		}
-	}
-</script>
 
 </head>
 <body>
@@ -193,103 +98,6 @@ function insertzzim(){
 					th:href="@{/user/logout}">로그아웃</a></span>
 			</div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    </section>
-
-	<form id="readRecipe" th:action="@{/recipe/read}" method="post">
-
-		<table>
-			<tr>
-
-				<!-- 화면에 바로뜸.  -->
-				<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
-				<!-- 이렇게 하는 경우도 있고, 저장 장소를 static에 해서 누구든지 볼수 있게 할수도 있다고함....있다고함..  -->
-
-			</tr>
-			<input type="hidden" name="recipe_num" th:value="${recipe.recipe_num}" id="recipe_num">
-			<input type="hidden" name="zzim_originalfile" th:value="${recipe.recipe_originalfile}" id="zzim_originalfile">
-			<input type="hidden" name="zzim_savedfile" th:value="${recipe.recipe_savedfile}" id="zzim_savedfile">
-			<tr>
-				<th>요리 제목</th>
-				<td th:text="${recipe.recipe_name}"  id="zzim_name"></td>
-			</tr>
-			<tr>
-				<th>레시피 분류</th>
-				<td th:text="${recipe.recipe_type}" id="zzim_type"></td>
-			</tr>
-			<tr>
-				<th>레시피 아이콘</th>
-				<td th:text="${recipe.recipe_icon}"  id="zzim_icon"></td>
-			</tr>
-			<tr>
-				<th>레시피 조회수</th>
-				<td th:text="${recipe.recipe_hit}"></td>
-			</tr>
-			<tr>
-				<th>레시피 찜수</th>
-				<td th:text="${recipe.recipe_zzimSum}"></td>
-			</tr>
-			<tr>
-				<th>레시피 찜버튼</th>
-				<td><input type="button" id="submit" value="찜"></td>
-			<!-- 	<td><a th:href="@{/recipe/insertzzim(num=${recipe.recipe_num})}">찜</a></td> -->
-			</tr>
-			<tr>
-				<th>작성자 아이디</th>
-				<td th:text="${recipe.user_id}" ></td>
-			</tr>
-			<tr>
-				<th>글 작성 날짜</th>
-				<td th:text="${recipe.recipe_date}" ></td>
-			</tr>
-			<tr>
-				<th>재료</th>
-				<td th:text="${recipe.recipe_need}" id="zzim_need"></td>
-			</tr>
-			<tr>
-				<th>요리 순서</th>
-				<td th:utext="${recipe.recipe_howto}" id="zzim_howto"></td>
-			</tr>
-		</table>
-	</form>
-	<!-- 본인글일때 출력 -->
-	<span th:if="${#authentication.name} == ${recipe.user_id}">
-		<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a> 
-		<a th:href="|javascript:deleterecipe(${recipe.recipe_num})|">삭제</a>
-	</span>
-
-	<!-- 로그인했을때 출력되는 댓글 작성 폼 -->
-	<div sec:authorize="isAuthenticated()">
-		<form th:action="@{/recipe/writeComment}" method="post"
-			onsubmit="return validation()">
-			<input type="hidden" name="recipe_num"
-				th:value="${recipe.recipe_num}"> <input type="text"
-				name="comment_text" id="comment_text" style="width: 500px;">
-			<input type="submit" value="확인">
-		</form>
-	</div>
-
-	<!-- 현재 글의 댓글들 출력 -->
-	<table>
-		<tr th:each="comment : ${commentlist}">
-			<td th:text="${comment.user_id}"></td>
-			<td th:text="${comment.comment_text}"></td>
-			<td th:text="${comment.comment_date}"></td>
-
-			<!-- 자기 댓글 삭제 -->
-
-			<td><span th:if="${#authentication.name} == ${comment.user_id}">
-					<a
-					th:href="|javascript:deleteComment(${comment.comment_num}, ${comment.recipe_num})|">
-						<img th:src="@{/image/icon_delete_24.png}">
-				</a>
-			</span></td>
-		</tr>
-	</table>
-
-	</section>
-=======
 		</nav>
 
 	</section>
@@ -302,21 +110,6 @@ function insertzzim(){
 
 	<!-- 베너부분입니다 -->
 
->>>>>>> origin/SWHTML
-=======
-		</nav>
-
-	</section>
-	<!-- 베너부분입니다 -->
-	<div class="banner_bg">
-		<h1>
-			수정<span>중입니다. </span>
-		</h1>
-	</div>
-
-	<!-- 베너부분입니다 -->
-
->>>>>>> d5771263b7e7150bb3ee7fad82b7b2816aef60fd
 
 
 
