@@ -17,6 +17,7 @@
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 <link rel="stylesheet" th:href="@{/css/oneread.css}">
 <script>
+<<<<<<< HEAD
 
 $(document).ready(function(){
 	//찜6 버튼을 클릭하면 insertzzim()함수 호출 
@@ -55,6 +56,57 @@ function insertzzim(){
 		}	
 	});
 }	
+=======
+	$(document).ready(function() {
+		$('#submit').click(formSubmit);
+	});
+	//프론트에서 서버로 가져오는 것
+	function formSubmit() {
+		//레시피 불러온다.
+		let n = $('#recipe_name').val();
+		let t = $('#recipe_type').val();
+		let i = $('#recipe_icon').val();
+		let id = $('#user_id').val();
+		let nd = $('#recipe_need').val();
+		let h = $('#recipe_howto').val();
+		//입력한 내용을 서버로 전송
+		$.ajax({
+
+			url : 'insertzzim',
+			type : 'post',
+			data : {
+				recipe_name : n,
+				recipe_type : t,
+				recipe_icon : i,
+				user_id : id,
+				recipe_need : nd,
+				recipe_howto : h
+			},
+			success : function() {
+				alert('저장되었습니다.');
+			},
+			error : function() {
+				alert('저장실패');
+			}
+		});
+	}
+</script>
+<script type="text/javascript">
+	//레시피 삭제 
+	function deleterecipe(n) {
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'delete?num=' + n;
+		}
+	}
+	//리플 삭제
+	function deleteComment(comment_num, recipe_num) {
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'deleteComment?comment_num=' + comment_num
+					+ '&recipe_num=' + recipe_num;
+		}
+	}
+</script>
+>>>>>>> d5771263b7e7150bb3ee7fad82b7b2816aef60fd
 
 
 
@@ -141,6 +193,7 @@ function insertzzim(){
 					th:href="@{/user/logout}">로그아웃</a></span>
 			</div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     </section>
 
@@ -250,6 +303,20 @@ function insertzzim(){
 	<!-- 베너부분입니다 -->
 
 >>>>>>> origin/SWHTML
+=======
+		</nav>
+
+	</section>
+	<!-- 베너부분입니다 -->
+	<div class="banner_bg">
+		<h1>
+			수정<span>중입니다. </span>
+		</h1>
+	</div>
+
+	<!-- 베너부분입니다 -->
+
+>>>>>>> d5771263b7e7150bb3ee7fad82b7b2816aef60fd
 
 
 
