@@ -98,7 +98,7 @@ public class RecipeController {
 	//글쓰기 폼
 	@GetMapping("/write")
 	public String write() {		
-		
+		return "/RecipeView/writeRecipe";
 	}
 
 	//글저장
