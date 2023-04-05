@@ -12,6 +12,12 @@
     
     
 <script>
+window.onload = function(){
+	if(opener != null){
+		opener.location.reload();
+		self.close();}
+}
+
 function recifitCheck() {
 	window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=70,left=500,width=400,height=770');
 }
