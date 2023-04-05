@@ -73,8 +73,6 @@ public class RecipeController {
             @RequestParam String recipe_type,
             @RequestParam String recipe_icon,
             Model model) {
-		
-		
 	
 	ArrayList<Recipe> recipeList = service.recifitCheck(searchWord, recipe_type, recipe_icon);
 	

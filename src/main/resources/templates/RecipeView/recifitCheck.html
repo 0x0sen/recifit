@@ -34,48 +34,27 @@
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$('#summernote')
-								.summernote(
-										{
-											placeholder : '내용을 입력해주세요.',
-											height : 300,
-											toolbar : [
-													[ 'style', [ 'style' ] ],
-													[ 'color', [ 'color' ] ],
-													[
-															'para',
-															[ 'ul', 'ol',
-																	'paragraph' ] ],
-													[ 'table', [ 'table' ] ],
-													[ 'insert', [ 'insert' ] ],
-													[
-															'view',
-															[ 'fullscreen',
-																	'codeview',
-																	'help' ] ] ]
-										});
-					});
-
-	function validation() {
-		let title = document.getElementById('recipe_name');
-		let contents = document.getElementById('recipe_howto');
-
-		if (recipe_name.value.length < 5) {
-			alert("제목을 입력하세요.");
-			recipe_name.focus();
-			recipe_name.select();
-			return false;
-		}
-		if (recipe_howto.value.length < 5) {
-			alert("내용을 입력하세요.");
-			recipe_howto.focus();
-			recipe_howto.select();
-			return false;
-		}
-		return true;
+	
+	function closing(){
+		
+		
+		document.getElementById("recommend").submit();
+		
+	
+		
+		let searchWord = document.querySelector('input[name="searchWord"]').value;
+		
+		
+		
+		let recipe_type = document.querySelector('input[name="recipe_type"]:checked') ? document.querySelector('input[name="recipe_type"]:checked').value : '';
+		
+		
+	    let recipe_icon= document.querySelector('input[name="recipe_icon"]:checked') ? document.querySelector('input[name="recipe_icon"]:checked').value : '';
+	  
+	    window.opener.location.href = '/recifit/recipe/recifitCheck2?searchWord='+searchWord+ '&recipe_type='+recipe_type+'&recipe_icon='+recipe_icon;
+		 
+		  this.close();
+		  
 	}
 	
 	const add_textbox = () => {
@@ -91,13 +70,9 @@
 </script>
 </head>
 <body>
-
-
-
 	<div class="mama">
 		<!--Oder-->
-		<form th:action="@{/recipe/write}" method="post"
-			enctype="multipart/form-data" onsubmit="return validation();">
+		<form method="get" id="recommend">
 
 			<div class="oder">
 				<div class="oder_main">
@@ -108,7 +83,7 @@
 								<P class="find">맞춤레시피 찾기</P>
 								<p>키워드</p>
 								<div id="box">
-									<input type="text" name="recipe_name"
+									<input type="text" name="searchWord"
 										placeholder="감자 닭고기 미역국..."> <input type="button"
 										value="추가" onclick="add_textbox()">
 								</div>
@@ -118,7 +93,7 @@
 							<table>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="한식" checked="checked"></label> <img th:src="@{/image/food/한식 우표2.svg}"></td>
+											type="radio" name="recipe_type" value="한식"></label> <img th:src="@{/image/food/한식 우표2.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="양식"> </label> <img
 										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
@@ -142,7 +117,7 @@
 							<table>
 								<tr>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="모두다" checked="checked"> </label> <img
+											type="checkbox" name="recipe_icon" value="모두다"> </label> <img
 										th:src="@{/image/food/All.svg}"></td>
 									<td width="120px" height="100px"><label><input
 											type="checkbox" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/매운음식 폴라로이드.svg}"></td>
@@ -161,21 +136,12 @@
 							</div>
 
 						</div>
-						<input type="submit" value="저장" class="oder_btn">
+						<input type="button" value="저장" class="oder_btn" onclick="closing()">
 					</div>
 				</div>
 			</div>
 
 		</form>
 	</div>
-
-
-
-
-
-
-
-
-
 </body>
 </html>

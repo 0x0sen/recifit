@@ -431,11 +431,6 @@
       </if>
     </where>  
 
-
-      
-      
-   
-
     order by 
        recipe_num desc
 </select>
