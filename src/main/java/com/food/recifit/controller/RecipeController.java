@@ -69,18 +69,20 @@ public class RecipeController {
 	}
 	
 	@GetMapping("recifitCheck2")
-	public String recifitCheck2(@RequestParam String searchWord,
+	public String recifitCheck2(@RequestParam String searchWord_values,
             @RequestParam String recipe_type,
-            @RequestParam String recipe_icon,
+            @RequestParam String recipe_icon_values,
             Model model) {
+		
+		//String[] recipe_icon_array= recipe_icon_values.split(", ");	
 	
-	ArrayList<Recipe> recipeList = service.recifitCheck(searchWord, recipe_type, recipe_icon);
+	ArrayList<Recipe> recipeList = service.recifitCheck(searchWord_values, recipe_type, recipe_icon_values);
 	
 	model.addAttribute("recipeList", recipeList);
 	
-	log.debug("넘어간 값 : {}", searchWord);
+	log.debug("넘어간 값 : {}", searchWord_values);
 	log.debug("넘어간 값 : {}", recipe_type);
-	log.debug("넘어간 값 : {}", recipe_icon);
+	log.debug("넘어간 값 : {}", recipe_icon_values);
 	
 	//split해서 ,기준으로 자른 다음, 배열 list를 전달받는 mybatis의 동적 sql. mapper sql에서 and반복문
 	
@@ -91,6 +93,7 @@ public class RecipeController {
 	return "RecipeView/list";
 	
 	}
+
 
 	
 	//글쓰기 폼
@@ -223,7 +226,7 @@ public class RecipeController {
 			@RequestParam(name = "num", defaultValue="0") int num
 			, Model model) {
 		//본문글 정보
-		log.debug("read: ",num);
+		log.debug("read: ", num);
 		if(num == 0) {
 			return "redirect:list";
 		}

@@ -37,30 +37,37 @@
 	
 	function closing(){
 		
+		let searchWord2 = document.querySelectorAll('input[name="searchWord"]');
+		let searchWord_values=[];
+		    
+		searchWord2.forEach(searchWord => {
+		    searchWord_values.push(searchWord.value);
+		});
 		
-		document.getElementById("recommend").submit();
-		
-	
-		
-		let searchWord = document.querySelector('input[name="searchWord"]').value;
-		
-		
-		
-		let recipe_type = document.querySelector('input[name="recipe_type"]:checked') ? document.querySelector('input[name="recipe_type"]:checked').value : '';
+		let recipe_type = document.querySelector('input[name="recipe_type"]:checked')?document.querySelector('input[name="recipe_type"]:checked').value:'';
 		
 		
-	    let recipe_icon= document.querySelector('input[name="recipe_icon"]:checked') ? document.querySelector('input[name="recipe_icon"]:checked').value : '';
-	  
-	    window.opener.location.href = '/recifit/recipe/recifitCheck2?searchWord='+searchWord+ '&recipe_type='+recipe_type+'&recipe_icon='+recipe_icon;
+	    let recipe_icons= document.querySelectorAll('input[name="recipe_icon"]:checked');
+	    
+	    let recipe_icon_values=[];
+	    
+	    recipe_icons.forEach(recipe_icon=>{
+	    	if(recipe_icon.checked){
+	    		recipe_icon_values.push(recipe_icon.value);
+	    	} //else {recipe_icon=''} 
+	    });
+	    
+	    
+	    
+	    window.opener.location.href = '/recifit/recipe/recifitCheck2?searchWord_values='+searchWord_values.join(',')+ '&recipe_type='+recipe_type+'&recipe_icon_values=' + recipe_icon_values.join(',');
 		 
-		  this.close();
-		  
+		this.close();
 	}
 	
 	const add_textbox = () => {
         const box = document.getElementById("box");
         const newP = document.createElement('p');
-        newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
+        newP.innerHTML = "<input type='text' name='searchWord'> <input type='button' value='삭제' onclick='remove(this)'>";
         box.appendChild(newP);
     }
     const remove = (obj) => {

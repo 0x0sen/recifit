@@ -52,8 +52,13 @@ public interface RecipeDAO {
 	//디저트 레시피
 	public ArrayList<Recipe> dessertList(String searchWord);
 	
+	public ArrayList<Recipe> recifitCheck(HashMap<String, Object> map);
 	
-	public ArrayList<Recipe> recifitCheck(HashMap<String, String> map);
+	//조회수
+	public int add(int recipe_num);
+	
+	
+	
 	
 	
 	
