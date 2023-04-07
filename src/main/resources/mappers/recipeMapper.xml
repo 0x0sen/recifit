@@ -83,6 +83,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -117,6 +118,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -161,6 +163,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -205,6 +208,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -249,6 +253,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -293,6 +298,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -337,6 +343,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -404,6 +411,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
