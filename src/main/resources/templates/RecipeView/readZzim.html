@@ -33,6 +33,23 @@ function deletezzim(n){
 	// http://localhost:8884/spring5/board/delete?num=1
 	}
 }
+
+function pdfDownload(){
+	let zzim_name = $('#zzim_name').html();
+    $.ajax({
+        url : 'pdfzzim',
+        type: 'get',
+        data:{
+        	zzim_name: zzim_name
+        	},
+        success:function(result){
+            alert("성공");
+         },
+         error:function(result){
+            alert("다운로드에 실패하였습니다.");        
+         }
+     });
+}
 </script>
 <title>myRecipe</title>
 
@@ -82,8 +99,8 @@ function deletezzim(n){
 				</tr>
 
 				<tr>
-					<th>레시피 이름</th>
-					<td th:text="${Zzim.zzim_name}"></td>
+					<th>요리 이름</th>
+					<td th:text="${Zzim.zzim_name}" id="zzim_name"></td>
 				</tr>
 				<tr>
 					<th>레시피 분류</th>
@@ -112,6 +129,12 @@ function deletezzim(n){
 				<p>
 				<tr>
 				<a th:href="|javascript:deletezzim(${Zzim.zzim_num})|" >삭제</a>
+				</tr>
+				<p>
+				<tr>
+				<input type="button" id="pdf" onclick="pdfDownload();" value="PDF">
+				 <a th:href="@{/recipe/pdfzzim}">PDF파일로 변환</a>
+				 <!--  <a th:href="@{/recipe/pdfzzim(num=${Zzim.zzim_num})}">PDF파일로 변환</a> -->
 				</tr>
 			</table>
 		</form>

@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
-import com.food.recifit.domain.User;
 import com.food.recifit.service.CommentService;
 import com.food.recifit.service.RecipeService;
 import com.food.recifit.util.FileService;

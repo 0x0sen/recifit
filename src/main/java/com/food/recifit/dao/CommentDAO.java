@@ -1,10 +1,8 @@
 package com.food.recifit.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.session.RowBounds;
 
 import com.food.recifit.domain.Comment;
 

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.food.recifit.domain.Zzim;
 
 /**
- * 찜에 대한 zzDAO
+ * 찜에 대한 zzimDAO
  * @author user
  *
  */
@@ -28,6 +28,7 @@ public interface ZzimDAO {
 	public int updatezzim(Zzim zzim); 
 	//전체 찜 개수 
 	public int totalzzim(HashMap<String, String> map);
-
+	//찜 pdf
+	public int pdfzzim(Zzim zzim);
 
 }

@@ -21,5 +21,4 @@ public interface ZzimService {
 		public Zzim findzzim(int recipe_num,String zzim_id);
 		//찜 수정
 		public int updatezzim(Zzim zzim);
-
 }

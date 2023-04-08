@@ -1,7 +1,9 @@
 package com.food.recifit.service;
 
 import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
+
 import com.food.recifit.domain.User;
 
 

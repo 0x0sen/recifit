@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 
 /**

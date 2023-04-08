@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script>
+	// jsp에서 button클릭시 PdfDownload()함수 실행
+	function PdfDownload(){
+		var imagingVO = {
+			img1:img1,
+	        	img2:img2,
+	        	img3:img3,
+	        	img4:img4
+		};
+
+	    $.ajax({
+	       url : GLOBAL_CONTEXT_PATH + '/imagingInfo/pdfCreate.do',
+	       type:"POST",
+	       data:imagingVO,
+	       success:function(data){
+	           alert("성공");
+	        },
+	        error:function(data){
+	           alert("다운로드에 실패하였습니다.");        
+	        }
+	    });
+	}
+	</script>
+</head>
+<body face="HYGoThic-Medium" encoding="UniKS-UCS2-H">
+
+	<table width="100%" bgcolor="#2862A7">
+		<tr><td><br></td></tr>
+		<tr><td align="center" color="white" style="font-zize:20pt;font-weight:bold;">
+        ID : ${img1}</td></tr>
+		<tr><td> </td></tr>
+	</table>
+	<table><tr><td><br></td></tr></table>
+    <table width="100%" border="1">
+    	<tr>
+    		<td style="font-size:8pt" bgcolor="#ebecf0" align="center">img2</td>
+    		<td style="font-size:8pt" bgcolor="#ebecf0" align="center">img3</td>
+    		<td style="font-size:8pt" bgcolor="#ebecf0" align="center">img4</td>
+    	</tr>
+    	<tr>
+    		<td style="font-size:6.5pt" align="center">${img2}</td>
+    		<td style="font-size:6.5pt" align="center">${img3}</td>
+    		<td style="font-size:6.5pt" align="center">${img4}</td>
+    	</tr>
+	</table>
+</body>
+</html>

@@ -3,13 +3,11 @@ package com.food.recifit.service;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.food.recifit.dao.RecipeDAO;
-import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
 
 import lombok.extern.slf4j.Slf4j;
