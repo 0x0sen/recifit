@@ -135,6 +135,8 @@
 								<p>
 	<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
 	</p>
+				<input type="hidden" name="zzim_num" th:value="${Zzim.zzim_num}" id="zzim_num">
+				<input type="hidden" name="recipe_num" th:value="${Zzim.recipe_num}" id="recipe_num">
 							<p>사진수정</p>
 							<input type="file" name="upload">
 

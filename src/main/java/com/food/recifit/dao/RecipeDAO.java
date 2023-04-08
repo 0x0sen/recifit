@@ -2,6 +2,8 @@ package com.food.recifit.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -49,5 +51,24 @@ public interface RecipeDAO {
 	
 	//디저트 레시피
 	public ArrayList<Recipe> dessertList(String searchWord);
+	
+	public ArrayList<Recipe> recifitCheck(HashMap<String, Object> map);
+	
+	//조회수
+	public int add(int recipe_num);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//레시피 추천
+	//public ArrayList<Recipe> recifitCheck(HashMap<String, String> map);
+	//public ArrayList<Recipe> recifitCheck(List<String> searchWords, String recipe_type, List<String> recipeIcons);
 
 	}

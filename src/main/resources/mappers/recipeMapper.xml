@@ -42,6 +42,15 @@
     where recipe_num = #{recipe_num}
 </select>
 
+<update id="add" parameterType="int">
+	update
+		rf_recipe
+	set
+		recipe_hit = recipe_hit + 1
+	where 
+		recipe_num = #{recipe_num}
+</update>
+
 <!-- 레시피 수정 -->
 <update id="updaterecipe" parameterType="Recipe">
    update 
@@ -74,6 +83,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -108,6 +118,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -152,6 +163,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -196,6 +208,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -240,6 +253,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -284,6 +298,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -328,6 +343,7 @@
       , recipe_name
       , recipe_originalfile
       , recipe_savedfile
+      , recipe_type
       , recipe_icon
       , recipe_hit
       , recipe_zzimSum
@@ -388,6 +404,61 @@
 </select>
 
 
+
+<select id="recifitCheck" parameterType="map" resultType="Recipe">
+   select 
+        recipe_num
+      , recipe_name
+      , recipe_originalfile
+      , recipe_savedfile
+      , recipe_type
+      , recipe_icon
+      , recipe_hit
+      , recipe_zzimSum
+      , user_id
+    from 
+       rf_recipe 
+    <!-- 검색어가 null이 아니면 where 조건을 추가한다 -->
+    <!-- 레시피제목, 레시피작성자 닉네임, 레시피재료,레시피 방법에서 모두 검색한다 -->
+
+    <!-- 조건이 없을 땐 where를 없애라 where -->
+    
+	<where>
+       1=1
+  
+  	  	
+      <if test="searchWord_values != null">
+      
+      	  and
+	      <foreach collection="searchWord_values" item="searchWord" separator="or" open="(" close=")">
+	            upper(recipe_name) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_need) like '%' || upper(#{searchWord}) || '%'
+                   or
+                      upper(recipe_howto) like '%' || upper(#{searchWord}) || '%'
+                   or   
+                    upper(user_id) like '%' || upper(#{searchWord}) || '%'
+	             
+	        </foreach>
+      </if>
+      
+       
+       <if test="recipe_type != null and recipe_type != ''">
+       and recipe_type = #{recipe_type}
+       </if>
+      
+        
+       <if test="recipe_icon_values != null and recipe_icon_values != ''">
+       and  recipe_icon in 
+	      <foreach collection="recipe_icon_values" item="recipeIcon" separator="," open="(" close=")">
+	             #{recipeIcon}
+	        </foreach>
+        </if>
+   </where>
+
+    order by 
+       recipe_num desc
+</select>
 
 
 </mapper> 
