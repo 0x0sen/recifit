@@ -80,9 +80,9 @@
 							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
 							<h3 th:text="${recipe.user_id}"></h3>
-						<table>
-							<tr>
-								<td width="100px" height="70px">
+						<table >
+							<tr >
+								<td width="200px" height="70px">
 									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
 									<img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
 									<img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
@@ -90,16 +90,14 @@
 									<img th:if="${recipe.recipe_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
 									<img th:if="${recipe.recipe_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
 								</td>
-								<td width="100px" height="70px">
+								<td width="150px" height="70px">
 									<img th:if="${recipe.recipe_icon == '모두다'}" th:src="@{/image/food/All.svg}">
 									<img th:if="${recipe.recipe_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
 									<img th:if="${recipe.recipe_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
 									<img th:if="${recipe.recipe_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
 									<img th:if="${recipe.recipe_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
 								</td>
-								<td >
-									<a href="#" class="menu_btn">찜</a>
-								</td>
+							
 							</tr>
 						</table>
 					</div>
