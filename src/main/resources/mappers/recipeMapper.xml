@@ -43,12 +43,12 @@
 </select>
 
 <update id="add" parameterType="int">
-   update
-      rf_recipe
-   set
-      recipe_hit = recipe_hit + 1
-   where 
-      recipe_num = #{recipe_num}
+    update
+        rf_recipe
+    set
+        recipe_hit = recipe_hit + 1
+    where 
+        recipe_num = #{recipe_num}
 </update>
 
 <!-- 레시피 수정 -->
