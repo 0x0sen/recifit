@@ -12,7 +12,8 @@
 		, zzim_id
 		, zzim_name
 		, zzim_originalfile
-		, zzim_savedfile
+		,
+		zzim_savedfile
 		, zzim_need
 		, zzim_howto
 		, zzim_type
@@ -23,11 +24,13 @@
 		, #{recipe_num}
 		, #{zzim_id}
 		, #{zzim_name}
-		, #{zzim_originalfile}
+		,
+		#{zzim_originalfile}
 		, #{zzim_savedfile}
 		, #{zzim_need}
 		, #{zzim_howto}
-		, #{zzim_type}
+		,
+		#{zzim_type}
 		, #{zzim_icon}
 		)
 	</insert>
@@ -46,27 +49,27 @@
 		*
 		from rf_zzim
 		where recipe_num = #{recipe_num}
-		and zzim_id = #{zzim_id}		
+		and zzim_id = #{zzim_id}
 	</select>
-	
+
 	<!-- 찜 글 수정 -->
 	<update id="updatezzim" parameterType="Zzim">
 		update
-			rf_zzim
+		rf_zzim
 		set
-			zzim_name = #{zzim_name}
-			, zzim_need = #{zzim_need}
-			, zzim_howto = #{zzim_howto}
-			, zzim_type = #{zzim_type}
-			, zzim_icon = #{zzim_icon}
-			<if test="zzim_originalfile != null and zzim_originalfile != ''">
+		zzim_name = #{zzim_name}
+		, zzim_need = #{zzim_need}
+		, zzim_howto = #{zzim_howto}
+		, zzim_type = #{zzim_type}
+		, zzim_icon = #{zzim_icon}
+		<if test="zzim_originalfile != null and zzim_originalfile != ''">
 			, zzim_originalfile = #{zzim_originalfile}
-			</if>
-			<if test="zzim_savedfile != null and zzim_savedfile != ''">
+		</if>
+		<if test="zzim_savedfile != null and zzim_savedfile != ''">
 			, zzim_savedfile = #{zzim_savedfile}
-			</if>
-		 where
-			zzim_num = #{zzim_num}
+		</if>
+		where
+		zzim_num = #{zzim_num}
 	</update>
 
 	<!-- 찜 삭제 -->
@@ -84,22 +87,24 @@
 		, zzim_date
 		, zzim_name
 		, zzim_originalfile
-		, zzim_savedfile
+		,
+		zzim_savedfile
 		, zzim_type
 		, zzim_icon
 		from
 		rf_zzim
-		WHERE zzim_id = #{zzim_id} 
-         <if test="searchWord != null">
-         	and
-            upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
-            or
-            upper(zzim_need) like '%' || upper(#{searchWord}) || '%'
-            or
-            upper(zzim_howto) like '%' || upper(#{searchWord}) || '%'
-            or
-            upper(zzim_id) like '%' || upper(#{searchWord}) || '%'
-         </if>
+		WHERE zzim_id =
+		#{zzim_id}
+		<if test="searchWord != null">
+			and
+			upper(zzim_name) like '%' || upper(#{searchWord}) || '%'
+			or
+			upper(zzim_need) like '%' || upper(#{searchWord}) || '%'
+			or
+			upper(zzim_howto) like '%' || upper(#{searchWord}) || '%'
+			or
+			upper(zzim_id) like '%' || upper(#{searchWord}) || '%'
+		</if>
 
 		order by
 		zzim_num desc
