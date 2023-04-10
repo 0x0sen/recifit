@@ -9,7 +9,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<link rel="stylesheet" th:href="@{/css/foodread.css}">
+<link rel="stylesheet" th:href="@{/css/zimread.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -79,6 +79,8 @@
 </script>
 
 
+
+
 </head>
 <body>
 
@@ -115,7 +117,7 @@
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
 		<h1>
-			수정<span>중입니다. </span>
+			수정<span>수정 </span>
 		</h1>
 	</div>
 
@@ -154,20 +156,34 @@
 					<div class="product-price">
 						<table>
 							<table>
-								<tr>
+								<!--<tr> 
 									<td width="150px" height="100px" id="zzim_icon"><img
 										th:src="@{/image/food/매운음식 폴라로이드.svg}"></td>
 									<td width="150px" height="100px" id="zzim_type"><img
 										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
-								</tr>
+								</tr> -->
 								<tr>
-									<th>레시피 분류</th>
-									<td th:text="${recipe.recipe_type}" id="zzim_type"></td>
+								<th style="display:none">레시피 아이콘</th>
+									<td width="150px" height="100px">
+										<img th:if="${recipe.recipe_icon == '모두다'}" th:src="@{/image/food/All.svg}">
+										<img th:if="${recipe.recipe_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
+										<img th:if="${recipe.recipe_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
+										<img th:if="${recipe.recipe_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
+										<img th:if="${recipe.recipe_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
+									</td>
+									
+									<th style="display:none" >레시피 분류</th>
+									<td width="200px" height="100px">
+									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
+									  <img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									  <img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									  <img th:if="${recipe.recipe_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									  <img th:if="${recipe.recipe_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									  <img th:if="${recipe.recipe_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
+									</td>
+									
 								</tr>
-								<tr>
-									<th>레시피 아이콘</th>
-									<td th:text="${recipe.recipe_icon}" id="zzim_icon"></td>
-								</tr>
+								
 							</table>
 							</div>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Food Website</title>
-<link rel="stylesheet" th:href="@{/css/foodzimread.css}">
+<link rel="stylesheet" th:href="@{/css/foodread.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -46,7 +46,7 @@
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
 		<h1>
-			찜한<span>양식,이유식 같은거 안불러와짐</span>
+			찜한<span>모든 레시피</span>
 		</h1>
 	</div>
 
@@ -79,7 +79,9 @@
 							</a>
 						</div>
 
-						
+						<div class="small_card">
+							<i class="fa-solid fa-heart"></i>
+						</div>
 
 						<div class="menu_info">
 							<h2>
@@ -88,29 +90,14 @@
 							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
 							<h3 th:text="${zzim.zzim_id}"></h3>
-							<!-- 
-							<table >
-							<tr >
-								<td width="200px" height="70px">
-									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
-									<img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
-									<img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
-									<img th:if="${recipe.recipe_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
-									<img th:if="${recipe.recipe_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
-									<img th:if="${recipe.recipe_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
-								</td>
-								<td width="150px" height="70px">
-									<img th:if="${recipe.recipe_icon == '모두다'}" th:src="@{/image/food/All.svg}">
-									<img th:if="${recipe.recipe_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
-									<img th:if="${recipe.recipe_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
-									<img th:if="${recipe.recipe_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
-									<img th:if="${recipe.recipe_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
-								</td>
-							
-							</tr>
-						</table>
-						 -->
+							<div class="menu_icon">
+								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star-half-stroke"></i>
+							</div>
+							<a href="#" class="menu_btn">Order Now</a>
 						</div>
+
 				</div>
 			</tr>
 		</div>
