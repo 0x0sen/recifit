@@ -21,9 +21,9 @@
 function deletezzim(n){
 	if (confirm('삭제하시겠습니까?')){
 	location.href='deletezzim?num=' + n;
-	// http://localhost:8884/spring5/board/delete?num=1
 	}
 }
+
 </script>
 <title>myRecipe</title>
 
@@ -50,10 +50,8 @@ function deletezzim(n){
 			</ul>
 
 			<div class="login">
-				<span sec:authorize="not isAuthenticated()"><a
-					th:href="@{/user/loginForm}">로그인</a></span> <span
-					sec:authorize="isAuthenticated()"><a
-					th:href="@{/user/logout}">로그아웃</a></span>
+				<span sec:authorize="not isAuthenticated()"><a th:href="@{/user/loginForm}">로그인</a></span> 
+				<span sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></span>
 			</div>
 
 		</nav>
@@ -66,39 +64,41 @@ function deletezzim(n){
 
 		<div class="login_form">
 
-			<h1>음식이름</h1>
+			<form id="readZzim" th:action="@{/recipe/readzzim}" method="post">
+			<h1><td th:text="${Zzim.zzim_name}" id="zzim_name"></td></h1>
 
-			<form id="loginForm">
 				<div>
-					<img th:src="@{/image/food/양식 피자 최종 우표1.svg}" width="700px"
+					<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}" width="700px"
 						height="600px">
 				</div>
 	<br>
 				<div class="purchase-info" style="display: inline-block; margin: 0 5px;  float: right;">
-							<th></th>
-            			<td><input type="button" id="submit" value="만들기"></td>
-							<button type="button" class="btn">찜</button>
-							<button type="button" class="btn">수정</button>
+            				<button type="button" th:onclick="|location.href='@{/recipe/pdfzzim(num=${Zzim.zzim_num})}'|" class="btn">PDF 변환</button>
+							<button type="button" th:onclick="|javascript:deletezzim(${Zzim.zzim_num})|" class="btn">찜 삭제</button>
+							<button type="button" th:onclick="|location.href='@{/recipe/updatezzim(num=${Zzim.zzim_num})}'|" class="btn">레시피 편집</button>
 						</div>
+
 				<table>
 					<tr>
 						<td width="200px" height="70px">
-						<img th:src="@{/image/food/한식 우표2.svg}">
+											<th>레시피 분류</th>
+					<td th:text="${Zzim.zzim_type}"></td>
 						</td>
 						<td width="150px" height="70px">
-						<img th:src="@{/image/food/이유식 폴라로이드.svg}">
+											<th>레시피 아이콘</th>
+					<td th:text="${Zzim.zzim_icon}"></td>
 						</td>
 						
 					</tr>
 				</table>
 				<div class="product-detail">
 							<ul> 
-								<li>작성자 아이디 : <span>1212 </span></li>
-								<li>레시피 조회수: <span>94</span></li>
-								<li>레시피 찜수: <span>0 </span></li>
-								<li>글 작성 날짜: <span>2023-04-08 15:31:12</span></li>
-								<li>재료: <span>치킨 </span></li>
-								<li>요리 순서: <span>kfc에 주문하기</span></li>
+								<li>					<th>찜한 날짜 : </th>
+					<td th:text="${Zzim.zzim_date}"></td></li>
+								<li>					<th>재료 : </th>
+					<td th:text="${Zzim.zzim_need}"></td></li>
+								<li>					<th>요리 소개 : </th>
+					<td th:utext="${Zzim.zzim_howto}"></td></li>
 								
 				</ul>
 						</div>

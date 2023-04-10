@@ -1,11 +1,11 @@
 package com.food.recifit.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +14,16 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.recifit.domain.Zzim;
 import com.food.recifit.service.ZzimServiceImpl;
 import com.food.recifit.util.FileService;
+import com.itextpdf.text.DocumentException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -159,6 +158,23 @@ public class ZzimController {
 		return "redirect:listzzim";
 	}		
 
-	
+	//찜목록 인쇄
+	@GetMapping("/pdfzzim")
+	public void exportToPDF(HttpServletResponse response, @RequestParam(name = "num", defaultValue="0") int num
+			, Model model) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy--MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=zzim_"+ currentDateTime +".pdf";
+		
+		response.setHeader(headerKey, headerValue);
+		Zzim zzim = service.selectzzim(num);
+		model.addAttribute("Zzim", zzim);
+		
+		ZzimPDFExporter exporter = new ZzimPDFExporter(zzim);
+		exporter.export(response, num);
+	}
 }
 

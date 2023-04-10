@@ -230,8 +230,9 @@
 								<button type="button" id="submit" class="btn">찜</button>
 								<!-- 본인글일때 출력 -->
 								<span th:if="${#authentication.name} == ${recipe.user_id}">
-									<a th:href="@{/recipe/update(recipe_num=${recipe.recipe_num})}">수정</a>
-									<a th:href="|javascript:deleterecipe(${recipe.recipe_num})|">삭제</a>
+									<button type="button" th:onclick="|location.href='@{/recipe/update(recipe_num=${recipe.recipe_num})}'|" class="btn">레시피 편집</button>
+					
+									<button type="button" th:onclick="|javascript:deleterecipe(${recipe.recipe_num})|" class="btn">레시피 삭제</button>
 								</span>
 								<!--  <button type="button" onclick="update();"class="btn">수정</button>-->
 							</div>
