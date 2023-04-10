@@ -154,14 +154,8 @@
 
 
 					<div class="product-price">
-						<table>
+						
 							<table>
-								<!--<tr> 
-									<td width="150px" height="100px" id="zzim_icon"><img
-										th:src="@{/image/food/매운음식 폴라로이드.svg}"></td>
-									<td width="150px" height="100px" id="zzim_type"><img
-										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
-								</tr> -->
 								<tr>
 								<th style="display:none">레시피 아이콘</th>
 									<td width="150px" height="100px">
@@ -174,7 +168,7 @@
 									
 									<th style="display:none" >레시피 분류</th>
 									<td width="200px" height="100px">
-									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
+									  <img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
 									  <img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
 									  <img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
 									  <img th:if="${recipe.recipe_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
@@ -274,17 +268,6 @@
 							</div>
 							</div>
 							</div>
-
-
-
-
-
-
-
-
-
-
-
 
 							<!--밑에부분-->
 
