@@ -43,6 +43,12 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 	
+	@Override
+	public ArrayList<Recipe> Homelist() {
+		ArrayList<Recipe> recipelist = recipeDAO.Homelist();
+		return recipelist;
+	}
+	
 	//전체 레시피 전체목록 + 검색 
 	@Override
 	public ArrayList<Recipe> list(String searchWord) {
@@ -122,17 +128,8 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	
-
-	
-	
 	
 	}
-
-	
-
-	
-
-	
 
 //	@Override
 //	public ArrayList<Recipe> recifitCheck(List<String> searchWords, String recipe_type, List<String> recipeIcons) {
@@ -163,5 +160,3 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	//조회 결과 중 위치, 개수 지정
 	//RowBounds rb = new RowBounds(start, count);
-
-

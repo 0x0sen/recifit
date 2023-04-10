@@ -48,6 +48,8 @@ public interface RecipeService {
 	
 	public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon);
 	
+	public ArrayList<Recipe> Homelist();
+	
 	
 	
 	

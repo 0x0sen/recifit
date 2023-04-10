@@ -27,6 +27,9 @@ public interface RecipeDAO {
 	public int updaterecipe(Recipe recipe);
 	//레시피 삭제
 	public int deleterecipe(Recipe recipe);
+	
+	public ArrayList<Recipe> Homelist();
+	
 	//레시피 전체 글 보기
 	public ArrayList<Recipe> list(String searchWord);
 	//전체 레시피 개수 
@@ -54,10 +57,6 @@ public interface RecipeDAO {
 	
 	
 	public ArrayList<Recipe> recifitCheck(HashMap<String, String> map);
-	
-	
-	
-	
 	
 	
 	
