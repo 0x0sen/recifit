@@ -10,19 +10,42 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="short icon" href="image/short_icon.png">
     
-    <script>
-    window.onload = function(){
-    	if(opener != null){
-    		opener.location.reload();
-    		self.close();
-    	}
-    }
-
-    function recifitCheck() {
-       window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=100,left=500,width=400,height=400');
-    }  
-    </script>
     
+<script>
+window.onload = function(){
+	if(opener != null){
+		opener.location.reload();
+		self.close();}
+}
+
+function recifitCheck() {
+	window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=70,left=500,width=400,height=770');
+}
+</script>    
+<style >
+.about .about_main .about_image {max-width:600px;margin:-10 auto;position:relative;}
+.about .about_main .about_image .slidelist {position:relative;white-space:nowrap;font-size:0;overflow:hidden;}
+.about .about_main .about_image .slidelist .slideitem {position:relative;display:inline-block;vertical-align:middle;background-color:#fff;width:100%;transition:all 1s;}
+.about .about_main .about_image .slidelist .slideitem > a {display:block;width:auto;position:relative;}
+.about .about_main .about_image .slidelist .slideitem > a img {max-width:100%;}
+
+.about .about_main .about_image .slide-control [class*="control"] label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:20px;border-radius:50%;cursor:pointer;}
+.about .about_main .about_image .slide-control [class*="control"] label.prev {left:-50px;background:#facc22 url('./image/left.png') center center / 50% no-repeat;}
+.about .about_main .about_image .slide-control [class*="control"] label.next {right:-50px;background:#facc22 url('./image/right.png') center center / 50% no-repeat;}
+
+[name="slide"] {display:none;}
+#slide01:checked ~ .slidelist .slideitem {left:0;}
+#slide02:checked ~ .slidelist .slideitem {left:-100%;}
+#slide03:checked ~ .slidelist .slideitem {left:-200%;}
+#slide04:checked ~ .slidelist .slideitem {left:-300%;}
+
+.about .about_main .slide-control [class*="control"] {display:none;}
+#slide01:checked ~ .slide-control .control01 {display:block;}
+#slide02:checked ~ .slide-control .control02 {display:block;}
+#slide03:checked ~ .slide-control .control03 {display:block;}
+#slide04:checked ~ .slide-control .control04 {display:block;}
+
+</style>
 </head>
 <body>
 
@@ -60,57 +83,97 @@
     <div class="about">
 
         <div class="about_main">
+<!--  -->
 
-            <div class="about_image">
-               <img th:src="@{/image/food/gallary_1.jpg}">
-            </div>
+           <div class="about_image">
+	<input type="radio" name="slide" id="slide01" checked>
+	<input type="radio" name="slide" id="slide02">
+	<input type="radio" name="slide" id="slide03">
+	<input type="radio" name="slide" id="slide04">
+	<ul class="slidelist">
+		<li class="slideitem">
+			<a><img th:src="@{/image/food/한식 우표2.svg}"></a>
+		</li>
+		<li class="slideitem">
+			<a><img th:src="@{/image/food/양식 피자 최종 우표1.svg}"></a>
+		</li>
+		<li class="slideitem">
+			<a><img th:src="@{/image/food/우표 디저트 완성 .svg}"></a>
+		</li>
+		<li class="slideitem">
+			<a><img th:src="@{/image/food/일식 우표 완성.svg}"></a>
+		</li>
+		
+	</ul>
+	<div class="slide-control">
+		<div class="control01">
+			<label for="slide04" class="prev"></label>
+			<label for="slide02" class="next"></label>
+		</div>
+		<div class="control02">
+			<label for="slide01" class="prev"></label>
+			<label for="slide03" class="next"></label>
+		</div>
+		<div class="control03">
+			<label for="slide02" class="prev"></label>
+			<label for="slide04" class="next"></label>
+		</div>
+		<div class="control04">
+			<label for="slide03" class="prev"></label>
+			<label for="slide01" class="next"></label>
+		</div>
+	</div>
+</div>
 
+
+
+
+
+
+<!--  -->
             <div class="about_text">
-
-                <h1><span>추천 </span>레시피</h1>
-                
-
+                <h1><span></span></h1>
                 <div class="about_services">
 
                     <div class="s_1">
                    		<a th:href="@{/recipe/Korean}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/한식 우표2.svg}">
                         </a>
                     </div>
 
                     <div class="s_1">
                      	<a th:href="@{/recipe/Western}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/양식 피자 최종 우표1.svg}">
                     	</a>
                     </div>
 						
                     <div class="s_1">
                    		 <a th:href="@{/recipe/Japanese}">
-                       		 <img th:src="@{/image/food/logo.png}">
+                       		 <img th:src="@{/image/food/일식 우표 완성.svg}">
                        	</a>	 
                     </div>
 				 <div class="s_1">
 				 	<a th:href="@{/recipe/Chinese}">
-                         <img th:src="@{/image/food/logo.png}">
+                         <img th:src="@{/image/food/일식 우표 완성.svg}">
                     </a>     
                    </div>
 
                     <div class="s_1">
 	                    <a th:href="@{/recipe/Asian}">
-	                        <img th:src="@{/image/food/logo.png}">
+	                        <img th:src="@{/image/food/양식 피자 최종 우표1.svg}">
 	                     </a>    
                     </div>
 
                     <div class="s_1" >
 	                    <a th:href="@{/recipe/dessert}">
-	                        <img th:src="@{/image/food/logo.png}">
+	                        <img th:src="@{/image/food/우표 디저트 완성 .svg}">
 	                    </a>     
                     </div>
                 </div>
 
              <!-- <input type="button" class="about_btn" onclick="recifitCheck()"  value="레시피 추천받기"> -->   
 				<a href="#" class="about_btn" onclick="recifitCheck()">
-                    레시피 추천받기
+                    맞춤레시피 
                 </a>
             </div>
 
