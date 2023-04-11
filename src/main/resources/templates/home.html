@@ -117,15 +117,15 @@ $(function(){
 	<input type="radio" name="slide" id="slide03">
 	<input type="radio" name="slide" id="slide04">
 	
-			<ul class="slidelist"> 
-				<li class="slideitem" th:each="recipe:${recipeList}">
-					 <div>
-					 	<a th:href="@{/recipe/read(num=${recipe.recipe_num})}">
-					 		<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
-					 	</a>
-					 </div>
-				</li>
-			 </ul>
+<ul class="slidelist"> 
+    <li class="slideitem" th:each="recipe:${recipeList}">
+        <div>
+            <a th:href="@{/recipe/read(num=${recipe.recipe_num})}">
+                <img th:src="@{/recipe/download(num=${recipe.recipe_num})}" >
+            </a>
+        </div>
+    </li>
+</ul>
 	
 	<div class="slide-control">
 		<div class="control01">

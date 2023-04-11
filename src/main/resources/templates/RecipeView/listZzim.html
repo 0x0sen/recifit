@@ -45,9 +45,11 @@
     </section>
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
+	<table >
 		<h1>
-			찜한<span>레시피</span>
+			<span>찜한레시피</span>
 		</h1>
+	</table>	
 	</div>
 
 	<!-- 베너부분입니다 -->
@@ -55,18 +57,18 @@
 		<h1>
 			<span></span>
 		</h1>
-
-		<!-- 검색 폼 -->
-		<form id="pagingForm" th:action="@{/recipe/listzzim}" method="get">
-			<input type="hidden" name="page" id="page" />
-			<!-- id 는 자바 스크립트 보낼때 -->
-			<!-- name은 홈페이지에서 보낼때 -->
-			<!-- class는 css에서 사용할 때 -->
-			<input type="text" name="searchWord" th:value="${searchWord}">
-			<input type="button" value="검색" onclick="pagingFormSubmit(1)">
-			<!-- 보고 싶은 페이지 번호 1 -->
-		</form>
-
+<h4>
+			<!-- 검색 폼 -->
+			<form id="pagingForm" th:action="@{/recipe/list}" method="get"  >
+				<input type="hidden" name="page" id="page" />
+				<!-- id 는 자바 스크립트 보낼때 -->
+				<!-- name은 홈페이지에서 보낼때 -->
+				<!-- class는 css에서 사용할 때 -->
+				<input type="text" name="searchWord" th:value="${searchWord}" class="search" >
+				<input type="button" value="검색" onclick="pagingFormSubmit(1)" class="button">
+				<!-- 보고 싶은 페이지 번호 1 -->
+			</form>
+</h4>
 
 			<div class="menu_box">
 				<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
