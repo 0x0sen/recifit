@@ -43,12 +43,12 @@
 </select>
 
 <update id="add" parameterType="int">
-   update
-      rf_recipe
-   set
-      recipe_hit = recipe_hit + 1
-   where 
-      recipe_num = #{recipe_num}
+    update
+        rf_recipe
+    set
+        recipe_hit = recipe_hit + 1
+    where 
+        recipe_num = #{recipe_num}
 </update>
 
 <!-- 레시피 수정 -->
@@ -75,6 +75,25 @@
    delete from rf_recipe
    where recipe_num = #{recipe_num} 
 </delete>
+
+
+<select id="Homelist" resultType="Recipe">
+	SELECT 
+		   recipe_num
+	      , recipe_name
+	      , recipe_originalfile
+	      , recipe_savedfile
+	      , recipe_type
+	      , recipe_icon
+	      , recipe_hit
+	      , recipe_zzimSum
+	      , user_id
+	FROM 
+			rf_recipe
+	
+	ORDER BY 
+			recipe_hit DESC
+</select>
 
 <!-- 레시피 전체 글 보기 -->
 <select id="list" parameterType="String" resultType="Recipe">
@@ -462,4 +481,3 @@
 
 
 </mapper> 
- 

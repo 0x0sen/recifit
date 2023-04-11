@@ -90,45 +90,13 @@ nav .login a:hover{
     margin-left: 15px;
 }
 
-/*button*/
-h4{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 50px;
-    color: #fff;
-    position: relative;
-    top: 50%;
-}
-.search {
-  padding: 15px;
-    width: 700px;
-    border-radius: 30px;
-    outline: none;
-    border: 2px solid #000000;
-    font-size: 15px;
-    margin-bottom: 40px;
-   
-   
-}
 
-.button {
-   background: #facc22;
-    outline: none;
-    padding: 10px 12px;
-    position: relative;
-    right: 75px;
-    border: 0;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #fff;
-}
-/*button*/
+
+/*Menu*/
 .menu{
 	
     width: 100%;
-    padding: 30px 0;
+    padding: 70px 0;
     
 }
 #Menu{
@@ -172,16 +140,13 @@ h4{
     width: 325px;
     height: 500px;
     padding-top: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-   background: 	#F5F5F5;
 }
 
 .menu .menu_box .menu_card .menu_image{
     width: 300px;
     height: 245px;
-    margin: 0 auto;
     overflow: hidden;
+    
 }
 
 .menu .menu_box .menu_card .menu_image img{
@@ -190,6 +155,7 @@ h4{
     object-fit: cover;
     object-position: center;
     transition: 0.3s;
+    margin: 100PX 100PX;
 }
 
 .menu .menu_box .menu_card .menu_image:hover img{
