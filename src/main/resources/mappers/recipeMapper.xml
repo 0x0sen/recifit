@@ -12,7 +12,7 @@
       , recipe_name
 <if test="recipe_originalfile != null and recipe_savedfile != null">
       , recipe_originalfile
-      , recipe_savedfileF
+      , recipe_savedfile
        </if>
       , recipe_need
       , recipe_howto
