@@ -1,6 +1,10 @@
 package com.food.recifit.controller;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +31,9 @@ public class HomeController {
 		
 		ArrayList<Recipe> recipeList = service.Homelist();
 		
+			
 		model.addAttribute("recipeList", recipeList);
-		
-		
+			
 		return "home";
 	}
 	/**
