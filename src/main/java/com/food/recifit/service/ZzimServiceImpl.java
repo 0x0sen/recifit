@@ -24,7 +24,7 @@ public class ZzimServiceImpl implements ZzimService{
 
 	@Autowired
 	PasswordEncoder encoder;
-	
+
 	//찜 저장
 	@Override
 	public int insertzzim(Zzim zzim) {
@@ -32,26 +32,26 @@ public class ZzimServiceImpl implements ZzimService{
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("recipe_num", zzim.getRecipe_num());
 		map.put("zzim_id", zzim.getZzim_id());
-		
+		log.debug("찜서비스");
 		Zzim cnt = zzimDAO.findzzim(map);
 		log.info(cnt+"");
 		if(cnt == null) {
 			result = zzimDAO.insertzzim(zzim);
-			}
+		}
 		return result;		
 	}
-	
+
 	//찜 리스트 불러오기
 	@Override
 	public ArrayList<Zzim> listzzim(String zzim_id, String searchWord) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("zzim_id", zzim_id);
 		map.put("searchWord", searchWord);
-	
+
 		ArrayList<Zzim> zzimList = zzimDAO.listzzim(map);
 		return zzimList;
 	}
-	
+
 	//찜 삭제
 	@Override
 	public int deletezzim(Zzim zzim) {
@@ -63,7 +63,7 @@ public class ZzimServiceImpl implements ZzimService{
 		Zzim zzim = zzimDAO.selectzzim(zzim_num);
 		return zzim;
 	}
-	
+
 	//찜 목록에서 레시피 찾기
 	@Override
 	public Zzim findzzim(int zzim_num, String zzim_id) {
@@ -79,5 +79,5 @@ public class ZzimServiceImpl implements ZzimService{
 		int n = zzimDAO.updatezzim(zzim);
 		return n;
 	}
-	
+
 }

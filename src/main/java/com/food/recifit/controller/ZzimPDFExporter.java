@@ -99,7 +99,10 @@ public class ZzimPDFExporter {
 		
 		// HTML, 폰트 설정
 		XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-		fontProvider.register("C:/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+
+
+		fontProvider.register("C:/Java/workspace/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+
 		CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 
 		HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);

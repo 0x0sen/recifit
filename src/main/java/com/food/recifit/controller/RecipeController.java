@@ -92,15 +92,6 @@ public class RecipeController {
 	
 	}
 
-	//냉장고 폼
-	@GetMapping("/refrigeratorcheck")
-	public String refrigeratorcheck() {
-		return "/RecipeView/refrigeratorcheck";
-	}
-	
-	
-	
-	
 	
 	//글쓰기 폼
 	@GetMapping("/write")

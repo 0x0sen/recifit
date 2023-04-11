@@ -80,22 +80,22 @@
 
 	<section id="Home">
 
-        <nav>
+        <nav id="change"   style="background-color: #FAFAA0;">
 
             <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
+                <a th:href="@{/}" > <img th:src="@{/image/food/로고0328_3.svg}"></a>
             </div>
 
-            <ul>
-                <li><a th:href="@{/}"> 레시피 추천</a></li>
-                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+            <ul class="newul">
+                <li class="newli"><a th:href="@{/}" class="newa"> 레시피 추천</a></li>
+                <li class="newli"><a th:href="@{/recipe/list}" class="newa">모든 레시피보기</a></li>
                 <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
                 <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
                 <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
                 
-                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
+                <li class="newli"><a th:href="@{/recipe/write}" class="newa">레시피 쓰기</a></li>
+                <li class="newli"><a th:href="@{/recipe/listzzim}" class="newa" >내 찜목록</a></li>
+                <li class="newli"><a th:href="@{/user/mypage}" class="newa">마이페이지</a></li>
             </ul>
 
             <div class="login">
@@ -108,14 +108,11 @@
     </section>
 	<!-- 베너 -->
 
-	<div class="banner_bg">
-		<h1>
-			<span>레시피</span>쓰기
-		</h1>
-	</div>
+
 
 	<!-- 베너 -->
-
+<div class="mama">
+</div>
 
 
 	<!--Oder-->
@@ -131,66 +128,67 @@
 
 							<p>요리 이름</p>
 							<input type="text" name="recipe_name" id="recipe_name"
-								placeholder="레시피 이름">
+								placeholder="레시피 이름" style="width:550px">
 
 							<p>사진첨부</p>
-							<input type="file" name="upload">
-
+							<input type="file" name="upload" style="width:550px">
+							
 							<p>만드는 법</p>
 							<textarea name="recipe_howto" id="summernote"></textarea>
 
 
-							<p>재료</p>
-							<input type="text" name="recipe_need" id="recipe_need"
-								placeholder="재료">
+							
 
 						</div>
 
 						<div>
-
-							분류
+						
+						
+													<p>재료</p>
+							<input type="text" name="recipe_need" id="recipe_need"
+								placeholder="재료" style="width:450px">
+							
+							
+							<p>분류</p>
 							<table>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="한식" checked="checked"> 한식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+											type="radio" name="recipe_type" value="한식" checked="checked"></label> <img th:src="@{/image/food/한식 우표2.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="양식"> 양식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+											type="radio" name="recipe_type" value="양식"> </label> <img
+										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="일식"> 일식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+											type="radio" name="recipe_type" value="일식"> </label> <img
+										th:src="@{/image/food/일식 우표 완성.svg}"></td>
 								</tr>
 								<tr>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="중식"> 중식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+										th:src="@{/image/food/일식 우표 완성.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+										th:src="@{/image/food/우표 디저트 완성 .svg}"></td>
 								</tr>
 							</table>
 							<br> 이런 사람에게 추천해요.
 							<table>
 								<tr>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="모두다" checked="checked"> </label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+											type="radio" name="recipe_icon" value="모두다" checked="checked"> </label> <img
+										th:src="@{/image/food/All.svg}"></td>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="고추"> </label> <img
-										th:src="@{/image/food/고추.svg}"></td>
+											type="radio" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/매운음식 폴라로이드.svg}"></td>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="다이어트"> </label> <img
-										th:src="@{/image/food/다이어트.svg}"></td>
+											type="radio" name="recipe_icon" value="다이어트"> </label> <img
+										th:src="@{/image/food/다이어트 폴라로이드.svg}"></td>
+									<td width="120px" height="100px"><label><input type="radio" name="recipe_icon" value="이유식"> </label> <img
+										th:src="@{/image/food/이유식 폴라로이드.svg}"></td>
 									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="이유식"> </label> <img
-										th:src="@{/image/food/이유식.svg}"></td>
-									<td width="120px" height="100px"><label><input
-											type="checkbox" name="recipe_icon" value="간단요리"> </label> <img
-										th:src="@{/image/food/logo.svg}"></td>
+											type="radio" name="recipe_icon" value="간단요리"> </label> <img
+										th:src="@{/image/food/이유식 폴라로이드.svg}"></td>
 								</tr>
 
 							</table>
@@ -205,7 +203,6 @@
 
 		</div>
 	</form>
-
 
 
 

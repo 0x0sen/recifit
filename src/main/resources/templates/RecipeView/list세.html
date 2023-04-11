@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Website</title>
     <link rel="stylesheet" th:href="@{/css/foodread.css}">
+    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 </head>
@@ -14,7 +15,7 @@
 
 <section id="Home">
 
-        <nav>
+        <nav style="background-color: #FAFAA0;">
 
             <div class="logo">
                 <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
@@ -44,61 +45,64 @@
     <div class="banner_bg">
         <h1>공유된<span>모든 레시피</span></h1>
     </div>
-    
+  
 <!-- 베너부분입니다 -->
 	<div class="menu" id="Menu">
-			<h1>
-				<span></span>
-			</h1>
-
+<h4>
 			<!-- 검색 폼 -->
-			<form id="pagingForm" th:action="@{/recipe/list}" method="get">
+			<form id="pagingForm" th:action="@{/recipe/list}" method="get"  >
 				<input type="hidden" name="page" id="page" />
 				<!-- id 는 자바 스크립트 보낼때 -->
 				<!-- name은 홈페이지에서 보낼때 -->
 				<!-- class는 css에서 사용할 때 -->
-				<input type="text" name="searchWord" th:value="${searchWord}">
-				<input type="button" value="검색" onclick="pagingFormSubmit(1)">
+				<input type="text" name="searchWord" th:value="${searchWord}" class="search" >
+				<input type="button" value="검색" onclick="pagingFormSubmit(1)" class="button">
 				<!-- 보고 싶은 페이지 번호 1 -->
 			</form>
-
+</h4>
 			<div class="menu_box">
 				<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
 				<tr th:each="recipe:${recipeList}">
 					<div class="menu_card">
 						<div class="menu_image">
 							<!-- DB에서 가져올 이미지 텍스트 -->
-							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}">
-							<img th:src="@{/recipe/download(num=${recipe.recipe_num})}">
-							</a>
+							<a th:href="@{/recipe/read(num=${recipe.recipe_num})}"> 
+							<img th:src="@{/recipe/download(num=${recipe.recipe_num})}"> </a>
 						</div>
 
-						<div class="small_card">
-							<i class="fa-solid fa-heart"></i>
-						</div>
 
-						<div class="menu_info">
+					<div class="menu_info">
 							<h2>
 								<a th:text="${recipe.recipe_name}"
 									th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
 							</h2>
 							<!-- 쓸지 모르는 정보라 지우지 않음 -->
 							<h3 th:text="${recipe.user_id}"></h3>
-							<div class="menu_icon">
-								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star-half-stroke"></i>
-							</div>
-							<a href="#" class="menu_btn">Order Now</a>
-						</div>
-
+						<table >
+							<tr >
+								<td width="200px" height="70px">
+									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
+									<img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									<img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									<img th:if="${recipe.recipe_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									<img th:if="${recipe.recipe_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									<img th:if="${recipe.recipe_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
+								</td>
+								<td width="150px" height="70px">
+									<img th:if="${recipe.recipe_icon == '모두다'}" th:src="@{/image/food/All.svg}">
+									<img th:if="${recipe.recipe_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
+								</td>
+							
+							</tr>
+						</table>
 					</div>
-				</tr>
-
-
-			</div>
-
+				</div>
+			</tr>
 		</div>
+	</div>
 
 
     

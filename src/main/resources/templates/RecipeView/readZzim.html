@@ -81,14 +81,21 @@ function deletezzim(n){
 				<table>
 					<tr>
 						<td width="200px" height="70px">
-											<th>레시피 분류</th>
-					<td th:text="${Zzim.zzim_type}"></td>
+							<img th:if="${Zzim.zzim_icon == '모두다'}" th:src="@{/image/food/All.svg}">
+							<img th:if="${Zzim.zzim_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
+							<img th:if="${Zzim.zzim_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
+							<img th:if="${Zzim.zzim_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
+							<img th:if="${Zzim.zzim_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
 						</td>
 						<td width="150px" height="70px">
-											<th>레시피 아이콘</th>
-					<td th:text="${Zzim.zzim_icon}"></td>
+							<img th:if="${Zzim.zzim_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
+							<img th:if="${Zzim.zzim_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+							<img th:if="${Zzim.zzim_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+							<img th:if="${Zzim.zzim_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+							<img th:if="${Zzim.zzim_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+							<img th:if="${Zzim.zzim_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
 						</td>
-						
+
 					</tr>
 				</table>
 				<div class="product-detail">

@@ -5,8 +5,10 @@
     font-family: sans-serif;
     
 }
-
-nav{   
+h2{
+	    color: #000;
+}
+nav{    
     display: flex;
     align-items: center;
     justify-content: space-around;

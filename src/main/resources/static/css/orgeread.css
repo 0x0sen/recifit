@@ -6,7 +6,7 @@
     
 }
 
-nav{   
+nav{    
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -140,16 +140,13 @@ nav .login a:hover{
     width: 325px;
     height: 500px;
     padding-top: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-   background: 	#F5F5F5;
 }
 
 .menu .menu_box .menu_card .menu_image{
     width: 300px;
     height: 245px;
-    margin: 0 auto;
     overflow: hidden;
+    
 }
 
 .menu .menu_box .menu_card .menu_image img{
@@ -158,6 +155,7 @@ nav .login a:hover{
     object-fit: cover;
     object-position: center;
     transition: 0.3s;
+    margin: 100PX 100PX;
 }
 
 .menu .menu_box .menu_card .menu_image:hover img{
