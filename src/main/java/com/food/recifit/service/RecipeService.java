@@ -46,7 +46,9 @@ public interface RecipeService {
 	public ArrayList<Recipe> dessertList(String searchWord);
 	
 	
-	public ArrayList<Recipe> recifitCheck(String searchWord, String recipe_type, String recipe_icon);
+    public ArrayList<Recipe> recifitCheck(String searchWord_values, String recipe_type, String recipe_icon_values);
+	
+	public ArrayList<Recipe> Homelist();
 	
 	
 	
