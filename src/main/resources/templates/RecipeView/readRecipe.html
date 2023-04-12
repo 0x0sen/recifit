@@ -48,8 +48,10 @@
             zzim_icon : zzim_icon
          },
          success : function(result) {
-            if (result == 1)
+            if (result == 1){
                alert('찜 저장되었습니다.');
+               check();
+            }
             else {
                alert('이미 저장되어 있습니다.');
             }
@@ -60,6 +62,14 @@
                   'width=700px,height=800px,scrollbars=yes');
          }
       });
+   }
+   
+   function check() {
+	   if(confirm('내 찜목록으로 이동하시겠습니까?')){
+		   window.location.href = "http://localhost:8888/recifit/recipe/listzzim";
+	   };
+	   
+	   
    }
 </script>
 
@@ -103,10 +113,9 @@
          </ul>
 
          <div class="login">
-            <span sec:authorize="not isAuthenticated()"><a
-               th:href="@{/user/loginForm}">로그인</a></span> <span
-               sec:authorize="isAuthenticated()"><a
-               th:href="@{/user/logout}">로그아웃</a></span>
+            <span sec:authorize="not isAuthenticated()"><a th:href="@{/user/loginForm}">로그인</a></span> 
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
+            <span sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></span>
          </div>
 
       </nav>

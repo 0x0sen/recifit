@@ -2,6 +2,8 @@ package com.food.recifit.service;
 
 import java.util.ArrayList;
 import org.springframework.stereotype.Service;
+
+import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
 
 
@@ -45,4 +47,8 @@ public interface UserService {
 	public int delete(User member);
 
 	public ArrayList<User> selectAll();
+	//냉장고 채우기
+	public int inputrefrigerator(Refrigerator need);
+
+	
 }

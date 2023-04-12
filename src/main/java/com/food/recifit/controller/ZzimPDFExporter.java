@@ -15,6 +15,8 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -37,104 +39,89 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ZzimPDFExporter {
-	private Zzim zzim;
+   private Zzim zzim;
 
-	public ZzimPDFExporter(Zzim zzim) {
-		this.zzim = zzim;
-	}
+   public ZzimPDFExporter(Zzim zzim) {
+      this.zzim = zzim;
+   }
 
-	private void writeTableHeader(PdfPTable table) {
-		PdfPCell cell = new PdfPCell();
-	//	cell.setBackgroundColor(Color.BLUE);
-		cell.setPadding(5);
-		
-		Font font = FontFactory.getFont(FontFactory.HELVETICA);
-	//	font.setColor(Color.WHITE);
-		cell.setPhrase(new Phrase("zzim_name"));
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("zzim_need"));
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("zzim_howto"));
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("zzim_savedfile"));
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("zzim_icon"));
-		table.addCell(cell);		
-	}
-	
-	private void writeTableData(PdfPTable table) {
-		
-		table.addCell(zzim.getZzim_name());
-		table.addCell(zzim.getZzim_need());
-		table.addCell(zzim.getZzim_howto());
-		table.addCell(zzim.getZzim_savedfile());
-		table.addCell(zzim.getZzim_icon());
-	}
-	
-	public void export(HttpServletResponse response, int num) throws DocumentException, IOException {
-		
-		//Pdf형식의 document를 생성한다.
-		Document document = new Document(PageSize.A4);
-		
-		//PdfWriter를 취득한다.
-		PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
-		
-		//document Open한다.
-		document.open();
-		XMLWorkerHelper helper = XMLWorkerHelper.getInstance();
-		
-		//이미지 생성
-		String filename = "C:/upload/"+zzim.getZzim_savedfile();
-		Image image = Image.getInstance(filename);
-		document.add(image);
-		
-		// CSS
-		CSSResolver cssResolver = new StyleAttrCSSResolver();
-		CssFile cssFile = helper.getCSS(new FileInputStream("C:/Java/workspace/recifit/src/main/resources/static/css/pdf.css"));
-		cssResolver.addCss(cssFile);
-		
-		// HTML, 폰트 설정
-		XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
+   public void export(HttpServletResponse response, int num) throws DocumentException, IOException {
+      
+      //Pdf형식의 document를 생성한다.
+      Document document = new Document(new Rectangle(612, 792));
+      
+      //PdfWriter를 취득한다.
+      PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
+      
+      //document Open한다.
+      document.open();
+      XMLWorkerHelper helper = XMLWorkerHelper.getInstance();
+      
+      //이미지 생성
+      String filename = "C:/upload/"+zzim.getZzim_savedfile();
+      Image image = Image.getInstance(filename);
+      image.scaleAbsolute(400f, 300f);
+      image.setAbsolutePosition(100, 400);
+      image.setSpacingBefore(10f);
+      image.setSpacingAfter(10f);
+      document.add(image);
+      
+      //pdf 배경
+      // Create an Image object
+      Image background = Image.getInstance("C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground.jpg");
+      // Set the position of the image to the bottom left corner of the page
+      background.setAbsolutePosition(0, 0);
+      // Get the PdfContentByte object for the page
+      PdfContentByte canvas = writer.getDirectContentUnder();
+      // Add the image to the background
+      canvas.addImage(background);
+      
+      
+      // CSS
+      CSSResolver cssResolver = new StyleAttrCSSResolver();
+      CssFile cssFile = helper.getCSS(new FileInputStream("C:/Java/workspace/recifit/src/main/resources/static/css/pdf.css"));
+      cssResolver.addCss(cssFile);
+      
+      // HTML, 폰트 설정
+      XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
 
 
-		fontProvider.register("C:/Java/workspace/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+      fontProvider.register("C:/Java/workspace/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
 
-		CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
+      
+      
+      CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 
-		HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
-		htmlContext.setTagFactory(Tags.getHtmlTagProcessorFactory());
-		
-		// Pipelines
-		PdfWriterPipeline pdf = new PdfWriterPipeline(document, writer);
-		HtmlPipeline html = new HtmlPipeline(htmlContext, pdf);
-		CssResolverPipeline css = new CssResolverPipeline(cssResolver, html);
-		 
-		XMLWorker worker = new XMLWorker(css, true);
-		XMLParser xmlParser = new XMLParser(worker, Charset.forName("UTF-8"));
-		
-		String htmlStr = "<p style='font-family: MalgunGothic;'> 제목: " + zzim.getZzim_name() + "</p>";
-		htmlStr += "<p style='font-family: MalgunGothic;'> <span> 재료: " + zzim.getZzim_need() + "</span></p>";
-		htmlStr += "<p style='font-family: MalgunGothic;'> <span> 만드는 법: " + zzim.getZzim_howto().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "") + "</span></p>";
-		htmlStr += "<p style='font-family: MalgunGothic;'> <span> 레시피 아이콘: " + zzim.getZzim_icon() + "</span></p>";
-		
-		StringReader strReader = new StringReader(htmlStr);
-		xmlParser.parse(strReader);
-		
-		
-//		PdfPTable table = new PdfPTable(5);
-//		table.setWidthPercentage(100);
-//		table.setSpacingBefore(15);
-		
-//		writeTableHeader(table);
-//		writeTableData(table);
-		
-//		document.add(table);
-		
-		document.close();
-		
-	}
+      HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
+      htmlContext.setTagFactory(Tags.getHtmlTagProcessorFactory());
+      
+      // Pipelines
+      PdfWriterPipeline pdf = new PdfWriterPipeline(document, writer);
+      HtmlPipeline html = new HtmlPipeline(htmlContext, pdf);
+      CssResolverPipeline css = new CssResolverPipeline(cssResolver, html);
+       
+      XMLWorker worker = new XMLWorker(css, true);
+      XMLParser xmlParser = new XMLParser(worker, Charset.forName("UTF-8"));
+      
+      String htmlStr = "<p style='font-family: MalgunGothic;'><span> <h3>제목: " + zzim.getZzim_name() + "</h3></span></p>";
+      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 재료: " + zzim.getZzim_need() + "</span></p>";
+      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 만드는 법: " + zzim.getZzim_howto().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "") + "</span></p>";
+      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 레시피 아이콘: " + zzim.getZzim_icon() + "</span></p>";
+      
+      StringReader strReader = new StringReader(htmlStr);
+      xmlParser.parse(strReader);
+      
+      
+//      PdfPTable table = new PdfPTable(5);
+//      table.setWidthPercentage(100);
+//      table.setSpacingBefore(15);
+      
+//      writeTableHeader(table);
+//      writeTableData(table);
+      
+//      document.add(table);
+      
+      document.close();
+      
+   }
 }

@@ -479,5 +479,17 @@
        recipe_num desc
 </select>
 
+<!-- 냉장고 재료보기 -->
+<select id="refrigeratorlist" parameterType="String" resultType="Refrigerator">
+   select 
+        refrigerator_need
+      , TO_CHAR(refrigerator_date,'YYYY-MM-DD') AS refrigerator_date
+    from 
+       rf_refrigerator
+	where 
+	   user_id = #{user_id}
+    order by refrigerator_date
+	   
+</select>
 
 </mapper> 

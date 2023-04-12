@@ -26,6 +26,9 @@ window.onload = function(){
 function recifitCheck() {
 	window.open('http://localhost:8888/recifit/recipe/recifitCheck', 'win', 'top=70,left=500,width=400,height=770');
 }
+function refrigerator() {
+	window.open('http://localhost:8888/recifit/recipe/refrigerator','_self');
+}
 
 
 
@@ -97,6 +100,7 @@ $(function(){
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
                 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
@@ -196,6 +200,9 @@ $(function(){
              <!-- <input type="button" class="about_btn" onclick="recifitCheck()"  value="레시피 추천받기"> -->   
 				<a href="#" class="about_btn" onclick="recifitCheck()">
                     맞춤레시피 
+                </a>
+                <a href="#" class="about_btn" onclick="refrigerator()">
+                    냉장고를 부탁해
                 </a>
             </div>
 

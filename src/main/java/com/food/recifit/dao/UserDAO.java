@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
 
 
@@ -27,4 +28,6 @@ public interface UserDAO {
 	int delete(String id);
 	//회원 멤버 보기
 	ArrayList<User> selectAll();
+	//냉장고 채우기
+	int inputrefrigerator(Refrigerator need);
 }

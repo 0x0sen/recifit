@@ -34,6 +34,7 @@
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
                 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
@@ -58,7 +59,7 @@
 				<!-- name은 홈페이지에서 보낼때 -->
 				<!-- class는 css에서 사용할 때 -->
 				<input type="text" name="searchWord" th:value="${searchWord}">
-				<input type="button" value="검색" onclick="pagingFormSubmit(1)">
+				<input type="button" value="검색" >
 				<!-- 보고 싶은 페이지 번호 1 -->
 			</form>
 

@@ -80,4 +80,9 @@ public class ZzimServiceImpl implements ZzimService{
 		return n;
 	}
 
+	public ArrayList<Recipe> list(String searchWord) {
+		ArrayList<Recipe> recipeList = zzimDAO.list(searchWord);
+		return recipeList;
+	}
+
 }

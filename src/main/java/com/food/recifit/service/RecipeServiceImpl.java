@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.food.recifit.dao.RecipeDAO;
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
+import com.food.recifit.domain.Refrigerator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -132,7 +133,14 @@ public class RecipeServiceImpl implements RecipeService {
 		log.debug("recipelist : {}", recipelist);
 		
 		return recipelist;
-		
+				
+	}
+	//냉장고 재료보기
+	@Override
+	public ArrayList<Refrigerator> refrigeratorlist(String user_id) {
+		ArrayList<Refrigerator> refrigeratorlist = recipeDAO.refrigeratorlist(user_id);
+		log.info("냉장고 열어라");
+		return refrigeratorlist;
 	}
 
 	
