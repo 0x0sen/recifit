@@ -96,4 +96,10 @@ public class UserServiceImpl implements UserService {
 		return n;
 	}
 
+	@Override
+	public int deleterefrigerator(Refrigerator need) {
+		int n = dao.deleterefrigerator(need);
+		return n;
+	}
+
 	}

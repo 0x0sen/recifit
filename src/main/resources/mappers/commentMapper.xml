@@ -21,12 +21,11 @@
 
 <!-- 댓글 삭제 -->
 <delete id="deleteComment" parameterType="Comment">
-   delete from 
-      rf_comment 
-   where 
-      recipe_num = #{recipe_num} 
-      and comment_num = #{comment_num}
-      and user_id = #{user_id}
+	delete from 
+		rf_comment 
+	where 
+		recipe_num = #{recipe_num} 
+		and user_id = #{user_id}
 </delete>
 
 <!-- 댓글 저장 -->

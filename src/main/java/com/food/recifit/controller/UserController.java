@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
 import com.food.recifit.service.RecipeService;
@@ -180,6 +181,16 @@ public class UserController {
 		log.debug("냉장고넣기 : {}", need);
 		int n = service.inputrefrigerator(need);
 		return "redirect:/";
+	}
+	
+	//냉장고 비우기
+	@GetMapping("deleterefrigerator")
+	public String deleterefrigerator(
+			Refrigerator need) {
+		log.debug("냉장고삭제 : {}", need);
+		int result = service.deleterefrigerator(need);
+
+		return "redirect:/user/myrefrigerator";
 	}
 }
 

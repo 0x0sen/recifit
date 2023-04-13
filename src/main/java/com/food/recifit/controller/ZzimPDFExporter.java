@@ -48,7 +48,9 @@ public class ZzimPDFExporter {
    public void export(HttpServletResponse response, int num) throws DocumentException, IOException {
       
       //Pdf형식의 document를 생성한다.
-      Document document = new Document(new Rectangle(612, 792));
+	   Rectangle pageSize = PageSize.A4;
+       Document document = new Document(pageSize);
+       document.setMargins(50, 50, 80, 100);
       
       //PdfWriter를 취득한다.
       PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
@@ -60,22 +62,22 @@ public class ZzimPDFExporter {
       //이미지 생성
       String filename = "C:/upload/"+zzim.getZzim_savedfile();
       Image image = Image.getInstance(filename);
-      image.scaleAbsolute(400f, 300f);
-      image.setAbsolutePosition(100, 400);
+      image.scaleAbsolute(350, 250);
+      image.setAbsolutePosition(120, 400);
       image.setSpacingBefore(10f);
       image.setSpacingAfter(10f);
       document.add(image);
       
       //pdf 배경
       // Create an Image object
-      Image background = Image.getInstance("C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground.jpg");
+      Image background = Image.getInstance("C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground1.jpg");
       // Set the position of the image to the bottom left corner of the page
+      background.scaleAbsolute(pageSize.getWidth(), pageSize.getHeight());
       background.setAbsolutePosition(0, 0);
       // Get the PdfContentByte object for the page
       PdfContentByte canvas = writer.getDirectContentUnder();
       // Add the image to the background
-      canvas.addImage(background);
-      
+      canvas.addImage(background);      
       
       // CSS
       CSSResolver cssResolver = new StyleAttrCSSResolver();
@@ -85,10 +87,7 @@ public class ZzimPDFExporter {
       // HTML, 폰트 설정
       XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
 
-
       fontProvider.register("C:/Java/workspace/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
-
-      
       
       CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 
@@ -103,23 +102,17 @@ public class ZzimPDFExporter {
       XMLWorker worker = new XMLWorker(css, true);
       XMLParser xmlParser = new XMLParser(worker, Charset.forName("UTF-8"));
       
-      String htmlStr = "<p style='font-family: MalgunGothic;'><span> <h3>제목: " + zzim.getZzim_name() + "</h3></span></p>";
-      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 재료: " + zzim.getZzim_need() + "</span></p>";
-      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 만드는 법: " + zzim.getZzim_howto().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "") + "</span></p>";
-      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 레시피 아이콘: " + zzim.getZzim_icon() + "</span></p>";
-      
+      String htmlStr = "<html><head><body style='font-family: MalgunGothic;'>"
+              + "<h2>"+zzim.getZzim_name()+"</h2><p>    </p>"
+              + "<h3>재료 : "+ zzim.getZzim_need()+"</h3>"
+              + "<p>" +zzim.getZzim_howto()+"</p>"
+              + "</body></head></html>";
+//      String htmlStr = "<p style='font-family: MalgunGothic;'><span> <h3>" + zzim.getZzim_name() + "</h3></span></p>";
+//      htmlStr += "<p style='font-family: MalgunGothic;'> <span> <h6>재료: " + zzim.getZzim_need() + "</h6></span></p>";
+//      htmlStr += "<p style='font-family: MalgunGothic;'> <span> 만드는 법: " + zzim.getZzim_howto().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "") + "</span></p>";
+//      
       StringReader strReader = new StringReader(htmlStr);
       xmlParser.parse(strReader);
-      
-      
-//      PdfPTable table = new PdfPTable(5);
-//      table.setWidthPercentage(100);
-//      table.setSpacingBefore(15);
-      
-//      writeTableHeader(table);
-//      writeTableData(table);
-      
-//      document.add(table);
       
       document.close();
       

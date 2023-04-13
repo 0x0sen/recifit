@@ -18,11 +18,6 @@
 function inputrefrigerator() {
 	window.open('http://localhost:8888/recifit/user/inputrefrigerator','win', 'top=70,left=500,width=650,height=620');
 }
-function deleterefrigerator(refrigerator_num) {
-	   if (confirm('삭제하시겠습니까?')) {
-	      location.href = 'deleterefrigerator?refrigerator_num=' + refrigerator_num;
-	   }
-	}
 </script>
 <style >
 .btn {
@@ -113,7 +108,6 @@ tbody td {
 				<tr align="center" bgcolor="white">
 					<th>재료</th>
 					<th>유통기한</th>
-					<th>삭제</th>
 				</tr>
 			</thead>
 
@@ -123,8 +117,7 @@ tbody td {
 					<td th:text="${refrigeratorList.refrigerator_need}"
 						id="refrigerator_need"></td>
 					<td th:text="${refrigeratorList.refrigerator_date}"></td>
-				<td><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></td>
-					
+					               <th><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
 				</tr>
 			</tbody>
 		</table>

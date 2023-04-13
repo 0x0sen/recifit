@@ -60,5 +60,10 @@
 		, #{refrigerator_date}
 		)
 	</insert>
+	<!-- 냉장고비우기 -->
+	<delete id="deleterefrigerator" parameterType="Refrigerator">
+		delete from rf_refrigerator
+		where refrigerator_num = #{refrigerator_num}
+	</delete>
 </mapper> 
 	 

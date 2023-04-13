@@ -1,2 +1,8 @@
-p {font-weight: bold; font-size: 15px; font-weight: bold; color: #0082E9; padding:10px 0 10px 0px; margin:0 10px;}
+p {font-weight: bold; font-size: 15px; font-weight: bold; color: #0082E9; padding:10px 0 10px 0px; margin:0 10px; text-align: left;}
 span {font-size: 15px; color: #000000; padding:10px 0 10px 0px; margin:0 10px;}
+
+h2{font-size:46px; font-weight:bold; color: #000000; text-align: center;}
+h3{font-size:26px; font-weight:bold; color: #000000; text-align: left;}
+body{        position: relative;
+        left: 500px;
+        top: 50px;}
