@@ -30,4 +30,6 @@ public interface UserDAO {
 	ArrayList<User> selectAll();
 	//냉장고 채우기
 	int inputrefrigerator(Refrigerator need);
+	//냉장고 비우기
+	int deleterefrigerator(Refrigerator need);
 }

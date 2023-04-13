@@ -78,21 +78,21 @@
 
 
 <select id="Homelist" resultType="Recipe">
-	SELECT 
-		   recipe_num
-	      , recipe_name
-	      , recipe_originalfile
-	      , recipe_savedfile
-	      , recipe_type
-	      , recipe_icon
-	      , recipe_hit
-	      , recipe_zzimSum
-	      , user_id
-	FROM 
-			rf_recipe
-	
-	ORDER BY 
-			recipe_hit DESC
+   SELECT 
+         recipe_num
+         , recipe_name
+         , recipe_originalfile
+         , recipe_savedfile
+         , recipe_type
+         , recipe_icon
+         , recipe_hit
+         , recipe_zzimSum
+         , user_id
+   FROM 
+         rf_recipe
+   
+   ORDER BY 
+         recipe_hit DESC
 </select>
 
 <!-- 레시피 전체 글 보기 -->
@@ -483,13 +483,14 @@
 <select id="refrigeratorlist" parameterType="String" resultType="Refrigerator">
    select 
         refrigerator_need
+      , refrigerator_num
       , TO_CHAR(refrigerator_date,'YYYY-MM-DD') AS refrigerator_date
     from 
        rf_refrigerator
-	where 
-	   user_id = #{user_id}
+   where 
+      user_id = #{user_id}
     order by refrigerator_date
-	   
+      
 </select>
 
 </mapper> 

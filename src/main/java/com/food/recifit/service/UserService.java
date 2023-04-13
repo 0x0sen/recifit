@@ -49,6 +49,8 @@ public interface UserService {
 	public ArrayList<User> selectAll();
 	//냉장고 채우기
 	public int inputrefrigerator(Refrigerator need);
+	//냉장고 비우기
+	public int deleterefrigerator(Refrigerator need);
 
 	
 }

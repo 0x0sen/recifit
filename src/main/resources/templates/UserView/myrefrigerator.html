@@ -18,7 +18,15 @@
 function inputrefrigerator() {
 	window.open('http://localhost:8888/recifit/user/inputrefrigerator','win', 'top=70,left=500,width=400,height=770');
 }
+
+//냉장고 재료 삭제 
+function deleterefrigerator(refrigerator_num) {
+   if (confirm('삭제하시겠습니까?')) {
+      location.href = 'deleterefrigerator?refrigerator_num=' + refrigerator_num;
+   }
+}
 </script>
+
 </head>
 <body>
 
@@ -74,6 +82,7 @@ function inputrefrigerator() {
 				<tr align="center" bgcolor="white">
 					<th>재료</th>
 					<th>유통기한</th>
+					<th></th>
 				</tr>
 			</thead>
 
@@ -83,6 +92,7 @@ function inputrefrigerator() {
 					<td th:text="${refrigeratorList.refrigerator_need}"
 						id="refrigerator_need"></td>
 					<td th:text="${refrigeratorList.refrigerator_date}"></td>
+					<th><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
 				</tr>
 			</tbody>
 		</table>
