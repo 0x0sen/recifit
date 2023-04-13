@@ -1,5 +1,7 @@
 package com.food.recifit.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
+import com.food.recifit.service.RecipeService;
 import com.food.recifit.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +31,9 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-
+	
+	@Autowired
+	RecipeService service2;
 
 	/**
 	 * 로그인 폼으로 이동
@@ -150,6 +156,31 @@ public class UserController {
 
 	}
 
+	
+	//냉장고 보기
+	@GetMapping("myrefrigerator")
+	public String myrefrigerator(@AuthenticationPrincipal UserDetails user, Model model) {
+		ArrayList<Refrigerator> refrigeratorList = service2.refrigeratorlist(user.getUsername());
+		log.debug("넘어간 값 : {}", user.getUsername());
+		model.addAttribute("refrigeratorList", refrigeratorList);		
+		return "UserView/myrefrigerator";
+	}
+	
+	/**
+	 * 냉장고 채우기 폼으로 이동
+	 * @return
+	 */
+	@GetMapping("inputrefrigerator")
+	public String inputrefrigerator() {
+		return "UserView/inputrefrigerator";
+	}
+	
+	@PostMapping("inputrefrigerator")
+	public String inputrefrigerator(Refrigerator need) {
+		log.debug("냉장고넣기 : {}", need);
+		int n = service.inputrefrigerator(need);
+		return "redirect:/";
+	}
 }
 
 

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.food.recifit.dao.UserDAO;
+import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
 
 import lombok.extern.slf4j.Slf4j;
@@ -87,6 +88,12 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<User> selectAll() {
 		ArrayList<User> list = dao.selectAll();
 		return list;
+	}
+
+	@Override
+	public int inputrefrigerator(Refrigerator need) {
+		int n = dao.inputrefrigerator(need);
+		return n;
 	}
 
 	}

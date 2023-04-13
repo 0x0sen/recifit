@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
+import com.food.recifit.domain.Refrigerator;
 
 
 /**
@@ -58,6 +59,9 @@ public interface RecipeDAO {
 	public ArrayList<Recipe> recifitCheck(HashMap<String, Object> map);
 	
     public int add(int recipe_num);
+    
+    //냉장고 재료보기
+	public ArrayList<Refrigerator> refrigeratorlist(String user_id);
 	
 	
 	

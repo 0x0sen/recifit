@@ -3,9 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+     font-weight: bold;
 }
-
-nav#change{    
+img{
+    width: 750px;
+}
+nav#change{
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -145,8 +148,8 @@ nav#change .login a:hover{
 .oder .oder_main .oder_form{
     width: 80%;
     height: 1340px;
-    background: #FFA2AD;
-    padding: 15px 30px 30px 200px;
+    background: #FFC6C3;
+    padding: 15px 15px 15px 150px;
     border-radius: 10px;
 }
 

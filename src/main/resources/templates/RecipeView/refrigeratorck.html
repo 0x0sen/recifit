@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Website</title>
+<link rel="stylesheet" th:href="@{/css/foodread.css}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="short icon" th:href="@{/image/food/short_icon.png}">
+<script>
+	   $(document).ready(function() {
+		   $('.searchWord').val($('#refrigerator_need').html());
+		   searchresult($('#refrigerator_need').html());
+	   });
+	
+	   function searchresult (searchWord){
+	      $.ajax({
+	          url : 'list',
+	          type : 'post',
+	          data : {'searchWord':searchWord},
+	          dataType: 'json',
+	          success : function (recipeList) {
+	        	  let raw = '';
+	        	  for (let i = 0; i < recipeList.length; ++i){
+        		  raw += '<div class="menu_card">';
+        		  raw += '<div class="menu_image">';
+	        		  raw += '<a href="/recifit/recipe/read?num=';
+	        		  raw += recipeList[i].recipe_num;
+	        		  raw += '">';
+	        	  	  raw += '<img src="download?num=';
+	        	  	  raw += recipeList[i].recipe_num;
+	        	  	  raw += '"> </a>';
+	      	  	  raw += '</div>';
+        	  	  raw += '<div class="menu_info">';
+        	  	  raw += '<h2><a href="/recifit/recipe/read?num=';
+        	  	  raw += recipeList[i].recipe_num;
+        		  raw += '">';
+        		  raw += recipeList[i].recipe_name;
+        	  	  raw +=  '</a></h2>';
+        	  	  raw +='<h3>';
+        	  	  raw += recipeList[i].user_id;
+        	  	  raw +='</h3>';
+        	  	  raw +='<table>';
+        	  	  raw +='<tbody>';
+        	  	  raw +='<tr>';
+          	  	  raw +='<td width="200px" height="70px">';
+        	  		if(recipeList[i].recipe_type == '한식'){
+  	          	  	  raw +='<img src="';
+   	         	  	  raw += '/recifit/image/food/한식.svg">';
+            	  	  	}
+          	  		if(recipeList[i].recipe_type == '양식'){
+  	          	  	  raw +='<img src="';
+   	         	  	  raw += '/recifit/image/food/양식.svg">';
+            	  	  	}
+          	  		if(recipeList[i].recipe_type == '일식'){
+  	          	  	  raw +='<img src="';
+   	         	  	  raw += '/recifit/image/food/일식.svg">';
+            	  	  	}
+          	  		if(recipeList[i].recipe_type == '중식'){
+  	          	  	  raw +='<img src="';
+   	         	  	  raw += '/recifit/image/food/중식.svg">';
+            	  	  	}
+          	  		if(recipeList[i].recipe_type == '아시안식'){
+	          	  	  raw +='<img src="';
+ 	         	  	  raw += '/recifit/image/food/아시아식.svg">';
+          	  	  	    }
+          	  		if(recipeList[i].recipe_type == '디저트'){
+  	          	  	  raw +='<img src="';
+   	         	  	  raw += '/recifit/image/food/디저트.svg">';
+            	  	  	}
+          	  	  raw +='</td>';
+          	  	  raw +='<td width="150px" height="70px">';
+          		if(recipeList[i].recipe_icon == '모두다'){
+	          	  	  raw +='<img src="';
+ 	         	  	  raw += '/recifit/image/food/All.svg">';
+          	  	  	}
+        	  		if(recipeList[i].recipe_icon == '고추'){
+	          	  	  raw +='<img src="';
+ 	         	  	  raw += '/recifit/image/food/매운음식.svg">';
+          	  	  	}
+        	  		if(recipeList[i].recipe_icon == '다이어트'){
+	          	  	  raw +='<img src="';
+ 	         	  	  raw += '/recifit/image/food/다이어트.svg">';
+          	  	  	}
+        	  		if(recipeList[i].recipe_icon == '이유식'){
+	          	  	  raw +='<img src="';
+ 	         	  	  raw += '/recifit/image/food/어린이가능.svg">';
+          	  	  	}
+        	  		if(recipeList[i].recipe_icon == '간단요리'){
+	          	  	  raw +='<img src="';
+	         	  	  raw += '/recifit/image/food/누구나.svg">';
+        	  	  	    }
+          	  	  raw +='</td>';
+              	  raw +='</tr>';
+                  raw +='</tbody>';
+                  raw +='</table>';
+          	      raw +='</div>';
+        	  	  raw +='</div>';
+		          $('.menu_box').html(raw);
+	          }
+	          }
+	          ,error: function() {
+	        	  alert("실패");
+	          }
+	 		});
+	 }
+	</script>
+</head>
+<body>
+
+	<section id="Home">
+
+		<nav style="background-color: #FAFAA0;">
+
+        <div class="logo">
+            <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.gif}"></a>
+        </div>
+
+        <ul style="font-size: 20px;">
+            <li><a th:href="@{/}"> 레시피 추천</a></li>
+            <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+            <!-- 나머지 <li> 태그들도 동일하게 글씨 크기를 30px로 설정할 수 있습니다 -->
+            <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+            <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+            <li><a th:href="@{/user/mypage}">마이페이지</a></li>
+        </ul>
+
+        <div class="login">
+            <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
+        </div>
+
+    </nav>
+
+	</section>
+	<!-- 베너부분입니다 -->
+	<div class="banner_bg">
+		<h1>
+			냉장고<span>를 부탁해</span>
+		</h1>
+	</div>
+
+	<!-- 베너부분입니다 -->
+	<div class="menu" id="Menu">
+		<h1>
+			<span></span>
+		</h1>
+
+
+		<table border="1" width="50%" height="200" cellspacing="5">
+			<caption>나의 냉장고</caption>
+			<thead>
+				<tr align="center" bgcolor="white">
+					<th>재료</th>
+					<th>유통기한</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="refrigeratorList:${refrigeratorList}" align="center"
+					bgcolor="white">
+					<td th:text="${refrigeratorList.refrigerator_need}"
+						id="refrigerator_need"></td>
+					<td th:text="${refrigeratorList.refrigerator_date}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 검색 폼 -->
+		<form id="pagingForm" th:action="@{/recipe/list}" method="get">
+			<input type="hidden" name="page" id="page" />
+			<!-- id 는 자바 스크립트 보낼때 -->
+			<!-- name은 홈페이지에서 보낼때 -->
+			<!-- class는 css에서 사용할 때 -->
+			<input type="text" name="searchWord" class="searchWord"
+				th:value="${searchWord}"> <input type="button" value="검색">
+			<!-- 보고 싶은 페이지 번호 1 -->
+		</form>
+
+		<div class="menu_box">
+			<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
+			<tr th:each="recipe:${recipeList}">
+ 
+					<!-- 
+					<div class="menu_info">
+							<h2>
+								<a th:text="${recipe.recipe_name}"
+									th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
+							</h2>
+							쓸지 모르는 정보라 지우지 않음
+							<h3 th:text="${recipe.user_id}"></h3>
+						<table >
+							<tr >
+								<td width="200px" height="70px">
+									<img th:if="${recipe.recipe_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
+									<img th:if="${recipe.recipe_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									<img th:if="${recipe.recipe_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									<img th:if="${recipe.recipe_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
+									<img th:if="${recipe.recipe_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
+									<img th:if="${recipe.recipe_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
+								</td>
+								<td width="150px" height="70px">
+									<img th:if="${recipe.recipe_icon == '모두다'}" th:src="@{/image/food/All.svg}">
+									<img th:if="${recipe.recipe_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
+									<img th:if="${recipe.recipe_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
+								</td>
+							
+							</tr>
+						</table>
+					</div> -->
+				</div>
+			</tr>
+		</div>
+		<div class="menu_info"></div>
+	</div>
+
+
+
+
+
+
+	<!--밑에부분-->
+
+	<footer>
+
+		<div class="footer_main">
+
+			<div class="footer_tag">
+
+				<h2>Back-End</h2>
+				<p>applemail486@gmail.com / 김지희</p>
+				<p>jsyoo1029@gmail.com / 유진선</p>
+				<p>entergo94@gmail.com / 정세원</p>
+
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2></h2>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2>Follows</h2>
+				<i class="fa-brands fa-facebook-f"></i> <i
+					class="fa-brands fa-twitter"></i> <i class="fa-brands fa-instagram"></i>
+				<i class="fa-brands fa-linkedin-in"></i>
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2></h2>
+				<p></p>
+
+
+			</div>
+
+			<div class="footer_tag">
+
+				<h2>Front-End</h2>
+				<p>kimyeaji01@gmail.com / 김예지</p>
+				<p>entergo94@gmail.com / 정세원</p>
+
+
+			</div>
+
+		</div>
+
+	</footer>
+
+
+
+
+</body>
+</html>

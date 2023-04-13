@@ -8,7 +8,8 @@
     <title>Food Website</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
+     <link rel="short icon" th:href="@{/image/food/로고0328_3.svg}">
     <script>
     
     
@@ -38,17 +39,11 @@
 
                 <input type="text" name="user_id" id="user_id"  class="field" placeholder="아이디 ">
                 <input type="password" name="user_pw" id="user_pw"  class="field" placeholder="비밀번호">
-                
-                <input type="checkbox" class="check_box"><p>비밀번호 기억하기</p>
-                <input type="submit" value="Login"  class="submit_btn">
+                <br><br><br><br><br>
+                <input type="submit" value="로그인"  class="submit_btn">
                 
                <!--button type="submit" class="submit_btn">로그인</button>  -->
 
-                <div class="social_icon">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-google"></i>
-                </div>
 
                 <div class="tag">
                     <a th:href="@{/}"  >홈으로</a>

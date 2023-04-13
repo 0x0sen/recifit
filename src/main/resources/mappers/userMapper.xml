@@ -44,5 +44,21 @@
 		delete from rf_user
 		where user_id = #{user_id}
 	</delete>
+	
+	<!-- 냉장고채우기 -->
+	<insert id="inputrefrigerator" parameterType="Refrigerator">
+		insert into rf_refrigerator (
+		user_id
+		, refrigerator_num
+		, refrigerator_need
+		, refrigerator_date
+		)
+		values (
+		#{user_id}
+		, rf_refrigerator_seq.nextval
+		, #{refrigerator_need}
+		, #{refrigerator_date}
+		)
+	</insert>
 </mapper> 
 	 

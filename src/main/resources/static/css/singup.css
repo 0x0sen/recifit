@@ -2,21 +2,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: sans-serif; font-weight: bold;
 }
 
 .hero{
     width: 100%;
     height: 100vh;
-    background-image: url(image/bg.png);
+    background-image: url(../image/about_bg.png);
     background-size: cover;
     background-position: center;
 }
 
 .hero .login_form{
-    width: 400px;
-    height: 590px;
-    background-image: url(image/login_card_bg.png);
+    width: 700px;
+    height: 620px;
+    background-image: url(../image/로그인화면수정3.svg);
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -40,7 +40,7 @@
     content: '';
     width: 20%;
     height: 3px;
-    background: #facc22;
+    background: #000000;
     display: block;
     position: absolute;
     margin-top: 60px;
@@ -51,10 +51,15 @@
     width: 330px;
     margin: 0 auto;
 }
-
-.hero .login_form .input_box .field{
-    width: 100%;
-    border-bottom: 1px solid #919191;
+  td span {
+  width: 80px;
+    display: block;
+    text-align: center;
+  }
+.hero .login_form .input_box .field1{
+	
+    width: 200px;
+    border-bottom: 1px solid #000000;
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -63,6 +68,20 @@
     outline: none;
     background: none;
     font-size: 15px;
+}
+.hero .login_form .input_box .field{
+    width: 200px;
+    border-bottom: 1px solid #000000;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    outline: none;
+    background: none;
+    font-size: 15px;
+    margin-left: 40px;
+   margin-right: auto;
 }
 
 .hero .login_form .input_box .check_box{
@@ -76,15 +95,24 @@
     left: 20px;
     bottom: 40px;
     width: 50%;
-    color: #434343;
+    color: #ffffff;
 }
+
+.hero .login_form .input_box .btn{
+    outline: none;
+    border: none;
+    background: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
 
 .hero .login_form .input_box .submit_btn{
     outline: none;
     border: none;
-    background: #facc22;
+    background: #ffffff;
     padding: 10px 20px;
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +136,7 @@
     line-height: 30px;
     font-size: 15px;
     text-align: center;
-    background: #facc22;
+    background: #000000;
     color: #434343;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
@@ -121,7 +149,7 @@
 
 .hero .login_form .tag{
     margin: 25px auto 0 auto;
-    width: 150px;
+    width:	150px;
 }
 
 .hero .login_form .tag span{
@@ -131,6 +159,6 @@
 .hero .login_form .tag a{
     font-size: 15px;
     margin-left: 5px;
-    color: #facc22;
+    color: #000000;
     text-decoration: none;
 }

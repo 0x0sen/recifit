@@ -31,7 +31,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="short icon" th:href="@{/image/food/short_icon.png}">
+        <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
+     <link rel="short icon" th:href="@{/image/food/로고0328_3.svg}">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -79,13 +80,13 @@
 
 	<section id="Home">
 
-        <nav id="change"  style="background-color: #FAFAA0;">
+       <nav id="change"   style="background-color: #FAFAA0;">
 
             <div class="logo">
-                <a th:href="@{/}" > <img th:src="@{/image/food/로고0328_3.svg}"></a>
+            <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.gif}"></a>
             </div>
 
-            <ul class="newul">
+            <ul class="newul" style="font-size: 20px;">
                 <li class="newli"><a th:href="@{/}" class="newa"> 레시피 추천</a></li>
                 <li class="newli"><a th:href="@{/recipe/list}" class="newa">모든 레시피보기</a></li>
                 <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->

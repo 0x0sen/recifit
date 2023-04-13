@@ -3,6 +3,7 @@ package com.food.recifit.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.food.recifit.domain.Recipe;
 import com.food.recifit.domain.Zzim;
 import com.food.recifit.service.ZzimServiceImpl;
 import com.food.recifit.util.FileService;
@@ -101,6 +104,13 @@ public class ZzimRestController {
 			//예외메시지 출력
 		}
 		return "redirect:/";
+	}
+	
+	@PostMapping("/list")
+	public ArrayList<Recipe> list(
+			String searchWord) {
+		ArrayList<Recipe> recipeList = service.list(searchWord);
+		return recipeList;
 	}
 }
 

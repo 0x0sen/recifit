@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
+import com.food.recifit.domain.Refrigerator;
 
 /**
  * 게시판
@@ -45,10 +46,11 @@ public interface RecipeService {
 	//디저트 레시피
 	public ArrayList<Recipe> dessertList(String searchWord);
 	
-	
     public ArrayList<Recipe> recifitCheck(String searchWord_values, String recipe_type, String recipe_icon_values);
 	
 	public ArrayList<Recipe> Homelist();
+	//냉장고 재료보기
+	public ArrayList<Refrigerator> refrigeratorlist(String user_id);
 	
 	
 	

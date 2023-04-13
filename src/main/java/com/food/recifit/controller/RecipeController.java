@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.food.recifit.domain.Comment;
 import com.food.recifit.domain.Recipe;
+import com.food.recifit.domain.Refrigerator;
 import com.food.recifit.domain.User;
 import com.food.recifit.service.CommentService;
 import com.food.recifit.service.RecipeService;
@@ -60,7 +61,6 @@ public class RecipeController {
 	@Value("${user.board.group}")
 	int pagePerGroup;
 	
-
 	//레시피 자세한 검색으로 추천받기
 	@GetMapping("recifitCheck")
 	public String recifitCheck() {
@@ -213,7 +213,18 @@ public class RecipeController {
 		return "RecipeView/list";
 	}
 
+	//냉장고 추천받기
+	@GetMapping("refrigerator")
+	public String refrigerator(@AuthenticationPrincipal UserDetails user, Model model) {
+		ArrayList<Refrigerator> refrigeratorList = service.refrigeratorlist(user.getUsername());
 
+		log.debug("넘어간 값 : {}", user.getUsername());
+		model.addAttribute("refrigeratorList", refrigeratorList);
+		
+		return "RecipeView/refrigeratorck";
+	}
+
+	
 	//글 클릭해서 읽기, 조회수 증가
 
 	@GetMapping("/read")
