@@ -160,8 +160,12 @@ section .main .main_image img{
 }
 
 .about .about_main .about_image img{
-    width: 600px;
-}
+	width: 680px;
+    height:450px;
+	
+    object-fit: cover; 
+    margin-top:50px;
+    }
 
 .about .about_main .about_text h1{
     font-size: 45px;

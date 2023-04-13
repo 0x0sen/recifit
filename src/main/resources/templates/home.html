@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
     <link rel="short icon" href="image/short_icon.png">
     
-
-    
     
 <script>
 window.onload = function(){
@@ -29,31 +27,15 @@ function recifitCheck() {
 
 
 
-$(function(){
-  // 이미지 슬라이드 컨트롤를 사용하기 위해서는 carousel를 실행해야한다.
-  $('.slideitem').carousel({
-    // 슬리아딩 자동 순환 지연 시간
-    // false면 자동 순환하지 않는다.
-    interval: 1000,
-    // hover를 설정하면 마우스를 가져대면 자동 순환이 멈춘다.
-    pause: "hover",
-    // 순환 설정, true면 1 -> 2가면 다시 1로 돌아가서 반복
-    wrap: true,
-    // 키보드 이벤트 설정 여부(?)
-    keyboard : true
-  });
-});
-
-
 </script>    
 <style>
-.about .about_main .about_image {max-width:600px;margin:-10 auto;position:relative;}
+.about .about_main .about_image {max-width:680px;max-height:450px;margin-left:-10;position:relative;} 
 .about .about_main .about_image .slidelist {position:relative;white-space:nowrap;font-size:0;overflow:hidden;}
-.about .about_main .about_image .slidelist .slideitem {position:relative;display:inline-block;vertical-align:middle;background-color:#fff;width:100%;transition:all 1s;}
+.about .about_main .about_image .slidelist .slideitem {position:relative;display:inline-block;vertical-align:middle;width:100%;transition:all 1s;}
 .about .about_main .about_image .slidelist .slideitem > a {display:block;width:auto;position:relative;}
 .about .about_main .about_image .slidelist .slideitem > a img {max-width:100%;}
 
-.about .about_main .about_image .slide-control [class*="control"] label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:20px;border-radius:50%;cursor:pointer;}
+.about .about_main .about_image .slide-control [class*="control"] label {margin-top:40px;position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:20px;border-radius:50%;cursor:pointer;}
 .about .about_main .about_image .slide-control [class*="control"] label.prev {left:-50px;background:#facc22 url('./image/left.png') center center / 50% no-repeat;}
 .about .about_main .about_image .slide-control [class*="control"] label.next {right:-50px;background:#facc22 url('./image/right.png') center center / 50% no-repeat;}
 
@@ -70,6 +52,58 @@ $(function(){
 #slide04:checked ~ .slide-control .control04 {display:block;}
 
 
+@keyframes slide01{
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:-200%;}
+	73% {left:-200%;}
+	75% {left:-300%;}
+	98% {left:-300%;}
+	100% {left:0%;}
+}
+
+@keyframes slide02{
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:-200%;}
+	73% {left:-200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
+
+@keyframes slide03{
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:200%;}
+	73% {left:200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
+
+@keyframes slide04{
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:300%;}
+	48% {left:300%;}
+	50% {left:200%;}
+	73% {left:200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
+
+[id="slide01"]:checked ~ .slidelist .slideitem {transform: translateX(0);animation:slide01 11s infinite;}
+[id="slide02"]:checked ~ .slidelist .slideitem {transform: translateX(-100%);animation:slide02 11s infinite;}
+[id="slide03"]:checked ~ .slidelist .slideitem {transform: translateX(-200%);animation:slide03 11s infinite;}
+[id="slide04"]:checked ~ .slidelist .slideitem {transform: translateX(-300%);animation:slide04 11s infinite;}
 
 </style>
 </head>
@@ -117,6 +151,8 @@ $(function(){
 	<input type="radio" name="slide" id="slide03">
 	<input type="radio" name="slide" id="slide04">
 	
+	
+	
 			<ul class="slidelist"> 
 				<li class="slideitem" th:each="recipe:${recipeList}">
 					 <div>
@@ -151,8 +187,6 @@ $(function(){
 
 
 
-
-<!--  -->
             <div class="about_text">
                 <h1><span></span></h1>
                 <div class="about_services">
