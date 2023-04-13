@@ -76,6 +76,13 @@
    }
 
 </script>
+<style>
+  /* 요리 이름에 대한 스타일 */
+  p {
+    font-weight: bold;
+    font-size: 19px;
+  }
+</style>
 </head>
 <body>
 
@@ -102,6 +109,7 @@
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
                 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
@@ -124,7 +132,6 @@
 			
 				<div class="oder_form">
 				
-				1
 					<div class="oder_list">
 
 						<div class="oder_left">
@@ -132,15 +139,22 @@
 							<p>요리 이름</p>
 							<input type="text" name="zzim_name" id="zzim_name"
 								th:value="${Zzim.zzim_name}">
-							<p>
-								<img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
-							</p>
+								
+								
+							<div class="product-detail">
+  <p class="image-center">
+    <img th:src="@{/recipe/downloadzzim(num=${Zzim.zzim_num})}">
+  </p>
+</div>
+							
+							
 							<input type="hidden" name="zzim_num" th:value="${Zzim.zzim_num}"
 								id="zzim_num"> <input type="hidden" name="recipe_num"
 								th:value="${Zzim.recipe_num}" id="recipe_num">
+								
 							<p>사진수정</p>
 							<input type="file" name="upload">
-
+							
 							<p>만드는 법</p>
 							<textarea name="zzim_howto" id="summernote"
 								th:text="${Zzim.zzim_howto}"></textarea>

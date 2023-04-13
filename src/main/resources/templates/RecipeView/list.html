@@ -87,7 +87,7 @@ a:hover {
 
 
 					<div class="menu_info">
-							<h2>
+							<h2 style="font-size: 34px;">
 								<a th:text="${recipe.recipe_name}"
 									th:href="@{/recipe/read(num=${recipe.recipe_num})}"></a>
 							</h2>
@@ -106,7 +106,7 @@ a:hover {
 									th:if="${recipe.recipe_icon == '이유식'}"
 									th:src="@{/image/food/어린이가능.svg}"> <img
 									th:if="${recipe.recipe_icon == '간단요리'}"
-									th:src="@{/image/이유식 폴라로이드.svg}"></td>
+									th:src="@{/image/food/누구나.svg}"></td>
 
 								<th style="display: none">레시피 분류</th>
 								<td width="200px" height="100px"><img

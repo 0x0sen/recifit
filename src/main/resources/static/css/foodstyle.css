@@ -8,7 +8,7 @@
 
 section{
     width: 100%;
-    height: 15vh;
+    height: 13.4vh;
 }
 
 section nav{
@@ -90,7 +90,7 @@ section .main .main_text h1 span{
 
 section .main .main_text p{
     color: #000;
-    width: 650px;
+    width: 640px;
     position: relative;
     top: 20px;
     left: 5%;

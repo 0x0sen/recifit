@@ -237,6 +237,81 @@ nav .login a:hover{
     margin: 0 80px;
     transition: 0.3s;
 }
+/**/
+
+
+
+.comment-form {
+  margin-bottom: 10px;
+
+}
+
+.comment-input {
+  width: 500px;
+  padding: 5px;
+  margin-right: 10px;
+  
+}
+
+.comment-submit {
+  padding: 5px 10px;
+  background-color: #fa7318;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.comment-table {
+  width: 100%;
+  border-collapse: collapse;
+    font-size: 19px;
+}
+
+.comment-row {
+  border-bottom: 1px solid #000000;
+}
+
+.comment-user, .comment-text, .comment-date, .comment-delete {
+  padding: 10px;
+}
+
+.comment-user {
+  width: 15%;
+  font-weight: bold;
+}
+
+.comment-text {
+  width: 50%;
+}
+
+.comment-date {
+  width: 20%;
+  color: #000000;
+}
+
+.comment-delete {
+}
+
+.comment-delete img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*Footer*/

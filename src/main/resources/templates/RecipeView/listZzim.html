@@ -13,6 +13,22 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
      <link rel="short icon" th:href="@{/image/food/로고0328_3.svg}">
+     <style >
+     a{
+	text-decoration: none;
+	color: #000000;	
+	
+}
+a:active {
+	text-decoration: none;
+	color: #000000;	
+		
+}
+a:hover {
+		text-decoration: underline;
+	
+}
+</style>
 </head>
 <body>
 
@@ -83,7 +99,7 @@
 						
 
 						<div class="menu_info">
-							<h2>
+							<h2 style="font-size: 34px;">
 								<a th:text="${zzim.zzim_name}"
 									th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}"></a>
 							</h2>
@@ -92,7 +108,15 @@
 							
 							<table >
 							<tr >
-								<td width="200px" height="70px">
+
+								<td width="150px" height="70px">
+									<img th:if="${zzim.zzim_icon == '모두다'}" th:src="@{/image/food/All.svg}">
+									<img th:if="${zzim.zzim_icon == '고추'}" th:src="@{/image/food/매운음식.svg}">
+									<img th:if="${zzim.zzim_icon == '다이어트'}" th:src="@{/image/food/다이어트.svg}">
+									<img th:if="${zzim.zzim_icon == '이유식'}" th:src="@{/image/food/어린이가능.svg}">
+									<img th:if="${zzim.zzim_icon == '간단요리'}" th:src="@{/image/food/누구나.svg}">
+								</td>
+															<td width="200px" height="70px">
 									<img th:if="${zzim.zzim_type == '한식'}" th:src="@{/image/food/한식.svg}">
 									<img th:if="${zzim.zzim_type == '양식'}" th:src="@{/image/food/양식.svg}">
 									<img th:if="${zzim.zzim_type == '일식'}" th:src="@{/image/food/일식.svg}">
@@ -100,14 +124,6 @@
 									<img th:if="${zzim.zzim_type == '아시안식'}" th:src="@{/image/food/아시아식.svg}">
 									<img th:if="${zzim.zzim_type == '디저트'}" th:src="@{/image/food/디저트.svg}">
 								</td>
-								<td width="150px" height="70px">
-									<img th:if="${zzim.zzim_icon == '모두다'}" th:src="@{/image/food/All.svg}">
-									<img th:if="${zzim.zzim_icon == '고추'}" th:src="@{/image/food/매운음식.svg}">
-									<img th:if="${zzim.zzim_icon == '다이어트'}" th:src="@{/image/food/다이어트.svg}">
-									<img th:if="${zzim.zzim_icon == '이유식'}" th:src="@{/image/food/어린이가능.svg}">
-									<img th:if="${zzim.zzim_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
-								</td>
-							
 							</tr>
 						</table>
 						

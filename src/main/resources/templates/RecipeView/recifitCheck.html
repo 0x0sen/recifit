@@ -76,6 +76,12 @@
     }
 	
 </script>
+<style>
+  /* 요리 이름에 대한 스타일 */
+  p {
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
 	<div class="mama">
@@ -88,7 +94,7 @@
 						<div class="oder_list">
 
 							<div>
-								<b><P class="find">맞춤레시피 찾기</P></b>
+								<b><P style=" text-align: center;">맞춤레시피 찾기</P></b>
 								<b><p>키워드</p></b>
 								<div id="box">
 									<b><input type="text" name="searchWord"
@@ -121,7 +127,7 @@
 										th:src="@{/image/food/디저트.svg}"></td>
 								</tr>
 							</table>
-							<br> 이런 사람에게 추천해요.
+							<br> <p>이런 사람에게 추천해요.</p>
 							<table>
 								<tr>
 									<td width="120px" height="100px" ><label><input
@@ -144,12 +150,11 @@
 							</div>
 
 						</div>
-						<input type="button" value="저장" class="oder_btn" onclick="closing()">
+						<input type="button" value="찾기" class="oder_btn" onclick="closing()">
 					</div>
 				</div>
 			</div>
 
 		</form>
-	</div>
 </body>
 </html>

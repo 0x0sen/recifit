@@ -144,7 +144,7 @@ nav#change .login a:hover{
 
 .oder .oder_main .oder_form{
     width: 80%;
-    height: 700px;
+    height: 740px;
     background: #faf3ce;
     padding: 15px 20px 0 20px;
     border-radius: 10px;
@@ -183,8 +183,9 @@ nav#change .login a:hover{
     padding: 10px 20px;
     border: 2px solid #facc22;
     text-decoration: none;
-    color: #fff;
+    color: #000000;
     background: #facc22;
+    font-size: 19px;
 }
 
 .oder .oder_main .oder_form .oder_btn i{

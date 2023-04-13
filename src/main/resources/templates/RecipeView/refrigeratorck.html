@@ -112,12 +112,14 @@
 	 		});
 	 }
 	</script>
+
 </head>
 <body>
 
 	<section id="Home">
 
-		<nav style="background-color: #FAFAA0;">
+	
+<nav style="background-color: #FAFAA0;">
 
         <div class="logo">
             <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.gif}"></a>
@@ -144,7 +146,7 @@
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
 		<h1>
-			냉장고<span>를 부탁해</span>
+			냉장고를 부탁해
 		</h1>
 	</div>
 
@@ -155,7 +157,7 @@
 		</h1>
 
 
-		<table border="1" width="50%" height="200" cellspacing="5">
+		<table border="1" width="50%" height="200" cellspacing="5" class="a">
 			<caption>나의 냉장고</caption>
 			<thead>
 				<tr align="center" bgcolor="white">
@@ -174,6 +176,7 @@
 			</tbody>
 		</table>
 		<!-- 검색 폼 -->
+	<h4>	
 		<form id="pagingForm" th:action="@{/recipe/list}" method="get">
 			<input type="hidden" name="page" id="page" />
 			<!-- id 는 자바 스크립트 보낼때 -->
@@ -183,7 +186,7 @@
 				th:value="${searchWord}"> <input type="button" value="검색">
 			<!-- 보고 싶은 페이지 번호 1 -->
 		</form>
-
+	</h4>
 		<div class="menu_box">
 			<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
 			<tr th:each="recipe:${recipeList}">

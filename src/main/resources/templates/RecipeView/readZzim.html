@@ -25,7 +25,16 @@
 	}
 </script>
 <title>myRecipe</title>
+<style>
+  .a {
+    text-align: center;
+    font-size: 30px;
+  }
 
+  .b {
+    font-size: 25px;
+  }
+</style>
 </head>
 <body>
 	<section id="Home">
@@ -84,15 +93,16 @@
 					<br>
 					<div class="purchase-info"
 						style="display: inline-block; margin: 0 5px; float: right;">
-						<button type="button"
-							th:onclick="|location.href='@{/recipe/pdfzzim(num=${Zzim.zzim_num})}'|"
-							class="btn">PDF 변환</button>
+						
 						<button type="button"
 							th:onclick="|javascript:deletezzim(${Zzim.zzim_num})|"
 							class="btn">찜 삭제</button>
 						<button type="button"
 							th:onclick="|location.href='@{/recipe/updatezzim(num=${Zzim.zzim_num})}'|"
 							class="btn">레시피 편집</button>
+							<button type="button"
+							th:onclick="|location.href='@{/recipe/pdfzzim(num=${Zzim.zzim_num})}'|"
+							class="btn">PDF 변환</button>
 					</div>
 
 					<table>
@@ -107,7 +117,7 @@
 								th:if="${Zzim.zzim_icon == '이유식'}"
 								th:src="@{/image/food/어린이가능.svg}"> <img
 								th:if="${Zzim.zzim_icon == '간단요리'}"
-								th:src="@{/image/이유식 폴라로이드.svg}"></td>
+									th:src="@{/image/food/누구나.svg}">
 							<td width="260px" height="70px"><img
 								th:if="${Zzim.zzim_type == '한식'}"
 								th:src="@{/image/food/한식.svg}"> <img
@@ -127,9 +137,9 @@
 					<div class="product-detail">
 						<th>찜한 날짜 :</th>
 						<td th:text="${Zzim.zzim_date}"></td><br><br>
-						<th>재료 </th><br>
-						<td th:text="${Zzim.zzim_need}"></td><br><br>
-						<th>요리 소개 </th> <br>
+						<div  class="a"><th>재료 </th><br></div>
+						<div clsss="b"><td th:text="${Zzim.zzim_need}"></td></div><br><br>
+						<div  class="a"><th>요리 소개 </th> </div><br>
 						<td th:utext="${Zzim.zzim_howto}"></td>
 					</div>
 			</form>

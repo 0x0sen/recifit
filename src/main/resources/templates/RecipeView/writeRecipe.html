@@ -76,6 +76,14 @@
 	}
 
 </script>
+<style>
+  /* 요리 이름에 대한 스타일 */
+  p {
+    font-weight: bold;
+    font-size: 19px;
+  }
+</style>
+
 </head>
 <body>
 
@@ -101,6 +109,7 @@
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
                 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
@@ -124,9 +133,7 @@
 			<div class="oder_main">
 				<div class="oder_form">
 					<div class="oder_list">
-
 						<div class="oder_left">
-
 							<p>요리 이름</p>
 							<input type="text" name="recipe_name" id="recipe_name"
 								placeholder="레시피 이름" style="width:550px">
@@ -164,17 +171,17 @@
 								</tr>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="중식"> 중식</label> <img
+											type="radio" name="recipe_type" value="중식"> </label> <img
 										th:src="@{/image/food/중식.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
+											type="radio" name="recipe_type" value="아시안식"> </label> <img
 										th:src="@{/image/food/아시아식.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
+											type="radio" name="recipe_type" value="디저트"> </label> <img
 										th:src="@{/image/food/디저트.svg}"></td>
 								</tr>
-							</table>
-							<br> 이런 사람에게 추천해요.
+							</table><br>
+							<p>이런 사람에게 추천해요.</p>
 							<table>
 								<tr>
 									<td width="120px" height="100px"><label><input

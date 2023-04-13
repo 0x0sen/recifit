@@ -75,6 +75,13 @@
 	}
 
 </script>
+<style>
+  /* 요리 이름에 대한 스타일 */
+  p {
+    font-weight: bold;
+    font-size: 19px;
+  }
+</style>
 </head>
 <body>
 
@@ -100,6 +107,7 @@
 
             <div class="login">
                 <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+                            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
                 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
             </div>
 
@@ -148,42 +156,42 @@
 							<table>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="한식" checked="checked"></label> <img th:src="@{/image/food/한식 우표2.svg}"></td>
+											type="radio" name="recipe_type" value="한식" checked="checked"></label> <img th:src="@{/image/food/한식.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="양식"> </label> <img
-										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
+										th:src="@{/image/food/양식.svg}"></td>
 									<td width="150px" height="100px"><label><input
 											type="radio" name="recipe_type" value="일식"> </label> <img
-										th:src="@{/image/food/일식 우표 완성.svg}"></td>
+										th:src="@{/image/food/일식.svg}"></td>
 								</tr>
 								<tr>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="중식"> 중식</label> <img
-										th:src="@{/image/food/일식 우표 완성.svg}"></td>
+											type="radio" name="recipe_type" value="중식"></label> <img
+										th:src="@{/image/food/중식.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="아시안식"> 아시안식</label> <img
-										th:src="@{/image/food/양식 피자 최종 우표1.svg}"></td>
+											type="radio" name="recipe_type" value="아시안식"></label> <img
+										th:src="@{/image/food/아시아식.svg}"></td>
 									<td width="150px" height="100px"><label><input
-											type="radio" name="recipe_type" value="디저트"> 디저트</label> <img
-										th:src="@{/image/food/우표 디저트 완성 .svg}"></td>
+											type="radio" name="recipe_type" value="디저트"></label> <img
+										th:src="@{/image/food/디저트.svg}"></td>
 								</tr>
 							</table>
-							<br> 이런 사람에게 추천해요.
+							<br> <p>이런 사람에게 추천해요.</p>
 							<table>
 								<tr>
 									<td width="120px" height="100px"><label><input
 											type="radio" name="recipe_icon" value="모두다" checked="checked"> </label> <img
 										th:src="@{/image/food/All.svg}"></td>
 									<td width="120px" height="100px"><label><input
-											type="radio" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/매운음식 폴라로이드.svg}"></td>
+											type="radio" name="recipe_icon" value="고추"> </label> <img th:src="@{/image/food/매운음식.svg}"></td>
 									<td width="120px" height="100px"><label><input
 											type="radio" name="recipe_icon" value="다이어트"> </label> <img
-										th:src="@{/image/food/다이어트 폴라로이드.svg}"></td>
+										th:src="@{/image/food/다이어트.svg}"></td>
 									<td width="120px" height="100px"><label><input type="radio" name="recipe_icon" value="이유식"> </label> <img
-										th:src="@{/image/food/이유식 폴라로이드.svg}"></td>
+										th:src="@{/image/food/어린이가능.svg}"></td>
 									<td width="120px" height="100px"><label><input
 											type="radio" name="recipe_icon" value="간단요리"> </label> <img
-										th:src="@{/image/food/이유식 폴라로이드.svg}"></td>
+										th:src="@{/image/food/누구나.svg}"></td>
 								</tr>
 
 							</table>

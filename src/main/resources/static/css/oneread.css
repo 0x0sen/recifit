@@ -128,8 +128,20 @@ h2{
 }
 
 
-.product-detail{
-}
+  .product-detail {
+    
+  }
+
+  .product-detail th {
+    font-size: 18px; /* "재료"의 글자 크기 */
+    
+  }
+
+  .product-detail td {
+    font-size: 20px; /* "요리 소개"의 글자 크기 */
+  }
+  
+  
 .product-detail h2 {
 	text-transform: capitalize;
 	color: #12263a;
@@ -139,7 +151,7 @@ h2{
 }
 
 .product-detail p {
-	font-size: 0.9rem;
+	font-size: 18px;
 	padding: 0.3rem;
 	opacity: 0.8;
 	
@@ -181,11 +193,13 @@ h2{
 
 .purchase-info input {
 	width: 60px;
+		
 }
 
 .purchase-info .btn {
 	cursor: pointer;
-	color: #fff;
+	 font-weight: bold;
+	color: #000000;
 }
 
 .purchase-info .btn:first-of-type {
@@ -232,7 +246,9 @@ h2{
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 1.5rem;
-		background: #facc22;
+		
+		background: #FFC6C3;
+		
 		padding: 40px 12px;
 		position: relative;
 		border: 0;

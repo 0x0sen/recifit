@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Food Website</title>
-<link rel="stylesheet" th:href="@{/css/singup.css}">
+<link rel="stylesheet" th:href="@{/css/singup3.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -25,7 +25,7 @@
 				th:action="@{/user/inputrefrigerator}" method="post">
 				<input type="hidden" th:value="${#authentication.name}" name="user_id">
 				<input type="text" class="field" name="refrigerator_need"
-					placeholder="냉장고 재료" id="refrigerator_need"> <label
+					placeholder="냉장고 재료" id="refrigerator_need"> <br><label
 					for="date-input">유통기한:</label> <input type="date" id="date-input"
 					name="refrigerator_date"> <br>
 				<br> <input type="submit" value="입력완료" class="submit_btn">

@@ -97,7 +97,7 @@ h4{
     align-items: center;
     justify-content: center;
     font-size: 50px;
-    color: #fff;
+    color: #000000;
     position: relative;
     top: 50%;
 }
@@ -114,16 +114,18 @@ h4{
 }
 
 .button {
+	 font-size: 18px;
    background: #facc22;
     outline: none;
-    padding: 10px 12px;
+    padding: 8px 12px;
     position: relative;
-    right: 75px;
+    right: 78px;
     border: 0;
     border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
-    color: #fff;
+    color: #000000;
+     border: 2px solid black;
 }
 /*button*/
 
