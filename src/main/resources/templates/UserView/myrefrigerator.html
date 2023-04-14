@@ -28,7 +28,7 @@ function deleterefrigerator(refrigerator_num) {
 .btn {
   display: block;
   margin: 0 auto;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   padding: 10px 20px;
   background-color: #facc22;
   color: #000;
@@ -36,31 +36,74 @@ function deleterefrigerator(refrigerator_num) {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  
 }
 
-table {
-  margin: 0 auto;
-  width: 50%;
-  height: 200px;
+.z { 
+  margin: 0px auto 40px;
   border-collapse: collapse;
-  cellspacing: 5px;
+  border-spacing: 5px;
+  font-size: 1.2em;
+    width:600px;
+  
 }
 
-thead th {
+.y { 
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+ 
+  
+}
+
+.bk {
   text-align: center;
   background-color: #f8f8f8;
   padding: 10px;
 }
 
-tbody td {
+.k {
+  /* tr에 대한 스타일 지정 */
+}
+
+.h {
   text-align: center;
   background-color: #f8f8f8;
   padding: 10px;
+  width: 0px;
+  width:130px;
+}
+
+.bd {
+  /* tbody에 대한 스타일 지정 */
+}
+
+.tdk {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+   
 }
 
 #refrigerator_need {
   font-weight: bold;
 }
+
+a{
+	text-decoration: none;
+	color: #000000;	
+	
+}
+a:active {
+	text-decoration: none;
+	color: #000000;	
+		
+}
+a:hover {
+		text-decoration: underline;
+	
+}
+
 </style>
         <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
      <link rel="short icon" th:href="@{/image/food/로고0328_3.gif}">
@@ -109,27 +152,26 @@ tbody td {
 
          <button type="button"
             onclick="inputrefrigerator()"
-            class="btn">냉장고 채우기</button>
-		<table border="1" width="50%" height="200" cellspacing="5">
-			<thead>
-				<tr align="center" bgcolor="white">
-					<th>재료</th>
-					<th>유통기한</th>
-					<th>삭제</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr th:each="refrigeratorList:${refrigeratorList}" align="center"
-					bgcolor="white">
-					<td th:text="${refrigeratorList.refrigerator_need}"
-						id="refrigerator_need"></td>
-					<td th:text="${refrigeratorList.refrigerator_date}"></td>
-				<td><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></td>
-					
-				</tr>
-			</tbody>
-		</table>
+            class="btn" style= font-size:1.2em >냉장고 채우기</button>
+            
+            
+            
+            
+            
+<table border="3"  height="200" cellspacing="5" class="z" >
+            <tr align="center" bgcolor="white" class="k" >
+               <th class="h" style="background-color: #B4E5FF; ">재료</th>
+               <th class="h" style="background-color: #B4E5FF; " colspan="2">나의 냉장고 속 유통기한</th>
+            </tr>
+         </thead>
+         <tbody class="bd" style="background-color: #B4E5FF; ">
+            <tr th:each="refrigeratorList:${refrigeratorList}" align="center" bgcolor="white" class="k" >
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_need}"  id="refrigerator_need" class="tdk"></td>
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_date}" class="tdk">></td>
+               <th style="background-color: #B4E5FF; " class="h" ><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
+            </tr>
+         </tbody>
+      </table>
 
 
 

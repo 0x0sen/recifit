@@ -53,27 +53,27 @@
                     raw +='<td width="200px" height="70px">';
                    if(recipeList[i].recipe_type == '한식'){
                          raw +='<img src="';
-                         raw += '/recifit/image/food/한식 다시.svg">';
+                         raw += '/recifit/image/food/한식.svg">';
                          }
                      if(recipeList[i].recipe_type == '양식'){
                          raw +='<img src="';
-                         raw += '/recifit/image/food/양식 다시.svg">';
+                         raw += '/recifit/image/food/양식.svg">';
                          }
                      if(recipeList[i].recipe_type == '일식'){
                          raw +='<img src="';
-                         raw += '/recifit/image/food/일식 다시.svg">';
+                         raw += '/recifit/image/food/일식.svg">';
                          }
                      if(recipeList[i].recipe_type == '중식'){
                          raw +='<img src="';
-                         raw += '/recifit/image/food/중식 다시.svg">';
+                         raw += '/recifit/image/food/중식.svg">';
                          }
                      if(recipeList[i].recipe_type == '아시안식'){
                        raw +='<img src="';
-                       raw += '/recifit/image/food/아시안식 다시.svg">';
+                       raw += '/recifit/image/food/아시아식.svg">';
                            }
                      if(recipeList[i].recipe_type == '디저트'){
                          raw +='<img src="';
-                         raw += '/recifit/image/food/디저트 다시.svg">';
+                         raw += '/recifit/image/food/디저트.svg">';
                          }
                     raw +='</td>';
                     raw +='<td width="150px" height="70px">';
@@ -83,19 +83,19 @@
                        }
                    if(recipeList[i].recipe_icon == '고추'){
                        raw +='<img src="';
-                       raw += '/recifit/image/food/매운음식 다시.svg">';
+                       raw += '/recifit/image/food/매운음식.svg">';
                        }
                    if(recipeList[i].recipe_icon == '다이어트'){
                        raw +='<img src="';
-                       raw += '/recifit/image/food/다이어트 폴라로이드.svg">';
+                       raw += '/recifit/image/food/다이어트.svg">';
                        }
                    if(recipeList[i].recipe_icon == '이유식'){
                        raw +='<img src="';
-                       raw += '/recifit/image/food/어린이가능 다시.svg">';
+                       raw += '/recifit/image/food/어린이가능.svg">';
                        }
                    if(recipeList[i].recipe_icon == '간단요리'){
                        raw +='<img src="';
-                      raw += '/recifit/image/food/일식 우표 완성.svg">';
+                      raw += '/recifit/image/food/누구나.svg">';
                          }
                     raw +='</td>';
                    raw +='</tr>';
@@ -119,6 +119,69 @@
          }
       }   
    </script>
+   <style >
+a{
+	text-decoration: none;
+	color: #000000;	
+	
+}
+a:active {
+	text-decoration: none;
+	color: #000000;	
+		
+}
+a:hover {
+		text-decoration: underline;
+	
+}
+.z { 
+  margin: 0px auto 40px;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  font-size: 1.2em;
+    width:600px;
+  
+}
+
+.y { 
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+ 
+  
+}
+
+.bk {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.k {
+  /* tr에 대한 스타일 지정 */
+}
+
+.h {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+  width: 0px;
+  width:130px;
+}
+
+.bd {
+  /* tbody에 대한 스타일 지정 */
+}
+
+.tdk {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+   
+}
+   
+   
+   </style>
            <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
      <link rel="short icon" th:href="@{/image/food/로고0328_3.gif}">
 </head>
@@ -162,38 +225,40 @@
       <h1>
          <span></span>
       </h1>
-
-
-      <table border="1" width="50%" height="200" cellspacing="5">
-         <caption>나의 냉장고</caption>
-         <thead>
-            <tr align="center" bgcolor="white">
-               <th>재료</th>
-               <th>유통기한</th>
-               <th></th>
-            </tr>
-         </thead>
-
-         <tbody>
-            <tr th:each="refrigeratorList:${refrigeratorList}" align="center"
-               bgcolor="white">
-               <td th:text="${refrigeratorList.refrigerator_need}"
-                  id="refrigerator_need"></td>
-               <td th:text="${refrigeratorList.refrigerator_date}"></td>
-               <th><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
-            </tr>
-         </tbody>
-      </table>
-      <!-- 검색 폼 -->
+      
+   <h4>
+     <!-- 검색 폼 -->
       <form id="pagingForm" th:action="@{/recipe/list}" method="get">
          <input type="hidden" name="page" id="page" />
          <!-- id 는 자바 스크립트 보낼때 -->
          <!-- name은 홈페이지에서 보낼때 -->
          <!-- class는 css에서 사용할 때 -->
-         <input type="text" name="searchWord" class="searchWord"
-            th:value="${searchWord}"> <input type="button" value="검색">
+         <input type="text" name="searchWord" class="search" th:value="${searchWord}">
+          <input type="button" value="검색" class="button">
          <!-- 보고 싶은 페이지 번호 1 -->
       </form>
+</h4>   
+
+
+
+      <table border="3"  height="200" cellspacing="5" class="z" >
+            <tr align="center" bgcolor="white" class="k" >
+               <th class="h" style="background-color: #B4E5FF; ">재료</th>
+               <th class="h" style="background-color: #B4E5FF; " colspan="2">나의 냉장고 속 유통기한</th>
+            </tr>
+         </thead>
+         <tbody class="bd" style="background-color: #B4E5FF; ">
+            <tr th:each="refrigeratorList:${refrigeratorList}" align="center" bgcolor="white" class="k" >
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_need}"  id="refrigerator_need" class="tdk"></td>
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_date}" class="tdk">></td>
+               <th style="background-color: #B4E5FF; " class="h" ><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
+            </tr>
+         </tbody>
+      </table>
+ 
+
+
+
 
       <div class="menu_box">
          <!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
