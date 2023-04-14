@@ -1,0 +1,57 @@
+//pdf 가 안된다면
+
+컨트롤러 자바에서 
+
+ZzimController.java파일 안에 
+
+
+
+///여기 밑에 경로 자신의 img 경로로 수중해줘야해요      
+      
+      
+      
+      
+      //pdf 배경
+      // Create an Image object
+      Image background = Image.getInstance("D:/workspace/Test_Spring/recifit/src/main/resources/static/image/pdfbackground1.jpg");
+//      수정필요                           C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground1.jpg
+//                                D:/workspace/Test_Spring/recifit/src/main/resources/static/image
+      // Set the position of the image to the bottom left corner of the page
+      background.scaleAbsolute(pageSize.getWidth(), pageSize.getHeight());
+      background.setAbsolutePosition(0, 0);
+      // Get the PdfContentByte object for the page
+      PdfContentByte canvas = writer.getDirectContentUnder();
+      // Add the image to the background
+      canvas.addImage(background);      
+      
+      // CSS
+      CSSResolver cssResolver = new StyleAttrCSSResolver();
+      CssFile cssFile = helper.getCSS(new FileInputStream("D:/workspace/Test_Spring/recifit/src/main/resources/static/css/pdf.css"));
+      //수정필요
+      cssResolver.addCss(cssFile);
+      
+      // HTML, 폰트 설정
+      XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
+
+      fontProvider.register("D:/workspace/Test_Spring/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+      //수정필요
+      CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
+
+      HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
+      htmlContext.setTagFactory(Tags.getHtmlTagProcessorFactory());
+      
+      
+      
+      
+ 
+    ///여기 밑에 경로 자신의 여기까지 css tml 폰트 설정   
+
+//글쓰기가 안된다면 그건 글자수가 많아서 줄이도록 하자
+//pdf 만들기는 찜한후 무조건 편집후 엔터키 두번하면안됨
+엔터키
+이건 만들기 가능
+
+엔터키
+
+이렇게는 안됨 
+꼭 수정 후 할것

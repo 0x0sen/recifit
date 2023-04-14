@@ -76,10 +76,17 @@ public class ZzimPDFExporter {
       
       
       
+      
+      
+///여기 밑에 경로 자신의 img 경로로 수중해줘야해요      
+      
+      
+      
+      
       //pdf 배경
       // Create an Image object
       Image background = Image.getInstance("D:/workspace/Test_Spring/recifit/src/main/resources/static/image/pdfbackground1.jpg");
-//									      C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground1.jpg
+//		수정필요							      C:/Java/workspace/recifit/src/main/resources/static/image/pdfbackground1.jpg
 //										  D:/workspace/Test_Spring/recifit/src/main/resources/static/image
       // Set the position of the image to the bottom left corner of the page
       background.scaleAbsolute(pageSize.getWidth(), pageSize.getHeight());
@@ -92,13 +99,14 @@ public class ZzimPDFExporter {
       // CSS
       CSSResolver cssResolver = new StyleAttrCSSResolver();
       CssFile cssFile = helper.getCSS(new FileInputStream("D:/workspace/Test_Spring/recifit/src/main/resources/static/css/pdf.css"));
+      //수정필요
       cssResolver.addCss(cssFile);
       
       // HTML, 폰트 설정
       XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
 
       fontProvider.register("D:/workspace/Test_Spring/recifit/src/main/resources/static/font/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
-      
+      //수정필요
       CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 
       HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
@@ -106,6 +114,9 @@ public class ZzimPDFExporter {
       
       
       
+      
+ 
+    ///여기 밑에 경로 자신의 여기까지 css tml 폰트 설정     
       
       
       
