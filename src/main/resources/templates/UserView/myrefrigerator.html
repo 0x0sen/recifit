@@ -161,13 +161,16 @@ a:hover {
 <table border="3"  height="200" cellspacing="5" class="z" >
             <tr align="center" bgcolor="white" class="k" >
                <th class="h" style="background-color: #B4E5FF; ">재료</th>
-               <th class="h" style="background-color: #B4E5FF; " colspan="2">나의 냉장고 속 유통기한</th>
+               <th class="h" style="background-color: #B4E5FF; ">나의 냉장고 속 유통기한</th>
+               <th class="h" style="background-color: #B4E5FF; " colspan="2">재료 추가 구매</th>
+              
             </tr>
          </thead>
          <tbody class="bd" style="background-color: #B4E5FF; ">
             <tr th:each="refrigeratorList:${refrigeratorList}" align="center" bgcolor="white" class="k" >
                <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_need}"  id="refrigerator_need" class="tdk"></td>
                <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_date}" class="tdk">></td>
+               <td style="background-color: #B4E5FF; "  class="h"><a th:href="|https://www.coupang.com/np/search?component=&q=${refrigeratorList.refrigerator_need}&channel=user|">재료 구매</a></td>
                <th style="background-color: #B4E5FF; " class="h" ><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
             </tr>
          </tbody>
