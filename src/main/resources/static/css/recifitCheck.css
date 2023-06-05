@@ -3,7 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-   
+    font-weight: bold;
+ font-weight: bold;
 
 }
 
@@ -20,11 +21,10 @@
 	
 }
 .oder{
-	
     width: 100%;
     height: 100vh;
-    padding: 5px 0;
-    
+    object-fit: cover; 
+     background-image: url(../image/about_bg.png);
 }
 
 .oder h1{
@@ -54,16 +54,17 @@
 
 .oder .oder_main .oder_form{
     width: 80%;
-    height: 770px;
+    height: 400px;
     padding: 15px 20px 0 20px;
     border-radius: 10px;
-     background-image: url(../image/about_bg.png);
+    
 }
 
 .oder .oder_main .oder_form h2{
     text-align: center;
     margin-bottom: 40px;
     font-size: 30px;
+    
 }
 
 .oder .oder_main .oder_form .oder_list{
@@ -85,6 +86,7 @@
     align-items: center;
     justify-content: center;
     font-size: 15px;
+    
 }
 
 .oder .oder_main .oder_form .oder_list input{

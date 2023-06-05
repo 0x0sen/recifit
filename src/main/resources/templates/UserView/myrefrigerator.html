@@ -16,55 +16,131 @@
 <link rel="short icon" th:href="@{/image/food/short_icon.png}">
 <script>
 function inputrefrigerator() {
-	window.open('http://localhost:8888/recifit/user/inputrefrigerator','win', 'top=70,left=500,width=400,height=770');
+	window.open('http://localhost:8888/recifit/user/inputrefrigerator','win', 'top=70,left=500,width=650,height=620');
 }
-
-//냉장고 재료 삭제 
 function deleterefrigerator(refrigerator_num) {
-   if (confirm('삭제하시겠습니까?')) {
-      location.href = 'deleterefrigerator?refrigerator_num=' + refrigerator_num;
-   }
-}
+	   if (confirm('삭제하시겠습니까?')) {
+	      location.href = 'deleterefrigerator?refrigerator_num=' + refrigerator_num;
+	   }
+	}
 </script>
+<style >
+.btn {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  background-color: #facc22;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
 
+.z { 
+  margin: 0px auto 40px;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  font-size: 1.2em;
+    width:600px;
+  
+}
+
+.y { 
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+ 
+  
+}
+
+.bk {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.k {
+  /* tr에 대한 스타일 지정 */
+}
+
+.h {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+  width: 0px;
+  width:130px;
+}
+
+.bd {
+  /* tbody에 대한 스타일 지정 */
+}
+
+.tdk {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+   
+}
+
+#refrigerator_need {
+  font-weight: bold;
+}
+
+a{
+	text-decoration: none;
+	color: #000000;	
+	
+}
+a:active {
+	text-decoration: none;
+	color: #000000;	
+		
+}
+a:hover {
+		text-decoration: underline;
+	
+}
+
+</style>
+        <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
+     <link rel="short icon" th:href="@{/image/food/로고0328_3.gif}">
 </head>
 <body>
 
 	<section id="Home">
 
-		<nav>
+		
+<nav style="background-color: #FAFAA0;">
 
-			<div class="logo">
-				<a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
-			</div>
+        <div class="logo">
+            <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.gif}"></a>
+        </div>
 
-			<ul>
-				<li><a th:href="@{/}"> 레시피 추천</a></li>
-				<li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-				<!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
-				<!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
-				<!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
+        <ul style="font-size: 20px;">
+            <li><a th:href="@{/}"> 레시피 추천</a></li>
+            <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+            <!-- 나머지 <li> 태그들도 동일하게 글씨 크기를 30px로 설정할 수 있습니다 -->
+            <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+            <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+            <li><a th:href="@{/user/mypage}">마이페이지</a></li>
+        </ul>
 
-				<li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-				<li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-				<li><a th:href="@{/user/mypage}">마이페이지</a></li>
-			</ul>
+        <div class="login">
+            <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
+        </div>
 
-			<div class="login">
-				<span sec:authorize="not isAuthenticated()"><a
-					th:href="@{/user/loginForm}">로그인</a></span>
-					 <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span> <span
-					sec:authorize="isAuthenticated()"><a
-					th:href="@{/user/logout}">로그아웃</a></span>
-			</div>
-
-		</nav>
+    </nav>
 
 	</section>
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
 		<h1>
-			나의 <span>냉장고</span>
+			나의 냉장고
 		</h1>
 	</div>
 
@@ -76,26 +152,29 @@ function deleterefrigerator(refrigerator_num) {
 
          <button type="button"
             onclick="inputrefrigerator()"
-            class="btn">냉장고 채우기</button>
-		<table border="1" width="50%" height="200" cellspacing="5">
-			<thead>
-				<tr align="center" bgcolor="white">
-					<th>재료</th>
-					<th>유통기한</th>
-					<th></th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr th:each="refrigeratorList:${refrigeratorList}" align="center"
-					bgcolor="white">
-					<td th:text="${refrigeratorList.refrigerator_need}"
-						id="refrigerator_need"></td>
-					<td th:text="${refrigeratorList.refrigerator_date}"></td>
-					<th><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
-				</tr>
-			</tbody>
-		</table>
+            class="btn" style= font-size:1.2em >냉장고 채우기</button>
+            
+            
+            
+            
+            
+<table border="3"  height="200" cellspacing="5" class="z" >
+            <tr align="center" bgcolor="white" class="k" >
+               <th class="h" style="background-color: #B4E5FF; ">재료</th>
+               <th class="h" style="background-color: #B4E5FF; ">나의 냉장고 속 유통기한</th>
+               <th class="h" style="background-color: #B4E5FF; " colspan="2">재료 추가 구매</th>
+              
+            </tr>
+         </thead>
+         <tbody class="bd" style="background-color: #B4E5FF; ">
+            <tr th:each="refrigeratorList:${refrigeratorList}" align="center" bgcolor="white" class="k" >
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_need}"  id="refrigerator_need" class="tdk"></td>
+               <td style="background-color: #B4E5FF; " th:text="${refrigeratorList.refrigerator_date}" class="tdk">></td>
+               <td style="background-color: #B4E5FF; "  class="h"><a th:href="|https://www.coupang.com/np/search?component=&q=${refrigeratorList.refrigerator_need}&channel=user|">재료 구매</a></td>
+               <th style="background-color: #B4E5FF; " class="h" ><a th:href ="|javascript:deleterefrigerator(${refrigeratorList.refrigerator_num})|">삭제</a></th>
+            </tr>
+         </tbody>
+      </table>
 
 
 

@@ -5,50 +5,66 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Food Website</title>
+
 <link rel="stylesheet" th:href="@{/css/foodzimread.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="short icon" th:href="@{/image/food/short_icon.png}">
+        <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
+     <link rel="short icon" th:href="@{/image/food/로고0328_3.svg}">
+     <style >
+     a{
+	text-decoration: none;
+	color: #000000;	
+	
+}
+a:active {
+	text-decoration: none;
+	color: #000000;	
+		
+}
+a:hover {
+		text-decoration: underline;
+	
+}
+</style>
 </head>
 <body>
 
 <section id="Home">
 
-        <nav>
+       <nav style="background-color: #FAFAA0;">
 
-            <div class="logo">
-                <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.svg}"></a>
-            </div>
+        <div class="logo">
+            <a th:href="@{/}"> <img th:src="@{/image/food/로고0328_3.gif}"></a>
+        </div>
 
-            <ul>
-                <li><a th:href="@{/}"> 레시피 추천</a></li>
-                <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
-                <!-- 아래부터는 로그인 해야 이용 가능한 설정 클릭시 로그인한 사람이 아니면 로그인 페이지로 접근 막음  -->
-                <!-- 로그인을 3개페이지 이용가능  접근허용 이렇게 할려면 홈에 컨크롤러가 있으면 안되고 아래 3개는 각각의 컨트롤러에 있어서 아이디 채크후 가야할꺼같음-->
-                <!-- 구현이 까다로울꺼같은면 발표 전에 로그인 먼저 한다고 말하고 보여주는 방법이 있으면-->
-                
-                <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
-                <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
-                <li><a th:href="@{/user/mypage}">마이페이지</a></li>
-            </ul>
+        <ul style="font-size: 20px;">
+            <li><a th:href="@{/}"> 레시피 추천</a></li>
+            <li><a th:href="@{/recipe/list}">모든 레시피보기</a></li>
+            <!-- 나머지 <li> 태그들도 동일하게 글씨 크기를 30px로 설정할 수 있습니다 -->
+            <li><a th:href="@{/recipe/write}">레시피 쓰기</a></li>
+            <li><a th:href="@{/recipe/listzzim}">내 찜목록</a></li>
+            <li><a th:href="@{/user/mypage}">마이페이지</a></li>
+        </ul>
 
-            <div class="login">
-                <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
-                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
-                <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
-            </div>
+        <div class="login">
+            <span sec:authorize="not isAuthenticated()" ><a th:href="@{/user/loginForm}">로그인</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/myrefrigerator}">나의 냉장고</a></span>
+            <span sec:authorize="isAuthenticated()" ><a th:href="@{/user/logout}">로그아웃</a></span>
+        </div>
 
-        </nav>
+    </nav>
 
     </section>
 	<!-- 베너부분입니다 -->
 	<div class="banner_bg">
+	<table >
 		<h1>
-			찜한<span>레시피</span>
+			찜한 레시피
 		</h1>
+	</table>	
 	</div>
 
 	<!-- 베너부분입니다 -->
@@ -56,18 +72,18 @@
 		<h1>
 			<span></span>
 		</h1>
-
-		<!-- 검색 폼 -->
-		<form id="pagingForm" th:action="@{/recipe/listzzim}" method="get">
-			<input type="hidden" name="page" id="page" />
-			<!-- id 는 자바 스크립트 보낼때 -->
-			<!-- name은 홈페이지에서 보낼때 -->
-			<!-- class는 css에서 사용할 때 -->
-			<input type="text" name="searchWord" th:value="${searchWord}">
-			<input type="button" value="검색" onclick="pagingFormSubmit(1)">
-			<!-- 보고 싶은 페이지 번호 1 -->
-		</form>
-
+<h4>
+			<!-- 검색 폼 -->
+			<form id="pagingForm" th:action="@{/recipe/list}" method="get"  >
+				<input type="hidden" name="page" id="page" />
+				<!-- id 는 자바 스크립트 보낼때 -->
+				<!-- name은 홈페이지에서 보낼때 -->
+				<!-- class는 css에서 사용할 때 -->
+				<input type="text" name="searchWord" th:value="${searchWord}" class="search" >
+				<input type="button" value="검색" onclick="pagingFormSubmit(1)" class="button">
+				<!-- 보고 싶은 페이지 번호 1 -->
+			</form>
+</h4>
 
 			<div class="menu_box">
 				<!-- 아마도 여기서 부터 반복하면 최대 옆으로 4개 보여줄수 있음  -->
@@ -83,7 +99,7 @@
 						
 
 						<div class="menu_info">
-							<h2>
+							<h2 style="font-size: 34px;">
 								<a th:text="${zzim.zzim_name}"
 									th:href="@{/recipe/readzzim(num=${zzim.zzim_num})}"></a>
 							</h2>
@@ -92,22 +108,22 @@
 							
 							<table >
 							<tr >
-								<td width="200px" height="70px">
-									<img th:if="${zzim.zzim_type == '한식'}" th:src="@{/image/food/한식 우표2.svg}">
-									<img th:if="${zzim.zzim_type == '양식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
-									<img th:if="${zzim.zzim_type == '일식'}" th:src="@{/image/food/일식 우표 완성.svg}">
-									<img th:if="${zzim.zzim_type == '중식'}" th:src="@{/image/food/일식 우표 완성.svg}">
-									<img th:if="${zzim.zzim_type == '아시안식'}" th:src="@{/image/food/양식 피자 최종 우표1.svg}">
-									<img th:if="${zzim.zzim_type == '디저트'}" th:src="@{/image/food/우표 디저트 완성 .svg}">
-								</td>
+
 								<td width="150px" height="70px">
 									<img th:if="${zzim.zzim_icon == '모두다'}" th:src="@{/image/food/All.svg}">
-									<img th:if="${zzim.zzim_icon == '고추'}" th:src="@{/image/food/매운음식 폴라로이드.svg}">
-									<img th:if="${zzim.zzim_icon == '다이어트'}" th:src="@{/image/food/다이어트 폴라로이드.svg}">
-									<img th:if="${zzim.zzim_icon == '이유식'}" th:src="@{/image/food/이유식 폴라로이드.svg}">
-									<img th:if="${zzim.zzim_icon == '간단요리'}" th:src="@{/image/이유식 폴라로이드.svg}">
+									<img th:if="${zzim.zzim_icon == '고추'}" th:src="@{/image/food/매운음식.svg}">
+									<img th:if="${zzim.zzim_icon == '다이어트'}" th:src="@{/image/food/다이어트.svg}">
+									<img th:if="${zzim.zzim_icon == '이유식'}" th:src="@{/image/food/어린이가능.svg}">
+									<img th:if="${zzim.zzim_icon == '간단요리'}" th:src="@{/image/food/누구나.svg}">
 								</td>
-							
+															<td width="200px" height="70px">
+									<img th:if="${zzim.zzim_type == '한식'}" th:src="@{/image/food/한식.svg}">
+									<img th:if="${zzim.zzim_type == '양식'}" th:src="@{/image/food/양식.svg}">
+									<img th:if="${zzim.zzim_type == '일식'}" th:src="@{/image/food/일식.svg}">
+									<img th:if="${zzim.zzim_type == '중식'}" th:src="@{/image/food/중식.svg}">
+									<img th:if="${zzim.zzim_type == '아시안식'}" th:src="@{/image/food/아시아식.svg}">
+									<img th:if="${zzim.zzim_type == '디저트'}" th:src="@{/image/food/디저트.svg}">
+								</td>
 							</tr>
 						</table>
 						

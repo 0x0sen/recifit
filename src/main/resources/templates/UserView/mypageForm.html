@@ -6,12 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Food Website</title>
-<link rel="stylesheet" th:href="@{/css/singup.css}">
+<link rel="stylesheet" th:href="@{/css/singup2.css}">
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="short icon" href="image/short_icon.png">
+        <link rel="stylesheet" th:href="@{/css/문체부쓰기정체.css}">
+     <link rel="short icon" th:href="@{/image/food/로고0328_3.svg}">
 <script>
 //가입폼 확인
 function validation() {
@@ -46,39 +48,49 @@ function validation() {
 
 		<div class="login_form">
 
-			<h1>개인정보 수정</h1>
+			<h1>마이페이지</h1>
 
 
-	<form class="input_box" id="updateMember" th:action="@{/user/mypage}" 
-	 method="post" onsubmit="return validation();">
+	<form class="input_box" id="updateMember" th:action="@{/user/mypage}"  method="post" onsubmit="return validation();">
+	
+<table>
+  <tr>
+    <td><span style="font-size:1.2em;">아이디 </span></td>
+    <td><input type="text" class="field" placeholder="이름" name="user_id" id="user_id" th:value="${member.user_id}" readonly></td>
+  </tr>
+  <tr>
+    <td><span style="font-size:1.2em;">비밀번호 </span></td>
+    <td><input type="password" class="field" placeholder="비밀번호" name="user_pw" id="user_pw"></td>
+  </tr>
+  <tr>
+    <td><span style="font-size:1.2em;">확  인 </span></td>
+    <td><input type="password" class="field" id="user_pw2" placeholder="비밀번호 다시 입력"></td>
+  </tr>
+  <tr>
+    <td><span style="font-size:1.2em;">닉 네 임  </span></td>
+    <td><input type="text" class="field" placeholder="이름" name="user_name" id="user_name" th:value="${member.user_name}"></td>
+  </tr>
+  <tr>
+    <td><span style="font-size:1.2em;">이메일  </span></td>
+    <td><input type="email" class="field" placeholder="Email" name="user_email" id="user_email" th:value="${member.user_email}"></td>
+  </tr>
+  <tr>
+    <td><span style="font-size:1.2em;">전화번호   </span></td>
+    <td><input type="text" class="field" placeholder="전화번호" name="user_phone" id="user_phone" th:value="${member.user_phone}"></td>
+  </tr>
+</table>
 
-<input type="text" class="field" placeholder="이름" name="user_id" id="user_id" th:value="${member.user_id}" readonly>
-			
-<input type="password" class="field" placeholder="비밀번호" name="user_pw" id="user_pw">
 
-
-<input type="password" class="field" id="user_pw2" placeholder="비밀번호 다시 입력">
-
-
-<input type="text" class="field" placeholder="이름" name="user_name" id="user_name" th:value="${member.user_name}">
-
-
-<input type="email" class="field" placeholder="Email" name="user_email" id="user_email" th:value="${member.user_email}" >
-																					<!-- 멤버쩜이 맞는지 -->
-
-<input type="text" class="field" placeholder="전화번호" name="user_phone" id="user_phone"  th:value="${member.user_phone}">
-
-
-		<input type="submit" value="수정" class="submit_btn">
+		<input type="submit" value="개인정보 수정" class="submit_btn">
 		
 		<!--  <button type="submit" class="submit_btn">Register</button>-->
 
 		<div class="tag">
-			<a th:href="@{/}">홈으로</a> <span>/</span> 
-			<a th:href="@{/user/loginForm}">로그인</a>
+			<a th:href="@{/}" style= font-size:1.2em >홈으로</a> <span>/</span> 
+			<a th:href="@{/user/delete}" style=font-size:1.2em >탈퇴</a>
 		</div>
 		<div class="tag">
-			<a th:href="@{/user/delete}">탈퇴</a>
+			
 		</div>
 
 	</form>
